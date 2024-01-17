@@ -1,9 +1,15 @@
 {
-  "extends": "./tsconfig.spec.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "target": "es2017",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
     "paths": {}
   },
   "files": [],
-  "references": []
+  "references": [],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,15 @@
-const Button = () => {
-  const a;
-  return <button>버튼튼</button>;
-};
+import { forwardRef } from 'react';
+
+const Button = forwardRef(
+  ({
+    onClick,
+    children,
+  }: {
+    onClick?: () => void;
+    children?: React.ReactNode;
+  }) => {
+    return <button onClick={onClick}>{children}</button>;
+  },
+);
 
 export default Button;

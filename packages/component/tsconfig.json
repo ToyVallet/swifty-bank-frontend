@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
@@ -9,5 +9,11 @@
     "types": [],
     "plugins": []
   },
-  "include": ["src/**/*", "src/**/*.spec.js", "src/**/*.json", "@types/*", "jest.setup.ts"]
+  "include": [
+    "src/**/*",
+    "src/**/*.spec.js",
+    "src/**/*.json",
+    "@types/*",
+    "jest.setup.ts"
+  ]
 }
