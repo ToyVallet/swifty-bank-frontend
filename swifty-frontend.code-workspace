@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "name": "component",
+      "path": "packages/component",
+    },
+    {
+      "name": "swifty-bank",
+      "path": "apps/swifty-bank",
+    },
+  ],
+  "settings": {
+    "typescript.tsdk": ".yarn/sdks/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "jest.disabledWorkspaceFolders": ["swifty-frontend", ".next", "types"],
+  },
+}

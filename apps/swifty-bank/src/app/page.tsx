@@ -1,11 +1,10 @@
-import { Button } from '@swifty/component';
-
+import Link from 'next/link'
+ 
 export default function Home() {
   return (
-    <main>
-      <div>
-        <Button />
-      </div>
-    </main>
-  );
+    <div>
+      <h1>Home</h1>
+      <Link href="/about">About</Link>
+    </div>
+  )
 }
