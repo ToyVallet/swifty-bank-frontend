@@ -1,0 +1,3 @@
+{
+  "extends": "@swifty/typescript-config/base.json",
+}
