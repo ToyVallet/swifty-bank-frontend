@@ -5761,9 +5761,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web@workspace:apps/web":
+"swifty-bank@workspace:apps/swifty-bank":
   version: 0.0.0-use.local
-  resolution: "web@workspace:apps/web"
+  resolution: "swifty-bank@workspace:apps/swifty-bank"
   dependencies:
     "@next/eslint-plugin-next": "npm:^14.0.4"
     "@swifty/eslint-config": "npm:*"
