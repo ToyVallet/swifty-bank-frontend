@@ -1,4 +1,11 @@
+const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
+const withVanillaExtract = createVanillaExtractPlugin({
+  identifier: ({ hash }) => `swifty_bank_${hash}`,
+});
+
 /** @type {import('next').NextConfig} */
-module.exports = {
-  transpilePackages: ["@swifty/ui"],
+const nextConfig = {
+  transpilePackages: ['@swifty/ui'],
 };
+
+module.exports = withVanillaExtract(nextConfig);
