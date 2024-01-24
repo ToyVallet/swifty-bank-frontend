@@ -1,0 +1,35 @@
+import { style } from '@vanilla-extract/css';
+
+const container = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+});
+
+const input = style({
+  border: '1px solid #ccc',
+  borderRadius: '4px',
+  padding: '8px',
+  outline: 'none',
+  ':focus': {
+    borderColor: '#000',
+  },
+});
+
+const label = style({
+  color: '#000',
+});
+
+const bottomText = style({
+  color: '#ccc',
+  fontSize: '12px',
+});
+
+const styles = {
+  container,
+  input,
+  label,
+  bottomText,
+};
+
+export default styles;

@@ -1,5 +1,5 @@
 {
-  "name": "@swifty/ui",
+  "name": "@swifty/hooks",
   "version": "0.0.0",
   "private": true,
   "exports": {
@@ -7,10 +7,7 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
-  },
-  "dependencies": {
-    "@swifty/hooks": "*"
+    "generate:hooks": "turbo gen hooks"
   },
   "devDependencies": {
     "@swifty/eslint-config": "*",
@@ -20,8 +17,6 @@
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
-    "@vanilla-extract/css": "^1.14.0",
-    "clsx": "^2.1.0",
     "eslint": "^8.56.0",
     "react": "^18.2.0",
     "typescript": "^5.3.3"

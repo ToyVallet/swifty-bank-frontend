@@ -1,10 +1,14 @@
-import { container } from './page.css';
-import Input from '@swifty/ui';
+'use client';
 
-export default async function Page() {
+import { container } from './page.css';
+import { Input } from '@swifty/ui';
+
+export default function Page() {
   return (
     <main className={container}>
-      <Input />
+      <Input label='테스트' bottomText='asd'>
+        <Input.Text placeholder='이름을 입력하세요.' />
+      </Input>
     </main>
   );
 }
