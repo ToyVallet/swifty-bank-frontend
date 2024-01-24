@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import { Card } from '@swifty/ui/card';
-import { Code } from '@swifty/ui/code';
 import styles from './page.module.css';
-import { Button } from '@swifty/ui/button';
+import Button from '@swifty/ui';
 
 function Gradient({
   conic,
