@@ -25,11 +25,24 @@ const bottomText = style({
   fontSize: '12px',
 });
 
+const required = style({
+  color: 'red',
+});
+
+const labelContainer = style({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  gap: '8px',
+});
+
 const styles = {
   container,
   input,
   label,
   bottomText,
+  required,
+  labelContainer,
 };
 
 export default styles;

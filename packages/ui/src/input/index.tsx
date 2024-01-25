@@ -17,6 +17,7 @@ interface InputProps extends HTMLAttributes<HTMLDivElement> {
   label?: ReactNode;
   children: ReactElement;
   bottomText?: string;
+  required?: boolean;
 }
 
 /**
@@ -28,18 +29,26 @@ export default function Input({
   label,
   children,
   bottomText,
+  required,
   ...props
 }: InputProps) {
   const child = Children.only(children);
   const generatedId = useId('input-');
   const id = child.props.id ?? generatedId;
-  // const isError: boolean = child.props.error ?? false;
+  // eslint-disable-next-line
+  // TODO: error prop을 받아서 에러 스타일을 적용.
+  const isError: boolean = child.props.error ?? false;
 
   return (
     <div className={clsx(styles.container, props.className)} {...props}>
-      <label htmlFor={id} className={styles.label}>
-        {label}
-      </label>
+      <div className={styles.labelContainer}>
+        {required && <span className={styles.required}>*</span>}
+        {!!label && (
+          <label htmlFor={id} className={styles.label}>
+            {label}
+          </label>
+        )}
+      </div>
       {cloneElement(child, {
         id,
         ...child.props,
@@ -50,7 +59,10 @@ export default function Input({
 }
 
 interface TextProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'size' | 'type' | 'required'
+  > {
   error?: boolean;
 }
 // TODO: error prop을 받아서 에러 스타일을 적용.
@@ -61,6 +73,7 @@ interface TextProps
  */
 Input.Text = forwardRef<HTMLInputElement, TextProps>(
   // eslint-disable-next-line
+  // TODO: error prop을 받아서 에러 스타일을 적용.
   ({ error, ...props }, ref) => {
     return (
       <input
