@@ -14,6 +14,7 @@ const input = style({
   ':focus': {
     borderColor: '#000',
   },
+  transition: 'all 0.2s ease-in-out',
 });
 
 const label = style({
