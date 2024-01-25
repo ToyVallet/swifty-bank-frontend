@@ -55,7 +55,8 @@ interface TextProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
   error?: boolean;
 }
-
+// TODO: error prop을 받아서 에러 스타일을 적용.
+//       Vanilla Extract에의 variable 활용?
 /**
  * 인풋 텍스트 컴포넌트
  * @param {boolean} props.error - 에러 여부
