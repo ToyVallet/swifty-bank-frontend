@@ -44,9 +44,7 @@ export default function Input({
         id,
         ...child.props,
       })}
-      {bottomText != null ? (
-        <p className={styles.bottomText}>{bottomText}</p>
-      ) : null}
+      {bottomText && <p className={styles.bottomText}>{bottomText}</p>}
     </div>
   );
 }
