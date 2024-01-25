@@ -44,7 +44,7 @@ export default function Input({
         id,
         ...child.props,
       })}
-      {bottomText && <p className={styles.bottomText}>{bottomText}</p>}
+      {!!bottomText && <p className={styles.bottomText}>{bottomText}</p>}
     </div>
   );
 }
