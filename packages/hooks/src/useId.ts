@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-
-let idCounter = 0;
+import { useState, useId as useID } from 'react';
 
 export function generateId(prefix = 'swifty-id-') {
-  idCounter = idCounter + 1;
-  return `${prefix}${idCounter}`;
+  const uniqueId = useID();
+  return `${prefix}${uniqueId}`;
 }
 
 export default function useId(prefix?: string) {
