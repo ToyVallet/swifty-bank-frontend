@@ -11,6 +11,11 @@ interface HeadingProps {
   text: string;
 }
 
+/**
+ * 헤딩 컴포넌트
+ * @param {'h1' | 'h2' | 'h3'} type - 사용할 헤드 태그
+ * @param {string} text - 헤딩 텍스트
+ */
 export default function Heading({type = HeadType.h1, text}: HeadingProps) {
   switch(type) {
     case HeadType.h2:
