@@ -1,27 +1,18 @@
 import { style } from '@vanilla-extract/css';
 
-const head1 = style({
+const h1 = style({
   color: 'black',
+  fontWeight: '700',
   fontSize: '28px',
-  fontWeight: '700',
 });
+const h2 = style([h1,{ fontSize: '24px'}]);
 
-const head2 = style({
-  color: 'black',
-  fontSize: '24px',
-  fontWeight: '700',
-});
-
-const head3 = style({
-  color: 'black',
-  fontSize: '20px',
-  fontWeight: '700',
-});
+const h3 = style([h1,{ fontSize: '20px'}]);
 
 const styles = {
-  head1,
-  head2,
-  head3
+  h1,
+  h2,
+  h3
 };
 
 export default styles;
