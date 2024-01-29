@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@swifty/eslint-config": "*",
+    "@swifty/prettier-config": "*",
     "@swifty/typescript-config": "*",
     "eslint-plugin-turbo": "^1.11.3",
     "prettier": "^3.1.1",

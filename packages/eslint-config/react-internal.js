@@ -16,15 +16,15 @@ const project = resolve(process.cwd(), "tsconfig.json");
 module.exports = {
   parser: "@typescript-eslint/parser",
   extends: [
+    "plugin:@typescript-eslint/recommended",
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:react/recommended",
     "eslint-config-turbo",
-    "plugin:@typescript-eslint/recommended",
     'plugin:prettier/recommended'
   ],
-  plugins: ['react', '@typescript-eslint', "prettier"],
+  plugins: ['@typescript-eslint', 'react', 'simple-import-sort'],
   globals: {
     React: true,
     JSX: true,
@@ -50,6 +50,11 @@ module.exports = {
     { files: ["*.js?(x)", "*.ts?(x)"] },
   ],
   rules: {
+    'no-console': 'warn',
     "import/no-extraneous-dependencies": "off",
+    'react/require-default-props': 'off',
+    'no-prototype-builtins': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
   }
 };
