@@ -1,15 +1,25 @@
 'use client'
 
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes } from 'react';
 import CustomSelect from 'react-select';
 import styles from './select.css';
 import clsx from 'clsx';
 import customStyles from './customStyles';
 
+interface SelectOptionType { 
+  value: string,
+  label: string,
+};
+
+interface SelectProps extends HTMLAttributes<HTMLDivElement>{
+  options: SelectOptionType[],
+  label?: string,
+  placeholder?: string,
+};
 export default function Select({ label, options, ...props }: SelectProps) {
-  const [selectedOption, setSelectedOption ] = useState(null);
+  
+  // TODO: 선택된 옵션을 받아서 처리.
   const handleChange = (selectedOption: SelectOptionType | null) => {
-    // TODO: 선택된 옵션을 받아서 처리.
     console.log(`Option selected:`, selectedOption);
   };
   
@@ -26,7 +36,6 @@ export default function Select({ label, options, ...props }: SelectProps) {
         styles={customStyles}
         isSearchable={false}
         placeholder={props.placeholder}
-        value={selectedOption}
         onChange={handleChange}
         components={{
           IndicatorSeparator: () => null,
@@ -35,14 +44,3 @@ export default function Select({ label, options, ...props }: SelectProps) {
     </div>
   );
 }
-
-interface SelectOptionType { 
-  value: string,
-  label: string,
-};
-
-interface SelectProps extends HTMLAttributes<HTMLDivElement>{
-  options: SelectOptionType[],
-  label?: string,
-  placeholder?: string,
-};
