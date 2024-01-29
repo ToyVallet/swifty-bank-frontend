@@ -1089,6 +1089,7 @@ __metadata:
     "@types/react": "npm:^18.2.46"
     "@types/react-dom": "npm:^18.2.18"
     "@vanilla-extract/css": "npm:^1.14.0"
+    "@vanilla-extract/recipes": "npm:^0.5.1"
     clsx: "npm:^2.1.0"
     eslint: "npm:^8.56.0"
     react: "npm:^18.2.0"
@@ -1572,6 +1573,15 @@ __metadata:
   version: 1.0.3
   resolution: "@vanilla-extract/private@npm:1.0.3"
   checksum: 62a74cb4fce877debb8043cda8b9efb8ca142b56d6a64525929a16a6e6c4f9bc181a6ea099b5b6ed08d0c7b3e8389b7e05f7fe9b4b0fae6eb74c2a69cb6ee2f7
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/recipes@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@vanilla-extract/recipes@npm:0.5.1"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: 2d1a6ad3b421b91f005a0a8531050d98488e2e1dbcbda65d6fe21d239357cfe1e6b03ce9bf2a5eb5fbd065a373f0794eab121330a5f7e8d8fbb4cbbed67caf31
   languageName: node
   linkType: hard
 

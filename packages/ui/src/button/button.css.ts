@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-const able= style({
+const base = style({
   width: '95%',
   padding: '10px 0',
   borderRadius: '24px',
@@ -14,14 +14,14 @@ const able= style({
   transitionDuration: '150ms',
 });
 
-const disable = style([able, {
+const disabled = style([base, {
   backgroundColor: '#B4B4B4',
   cursor: 'not-allowed',
 }]);
 
 const styles = {
-  able,
-  disable,
+  base,
+  disabled,
 }
 
 export default styles

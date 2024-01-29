@@ -1,27 +1,37 @@
 'use client';
 
+import { HTMLAttributes, ReactNode } from 'react';
 import styles from './button.css'
+import clsx from 'clsx';
 
-interface ConfirmButtonProps {
-  isDisabled: boolean;
-  type: 'button' | 'submit'| 'reset';
-  children: string;
-  handleClick: () => void;
+type ButtonVariant = 'disabled' | 'active';
+
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
+  variant: ButtonVariant;
+  children: ReactNode;
+  handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function ConfirmButton({
-  isDisabled,
-  type,
+export default function Button({
+  variant,
   children,
+  className,
   handleClick,
-}: ConfirmButtonProps) {
+  ...props
+}: ButtonProps) {
+  // TODO: 추후 클릭이벤트에 따른 로직 처리
+  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleClick(e);
+  }
 
   return (
     <button
-    className={isDisabled ? styles.disable : styles.able}
-    type={type}
-    onClick={handleClick}
-    disabled={isDisabled}
+    className={variant === 'disabled' ? clsx(styles.disabled, className) : clsx(styles.base, className)}
+    type="button"
+    onClick={e => clickHandler(e)}
+    disabled={variant === 'disabled'}
+    {...props}
     >{children}</button>
   )
 }
