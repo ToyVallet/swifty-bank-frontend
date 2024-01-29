@@ -2,26 +2,18 @@
 
 import styles from './button.css'
 
-interface ConfirmButtonProps {
-  isDisabled: boolean;
-  type: 'button' | 'submit'| 'reset';
-  children: string;
-  handleClick: () => void;
+type ButtonVariant = "disabled" | "active";
+
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+   variant: ButtonVariant;
 }
 
-export default function ConfirmButton({
-  isDisabled,
-  type,
-  children,
-  handleClick,
-}: ConfirmButtonProps) {
-
+export default function Button({children, className ...props}: ButtonProps) {
+   // variant 따라 처리
   return (
     <button
-    className={isDisabled ? styles.disable : styles.able}
-    type={type}
-    onClick={handleClick}
-    disabled={isDisabled}
+    className={className}
+    {...props}
     >{children}</button>
   )
 }
