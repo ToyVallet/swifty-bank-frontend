@@ -2,7 +2,7 @@ const primaryColor = '#E5FF70';
 const secondaryColor = '#B4B4B4';
 
 const customStyles = {
-  singleValue: (provided: any) => ({
+  singleValue: (provided: object) => ({
     ...provided,
     color: `${secondaryColor}`,
     fontSize: '16px',
@@ -10,8 +10,8 @@ const customStyles = {
     fontWeight: 400,
     paddingTop: '8px',
   }),
-
-  control: (provided: any) => ({
+  
+  control: (provided: object) => ({
     ...provided,
     backgroundColor: 'transparent',
     color: `${secondaryColor}`,
@@ -21,7 +21,7 @@ const customStyles = {
     fontWeight: 400,
   }),
   
-  option: (provided: any, state: any) => ({
+  option: (provided: object, state: StateType) => ({
     ...provided,
     backgroundColor: state.isSelected ? `${primaryColor}` : `transparent`,
     color:  state.isSelected ? '#000' : '#FFF',
@@ -37,7 +37,7 @@ const customStyles = {
     fontWeight: 400,
   }),
   
-  placeholder: (provided: any) => ({
+  placeholder: (provided: object) => ({
     ...provided,
     borderRadius: '25px',
     color: `${secondaryColor}`,
@@ -47,32 +47,37 @@ const customStyles = {
     fontWeight: 700,
     backgroundColor: 'transparent',
   }),
-
-  dropdownIndicator: (provided: any) => ({
+  
+  dropdownIndicator: (provided: object) => ({
     ...provided,
-    display: 'none',
+    paddingTop: '14px',
   }),
-
-  menu: (provided: any) => ({
+  
+  menu: (provided: object) => ({
     ...provided,
     width: '90%',
     height: 'auto',
     border: "none",
-    borderRadius: '20px',
+    borderRadius: '8px',
     scrollWidth: '0',
     backgroundColor: '#2A2A2A',
     maxHeight: 'none',
     overflow: 'hidden',
   }),
-
-  menuList: (base: any) => ({
+  
+  menuList: (base: object) => ({
     ...base,
     height: "100%",
-
-   "::-webkit-scrollbar": {
+    
+    "::-webkit-scrollbar": {
       width: "9px"
-   },
+    },
   }),
 };
+interface StateType {
+  isSelected?: boolean;
+  isFocused?: boolean;
+  isDisabled?: boolean;
+}
 
 export default customStyles;

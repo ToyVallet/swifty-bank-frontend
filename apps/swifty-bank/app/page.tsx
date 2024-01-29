@@ -13,6 +13,7 @@ const options = [
 ];
 
 export default function Page() {
+
   return (
     <main className={container}>
       <Input label='테스트' bottomText='asd' required>
@@ -21,14 +22,13 @@ export default function Page() {
 
       <Select 
         label={"통신사"} 
-        options={options} 
+        options={options}
         placeholder={'통신사 선택'}
       />
 
       <Heading>회원정보를 입력해주세요.</Heading> 
       <Heading type='h2'>회원정보를 입력해주세요.</Heading> 
       <Heading type='h3'>회원정보를 입력해주세요.</Heading> 
-
     </main>
   );
 }
