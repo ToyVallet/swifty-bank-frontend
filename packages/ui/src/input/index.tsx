@@ -1,5 +1,7 @@
-'use client';
+"use client";
 
+import { useId } from "@swifty/hooks";
+import clsx from "clsx";
 import {
   Children,
   cloneElement,
@@ -8,10 +10,9 @@ import {
   InputHTMLAttributes,
   ReactElement,
   ReactNode,
-} from 'react';
-import { useId } from '@swifty/hooks';
-import styles from './input.css';
-import clsx from 'clsx';
+} from "react";
+
+import styles from "./input.css";
 
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
   label?: ReactNode;
@@ -33,7 +34,7 @@ export default function Input({
   ...props
 }: InputProps) {
   const child = Children.only(children);
-  const generatedId = useId('input-');
+  const generatedId = useId("input-");
   const id = child.props.id ?? generatedId;
   // eslint-disable-next-line
   // TODO: error prop을 받아서 에러 스타일을 적용.
@@ -61,7 +62,7 @@ export default function Input({
 interface TextProps
   extends Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'type' | 'required'
+    "size" | "type" | "required"
   > {
   error?: boolean;
 }
@@ -78,10 +79,10 @@ Input.Text = forwardRef<HTMLInputElement, TextProps>(
     return (
       <input
         ref={ref}
-        type='text'
+        type="text"
         className={clsx(styles.input, props.className)}
         {...props}
       />
     );
-  }
+  },
 );
