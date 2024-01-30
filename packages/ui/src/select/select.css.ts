@@ -29,12 +29,7 @@ const label = style({
   margin: '0 0 8px 0',
 });
 
-const option = style({
-  
-});
-
 const placeholder = style({
-  // display: 'none',
   color: '#000',
 });
 
@@ -42,7 +37,6 @@ const styles = {
   select,
   label,
   container,
-  option,
   placeholder,
 };
 
