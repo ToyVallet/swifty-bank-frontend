@@ -1,46 +1,49 @@
-'use client'
+'use client';
 
-import { HTMLAttributes } from 'react';
-import CustomSelect from 'react-select';
 import styles from './select.css';
 import clsx from 'clsx';
-import customStyles from './customStyles';
 
-interface SelectOptionType { 
-  value: string,
-  label: string,
-};
+interface SelectProps {
+  label?: string;
+  placeholder: string;
+  options: SelectOption[];
+  className?: string;
+  // eslint-disable-next-line no-unused-vars
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
 
-interface SelectProps extends HTMLAttributes<HTMLDivElement>{
-  options: SelectOptionType[],
-  label?: string,
-  placeholder?: string,
-};
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
 export default function Select({ label, options, ...props }: SelectProps) {
-  
-  // TODO: 선택된 옵션을 받아서 처리.
-  const handleChange = (selectedOption: SelectOptionType | null) => {
-    console.log(`Option selected:`, selectedOption);
-  };
-  
+
   return (
     <div className={clsx(styles.container, props.className)}>
-      { label ? 
-        <label className={styles.label}>
-          {label}
-        </label> 
-        : null }
-      <CustomSelect
-        options={options}
-        className={styles.select}
-        styles={customStyles}
-        isSearchable={false}
-        placeholder={props.placeholder}
-        onChange={handleChange}
-        components={{
-          IndicatorSeparator: () => null,
-        }}
-      />
+      {label && <label className={styles.label}>{label}</label>}
+      <select 
+        className={styles.select} 
+        name={props.placeholder}
+        onChange={props.onChange}
+        defaultValue={props.placeholder}
+        >
+        <option
+          className={styles.placeholder} 
+          value={props.placeholder}
+          disabled hidden
+        >
+          {props.placeholder}
+        </option>
+        {options.map((option: SelectOption) => (
+          <option 
+            key={option.value} 
+            value={option.value} 
+            className={styles.option}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
