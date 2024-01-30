@@ -1,7 +1,9 @@
 import { style } from "@vanilla-extract/css";
 
+import { vars } from "../styles/vars.css";
+
 const h1 = style({
-  color: "black",
+  color: vars.color.text,
   fontWeight: "700",
   fontSize: "28px",
 });

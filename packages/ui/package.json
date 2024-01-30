@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./styles": "./src/styles/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -11,7 +12,8 @@
     "code-format": "prettier . --write"
   },
   "dependencies": {
-    "@swifty/hooks": "*"
+    "@swifty/hooks": "*",
+    "@vanilla-extract/recipes": "^0.5.1"
   },
   "devDependencies": {
     "@swifty/eslint-config": "*",
