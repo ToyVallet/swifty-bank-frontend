@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { HTMLAttributes, ReactNode } from 'react';
-import styles from './button.css'
-import clsx from 'clsx';
+import clsx from "clsx";
+import { HTMLAttributes, ReactNode } from "react";
 
-type ButtonVariant = 'disabled' | 'active';
+import styles from "./button.css";
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
+type ButtonVariant = "disabled" | "active";
+
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
   children: ReactNode;
   handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,15 +24,21 @@ export default function Button({
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     handleClick(e);
-  }
+  };
 
   return (
     <button
-    className={variant === 'disabled' ? clsx(styles.disabled, className) : clsx(styles.base, className)}
-    type="button"
-    onClick={e => clickHandler(e)}
-    disabled={variant === 'disabled'}
-    {...props}
-    >{children}</button>
-  )
+      className={
+        variant === "disabled"
+          ? clsx(styles.disabled, className)
+          : clsx(styles.base, className)
+      }
+      type="button"
+      onClick={(e) => clickHandler(e)}
+      disabled={variant === "disabled"}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }
