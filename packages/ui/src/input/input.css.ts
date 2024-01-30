@@ -9,16 +9,16 @@ const container = style({
 });
 
 const input = style({
-  border: "1px solid red",
+  borderWidth: 1,
   borderColor: vars.color.primary,
   borderRadius: 25,
   padding: "13px 23px",
   fontSize: 17,
   outline: "none",
   backgroundColor: vars.color.background,
-  // ":focus": {
-  //   borderColor: vars.color.accent,
-  // },
+  ":focus": {
+    backgroundColor: vars.color.backgroundDimmer,
+  },
   transition: "all 0.2s ease-in-out",
 });
 

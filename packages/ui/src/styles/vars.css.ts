@@ -28,7 +28,19 @@ const color = createThemeContract({
   secondary: "",
   accent: "",
   background: "",
+  backgroundDimmer: "",
   text: "",
+  gray: {
+    100: "#F7FAFC",
+    200: "#EDF2F7",
+    300: "#E2E8F0",
+    400: "#CBD5E0",
+    500: "#A0AEC0",
+    600: "#718096",
+    700: "#4A5568",
+    800: "#2D3748",
+    900: "#1A202C",
+  },
 });
 
 /** 라이트 모드 */
@@ -37,7 +49,19 @@ export const lightTheme = createTheme(color, {
   secondary: "#9EFF42",
   accent: "",
   background: "#FFFFFF",
+  backgroundDimmer: "#F7F7F7",
   text: "#2A2A2A",
+  gray: {
+    100: "#F7FAFC",
+    200: "#EDF2F7",
+    300: "#E2E8F0",
+    400: "#CBD5E0",
+    500: "#A0AEC0",
+    600: "#718096",
+    700: "#4A5568",
+    800: "#2D3748",
+    900: "#1A202C",
+  },
 });
 
 /** 다크 모드 */
@@ -46,7 +70,19 @@ export const darkTheme = createTheme(color, {
   secondary: "#9EFF42",
   accent: "",
   background: "#2A2A2A",
+  backgroundDimmer: "#242424",
   text: "#FFFFFF",
+  gray: {
+    100: "#F7FAFC",
+    200: "#EDF2F7",
+    300: "#E2E8F0",
+    400: "#CBD5E0",
+    500: "#A0AEC0",
+    600: "#718096",
+    700: "#4A5568",
+    800: "#2D3748",
+    900: "#1A202C",
+  },
 });
 
 export const vars = { ...global, color };

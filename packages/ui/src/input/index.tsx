@@ -36,8 +36,8 @@ export default function Input({
   const child = Children.only(children);
   const generatedId = useId("input-");
   const id = child.props.id ?? generatedId;
-  // eslint-disable-next-line
   // TODO: error prop을 받아서 에러 스타일을 적용.
+  // eslint-disable-next-line
   const isError: boolean = child.props.error ?? false;
 
   return (
@@ -73,14 +73,14 @@ interface TextProps
  * @param {boolean} props.error - 에러 여부
  */
 Input.Text = forwardRef<HTMLInputElement, TextProps>(
-  // eslint-disable-next-line
   // TODO: error prop을 받아서 에러 스타일을 적용.
-  ({ error, ...props }, ref) => {
+  function Text({ error, ...props }, ref) {
     return (
       <input
         ref={ref}
         type="text"
         className={clsx(styles.input, props.className)}
+        // eslint-disable-next-line
         {...props}
       />
     );
