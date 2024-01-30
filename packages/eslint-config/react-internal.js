@@ -24,7 +24,7 @@ module.exports = {
     "eslint-config-turbo",
     'plugin:prettier/recommended'
   ],
-  plugins: ['@typescript-eslint', 'react', 'simple-import-sort'],
+  plugins: ['@typescript-eslint', 'react', 'simple-import-sort', 'prettier'],
   globals: {
     React: true,
     JSX: true,
