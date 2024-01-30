@@ -45,7 +45,7 @@ const color = createThemeContract({
 
 /** 라이트 모드 */
 export const lightTheme = createTheme(color, {
-  primary: "#E5FF70",
+  primary: "#6552FE",
   secondary: "#9EFF42",
   accent: "",
   background: "#FFFFFF",
@@ -66,7 +66,7 @@ export const lightTheme = createTheme(color, {
 
 /** 다크 모드 */
 export const darkTheme = createTheme(color, {
-  primary: "#E5FF70",
+  primary: "#6552FE",
   secondary: "#9EFF42",
   accent: "",
   background: "#2A2A2A",
