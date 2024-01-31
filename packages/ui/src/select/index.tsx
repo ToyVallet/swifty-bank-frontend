@@ -18,6 +18,12 @@ interface SelectOption {
   label: string;
 }
 
+/**
+ * Select 컴포넌트
+ * @param {SelectOption} options - 옵션으로 전달할 배열
+ * @param {string} label - 라벨
+ */
+
 export default function Select({ label, options, ...props }: SelectProps) {
 
   return (
