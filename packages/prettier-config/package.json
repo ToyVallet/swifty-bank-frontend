@@ -1,0 +1,11 @@
+{
+  "name": "@swifty/prettier-config",
+  "version": "0.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "prettier": "^3.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
