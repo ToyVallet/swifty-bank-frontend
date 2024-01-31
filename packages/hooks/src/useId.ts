@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useId as useID } from 'react';
+import { useId as useID, useState } from "react";
 
-export function generateId(prefix = 'swifty-id-') {
+export function generateId(prefix = "swifty-id-") {
   const uniqueId = useID();
+
   return `${prefix}${uniqueId}`;
 }
 
 export default function useId(prefix?: string) {
-  const [id] = useState(() => generateId(prefix));
-
-  return id;
+  return generateId(prefix);
 }

@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@swifty/hooks": "*",
-    "@vanilla-extract/recipes": "^0.5.1"
+    "@vanilla-extract/recipes": "^0.5.1",
+    "framer-motion": "^11.0.3"
   },
   "devDependencies": {
     "@swifty/eslint-config": "*",
