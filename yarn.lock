@@ -5159,6 +5159,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-themes@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "next-themes@npm:0.2.1"
+  peerDependencies:
+    next: "*"
+    react: "*"
+    react-dom: "*"
+  checksum: 979dec0a2de049ce7d1b5da835e7f7dc3b7ec83ba9e464348f497a52a6a6e5b5c395c97f071f66a63f50f22cce89fb6d19061ec7e75643b0eab215b21794bde7
+  languageName: node
+  linkType: hard
+
 "next@npm:^14.0.4":
   version: 14.1.0
   resolution: "next@npm:14.1.0"
@@ -6686,6 +6697,7 @@ __metadata:
     "@swifty/prettier-config": "npm:*"
     "@swifty/typescript-config": "npm:*"
     eslint-plugin-turbo: "npm:^1.11.3"
+    next-themes: "npm:^0.2.1"
     prettier: "npm:^3.1.1"
     turbo: "npm:latest"
   languageName: unknown

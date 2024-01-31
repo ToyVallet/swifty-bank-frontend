@@ -5,7 +5,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "bank": "turbo run dev --filter=swifty-bank",
-    "install": "yarn workspace @swifty/bank add ex)prettier",
+    "install": "yarn workspace swifty-bank add ex)prettier",
     "make": "turbo gen workspace --name ex)@swifty/component",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -26,5 +26,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "next-themes": "^0.2.1"
+  }
 }
