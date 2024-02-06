@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "@swifty/hooks";
+// import { useId } from "@swifty/hooks";
 import clsx from "clsx";
 import {
   Children,
@@ -10,6 +10,7 @@ import {
   InputHTMLAttributes,
   ReactElement,
   ReactNode,
+  useId,
 } from "react";
 
 import styles from "./input.css";
@@ -34,7 +35,7 @@ export default function Input({
   ...props
 }: InputProps) {
   const child = Children.only(children);
-  const generatedId = useId("input-");
+  const generatedId = useId();
   const id = child.props.id ?? generatedId;
   // TODO: error prop을 받아서 에러 스타일을 적용.
   // eslint-disable-next-line

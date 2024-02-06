@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import styles from './select.css';
-import clsx from 'clsx';
+import clsx from "clsx";
+
+import styles from "./select.css";
 
 interface SelectProps {
   label?: string;
@@ -9,8 +10,7 @@ interface SelectProps {
   options: SelectOption[];
   className?: string;
   // eslint-disable-next-line no-unused-vars
-  onChange?: 
-    (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 interface SelectOption {
@@ -25,30 +25,25 @@ interface SelectOption {
  */
 
 export default function Select({ label, options, ...props }: SelectProps) {
-
   return (
     <div className={clsx(styles.container, props.className)}>
-      {label && 
-        <label className={styles.label}>{label}</label>
-      }
-      <select 
-        className={styles.select} 
+      {label && <label className={styles.label}>{label}</label>}
+      <select
+        className={styles.select}
         name={props.placeholder}
         onChange={props.onChange}
         defaultValue={props.placeholder}
-        >
+      >
         <option
-          className={styles.placeholder} 
+          className={styles.placeholder}
           value={props.placeholder}
-          disabled hidden
+          disabled
+          hidden
         >
           {props.placeholder}
         </option>
         {options.map((option: SelectOption) => (
-          <option 
-            key={option.value} 
-            value={option.value} 
-          >
+          <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
