@@ -5,7 +5,7 @@ import { vars } from "../styles/vars.css";
 const container = style({
   display: "flex",
   flexDirection: "column",
-  gap: 21,
+  gap: vars.space[3],
 });
 
 const input = style({
@@ -19,7 +19,18 @@ const input = style({
   ":focus": {
     backgroundColor: vars.color.backgroundDimmer,
   },
-  transition: "all 0.2s ease-in-out",
+  transition: "all 0.2s ease-out",
+  "::placeholder": {
+    color: "#ccc",
+    transition: "all 0.2s ease-out",
+  },
+});
+
+const error = style({
+  borderColor: "red",
+  "::placeholder": {
+    color: "red",
+  },
 });
 
 const label = style({
@@ -39,7 +50,7 @@ const labelContainer = style({
   display: "flex",
   justifyContent: "flex-start",
   alignItems: "center",
-  gap: "8px",
+  gap: vars.space[1],
 });
 
 const styles = {
@@ -49,6 +60,7 @@ const styles = {
   bottomText,
   required,
   labelContainer,
+  error,
 };
 
 export default styles;
