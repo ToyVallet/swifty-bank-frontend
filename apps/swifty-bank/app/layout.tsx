@@ -1,4 +1,5 @@
 import "./globals.css";
+import styles from "./layout.css";
 import type { Metadata } from "next";
 import { NextThemeProvider } from "@swifty/ui/styles";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko-KR">
       <body>
-        <NextThemeProvider>{children}</NextThemeProvider>
+        <NextThemeProvider>
+          <div className={styles.layout}>{children}</div>
+        </NextThemeProvider>
       </body>
     </html>
   );
