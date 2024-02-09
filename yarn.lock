@@ -1844,6 +1844,7 @@ __metadata:
   resolution: "@swifty/hooks@workspace:packages/hooks"
   dependencies:
     "@swifty/eslint-config": "npm:*"
+    "@swifty/jest-config": "npm:*"
     "@swifty/prettier-config": "npm:*"
     "@swifty/typescript-config": "npm:*"
     "@turbo/gen": "npm:^1.11.3"
@@ -1853,6 +1854,7 @@ __metadata:
     "@types/react-dom": "npm:^18.2.18"
     eslint: "npm:^8.56.0"
     react: "npm:^18.2.0"
+    ts-jest: "npm:^29.1.2"
     typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
