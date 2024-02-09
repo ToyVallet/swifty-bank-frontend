@@ -56,5 +56,6 @@ module.exports = {
     'no-prototype-builtins': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'react/jsx-props-no-spreading': 'off',
   }
 };
