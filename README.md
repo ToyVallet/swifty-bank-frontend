@@ -10,6 +10,23 @@ Swifty 프로젝트의 프론트엔드 레포지토리입니다.
 - `@swifty/hooks`: 공통 React Hooks 라이브러리
 - `@swifty/eslint-config`: `eslint` 설정
 - `@swifty/typescript-config`: 모노레포 전체에 적용되는`tsconfig.json` 파일들
+- `@swifty/jest-config`: test를 위한 jest 설정을 다룹니다.
+
+### package 설치
+
+패키지 설치 명령어는 다음과 같이 입력합니다.
+
+```bash
+yarn workspace swifty-bank add <package>
+```
+
+### 새로운 프로젝트 설치
+
+새로운 프로젝트 설치는 다음과 같이 진행합니다.
+
+```bash
+npx turbo gen workspace --name @swifty/component
+```
 
 모든 패키지는 `typescript`로 작성되어 있습니다.
 
