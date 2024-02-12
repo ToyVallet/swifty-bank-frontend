@@ -16,10 +16,18 @@ const container = style({
   bottom: 15,
   left: 15,
   right: 15,
-  maxHeight: "90%",
+  // maxHeight: "90%",
   boxSizing: "border-box",
-  padding: "0px 20px 20px 20px",
+  padding: "0px 27px 0px 27px",
   transition: "top 0.2s ease-in-out",
+  // overflow: "scroll",
+});
+
+const content = style({
+  overflow: "scroll",
+  width: "100%",
+  height: "50vh",
+  transition: "height 0.2s ease-in-out",
 });
 
 const overlay = style({
@@ -33,24 +41,30 @@ const overlay = style({
 
 const handle = style({
   width: 50,
-  height: 3,
+  height: 4,
+  margin: "10px auto 40px auto",
   backgroundColor: vars.color.gray[300],
   borderRadius: 5,
 });
 
-const handleContainer = style({
+const draggable = style({
   display: "flex",
   justifyContent: "center",
-  marginBottom: 10,
-  padding: 10,
+  flexDirection: "column",
+});
+
+const header = style({
+  marginBottom: 27,
 });
 
 const styles = {
   wrapper,
   container,
+  content,
   overlay,
   handle,
-  handleContainer,
+  draggable,
+  header,
 };
 
 export default styles;

@@ -10,8 +10,64 @@ export default function Page() {
   return (
     <main className={container}>
       <button onClick={() => setOpen(true)}>시트 열기</button>
-      <BottomSheet open={open} onDismiss={onDismiss}>
-        hello
+      <BottomSheet
+        open={open}
+        onDismiss={onDismiss}
+        header="Swifty를 쓰려면 동의가 필요해요."
+      >
+        <ul>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+          <li>항목 1</li>
+          <li>항목 2</li>
+          <li>항목 3</li>
+        </ul>
       </BottomSheet>
     </main>
   );
