@@ -1,5 +1,4 @@
 import { style } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
 
 import { vars } from "../styles/vars.css";
 
@@ -9,37 +8,18 @@ const wrapper = style({
   height: "100%",
 });
 
-const container = recipe({
-  base: {
-    zIndex: 1000,
-    position: "fixed",
-    backgroundColor: vars.color.background,
-    borderRadius: 25,
-    bottom: 15,
-    left: 15,
-    right: 15,
-    top: 15,
-    // minHeight: "20%",
-    boxSizing: "border-box",
-    padding: "5px 20px 20px 20px",
-    transition: "top 0.2s ease-in-out",
-  },
-  variants: {
-    snapTo: {
-      25: {
-        top: "75%",
-      },
-      50: {
-        top: "50%",
-      },
-      75: {
-        top: "25%",
-      },
-      100: {
-        top: 15,
-      },
-    },
-  },
+const container = style({
+  zIndex: 1000,
+  position: "fixed",
+  backgroundColor: vars.color.background,
+  borderRadius: 25,
+  bottom: 15,
+  left: 15,
+  right: 15,
+  maxHeight: "90%",
+  boxSizing: "border-box",
+  padding: "0px 20px 20px 20px",
+  transition: "top 0.2s ease-in-out",
 });
 
 const overlay = style({
@@ -52,8 +32,8 @@ const overlay = style({
 });
 
 const handle = style({
-  width: 75,
-  height: 5,
+  width: 50,
+  height: 3,
   backgroundColor: vars.color.gray[300],
   borderRadius: 5,
 });

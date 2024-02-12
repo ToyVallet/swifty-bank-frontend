@@ -1,17 +1,9 @@
+import clsx from "clsx";
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
-import { forwardRef, HTMLAttributes, ReactNode, useState } from "react";
 
 import styles from "./bottom-sheet.css";
 
-interface BottomSheetProps {
-  open: boolean;
-  onDismiss?: () => void;
-  children?: ReactNode;
-}
-
-function Overlay({
-  onClick,
-}: Omit<HTMLAttributes<HTMLDivElement>, "className">) {
+function Overlay({ onClick }: { onClick: () => void }) {
   const variants = {
     hidden: {
       opacity: 0,
@@ -36,66 +28,63 @@ function Overlay({
   );
 }
 
-export default forwardRef<HTMLDivElement, BottomSheetProps>(
-  function BottomSheet({ open, children, onDismiss }, ref) {
-    const [snapHeight, setSnapHeight] = useState<25 | 50 | 75 | 100>(25);
-    const transition = {
-      type: "spring",
-      damping: 35,
-      stiffness: 300,
-    };
-    const variants = {
-      hidden: {
-        y: "300%",
-        transition,
-      },
-      visible: {
-        y: 0,
-        transition,
-      },
-    };
+interface BottomSheetProps extends React.HTMLAttributes<HTMLDivElement> {
+  open: boolean;
+  onDismiss?: () => void;
+}
 
-    const onPan = (e: PointerEvent, info: PanInfo) => {
-      if (info.offset.y > 10) {
-        setSnapHeight(25);
-        onDismiss?.();
-      } else if (info.offset.y < -10) {
-        setSnapHeight(100);
-      }
-    };
+export default function BottomSheet({
+  open,
+  children,
+  className,
+  onDismiss,
+}: BottomSheetProps) {
+  const transition = {
+    type: "spring",
+    damping: 35,
+    stiffness: 300,
+  };
+  const variants = {
+    hidden: {
+      translateY: "150%",
+      transition,
+    },
+    visible: {
+      translateY: 0,
+      transition,
+    },
+  };
 
-    return (
-      <AnimatePresence>
-        {open && (
-          <div className={styles.wrapper}>
-            <motion.div
-              drag
-              dragConstraints={{
-                top: 0,
-                bottom: 50,
-                left: 0,
-                right: 0,
-              }}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={variants}
-              // dragElastic={0.05}
-              onPan={onPan}
-              // dragTransition={{ bounceStiffness: 500, bounceDamping: 10 }}
-              className={styles.container({
-                snapTo: snapHeight,
-              })}
-            >
-              <motion.div className={styles.handleContainer}>
-                <motion.div className={styles.handle} />
-              </motion.div>
-              <motion.div>{children}</motion.div>
+  const handlePan = (_: PointerEvent, info: PanInfo) => {
+    if (info.offset.y > 5) onDismiss?.();
+  };
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <div className={styles.wrapper}>
+          <motion.div
+            drag
+            dragConstraints={{
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={variants}
+            className={clsx(styles.container, className)}
+          >
+            <motion.div className={styles.handleContainer} onPan={handlePan}>
+              <motion.div className={styles.handle} />
             </motion.div>
-            <Overlay onClick={() => onDismiss?.()} />
-          </div>
-        )}
-      </AnimatePresence>
-    );
-  },
-);
+            <motion.div>{children}</motion.div>
+          </motion.div>
+          <Overlay onClick={() => onDismiss?.()} />
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
