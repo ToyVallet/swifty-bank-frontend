@@ -1,7 +1,7 @@
 import { vars } from "@swifty/ui/styles/vars.css";
 import { style } from "@vanilla-extract/css";
 
-export const container = style({
+const container = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -10,16 +10,16 @@ export const container = style({
   color: vars.color.text,
 });
 
-export const header = style({
+const header = style({
   display: "flex",
   flexDirection: "column",
 });
 
-export const explain = style({
+const explain = style({
   marginTop: vars.space[2],
 });
 
-export const imgContainer = style({
+const imgContainer = style({
   margin: "40% 0",
   width: "100%",
   display: "flex",
@@ -28,17 +28,26 @@ export const imgContainer = style({
   position: "relative",
 });
 
-export const imgCircle = style({
-  width: "200px",
-  height: "200px",
+const imgBackDropCircle = style({
+  width: "220px",
+  height: "220px",
   backgroundColor: `rgba(101, 82, 254, 0.2) `,
   filter: "blur(10px)",
   borderRadius: "50%",
   position: "absolute",
 });
 
-export const img = style({
-  width: "50%",
-  height: "50%",
+const img = style({
+  width: "65%",
+  height: "65%",
   zIndex: 1,
 });
+
+export const styles = {
+  container,
+  header,
+  explain,
+  imgContainer,
+  imgBackDropCircle,
+  img,
+};
