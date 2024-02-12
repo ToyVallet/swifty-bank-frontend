@@ -1,12 +1,5 @@
 import { Heading } from "@swifty/ui";
-import {
-  content,
-  header,
-  list,
-  container,
-  listContent,
-  listDetail,
-} from "./page.css";
+import { styles } from "./page.css";
 import BackBtn from "./_component/BackBtn";
 
 type Info = {
@@ -37,23 +30,25 @@ export default function DetailPage() {
     },
   ];
   return (
-    <div className={container}>
-      <header className={header}>
+    <div className={styles.container}>
+      <header className={styles.header}>
         <BackBtn />
         <Heading type="h2">[필수] 개인정보 처리방침 동의</Heading>
-        <p className={content}>
+        <p className={styles.content}>
           개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본
           동의는 '인증서 등록'을 위한 필수적인 사항이므로 동의를 거부하시는 경우
           업무 수행이 불가능 할 수 있습니다.
         </p>
       </header>
       <main>
-        <ul className={list}>
+        <ul className={styles.list}>
           {infos.map((info) => (
             <li key={info.id}>
               <Heading type="h3">{info.title}</Heading>
-              <span className={listContent}>{info.content}</span>
-              {info.detail && <span className={listDetail}>{info.detail}</span>}
+              <span className={styles.listContent}>{info.content}</span>
+              {info.detail && (
+                <span className={styles.listDetail}>{info.detail}</span>
+              )}
             </li>
           ))}
         </ul>

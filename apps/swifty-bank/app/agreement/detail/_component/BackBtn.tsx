@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { btn } from "./BackBtn.css";
+import { styles } from "./BackBtn.css";
 import { useRouter } from "next/navigation";
 
 export default function BackBtn() {
@@ -11,7 +11,7 @@ export default function BackBtn() {
     router.replace("/agreement");
   };
   return (
-    <button className={btn} onClick={handleBtn}>
+    <button className={styles.btn} onClick={handleBtn}>
       <Image
         src={"/icon/Icon_Cancellation.svg"}
         alt="Icon_Cancellation"

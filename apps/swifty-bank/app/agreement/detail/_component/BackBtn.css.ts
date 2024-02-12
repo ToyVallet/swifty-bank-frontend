@@ -1,8 +1,12 @@
 import { style } from "@vanilla-extract/css";
 
-export const btn = style({
+const btn = style({
   cursor: "pointer",
   background: "inherit",
   border: "none",
   marginBottom: "10%",
 });
+
+export const styles = {
+  btn,
+};
