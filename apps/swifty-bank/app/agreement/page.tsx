@@ -13,7 +13,7 @@ export default function AgreementPage() {
         </span>
       </div>
       <div className={styles.imgContainer}>
-        <div className={styles.imgBackDropCircle}></div>
+        <div className={styles.imgBackDropCircle} />
         <Image
           src="/img/agreement/Symbol_Agree.webp"
           height={50}
