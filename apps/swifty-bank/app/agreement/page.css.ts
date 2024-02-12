@@ -29,8 +29,8 @@ const imgContainer = style({
 });
 
 const imgBackDropCircle = style({
-  width: "220px",
-  height: "220px",
+  width: "240px",
+  height: "240px",
   backgroundColor: `rgba(101, 82, 254, 0.2) `,
   filter: "blur(10px)",
   borderRadius: "50%",
@@ -38,8 +38,8 @@ const imgBackDropCircle = style({
 });
 
 const img = style({
-  width: "65%",
-  height: "65%",
+  width: "60%",
+  height: "60%",
   zIndex: 1,
 });
 
