@@ -1,0 +1,6 @@
+{
+  "extends": "@swifty/typescript-config/react-library.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}
