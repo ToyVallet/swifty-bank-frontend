@@ -1,9 +1,16 @@
 import clsx from "clsx";
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
+import { useState } from "react";
 
 import styles from "./bottom-sheet.css";
 
-function Overlay({ onClick }: { onClick: () => void }) {
+function Overlay({
+  onClick,
+  darker,
+}: {
+  onClick: () => void;
+  darker?: boolean;
+}) {
   const variants = {
     hidden: {
       opacity: 0,
@@ -13,7 +20,12 @@ function Overlay({ onClick }: { onClick: () => void }) {
     visible: {
       opacity: 1,
       backdropFilter: "blur(10px)",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backgroundColor: "rgba(0, 0, 0, 0.25)",
+    },
+    darker: {
+      opacity: 1,
+      backdropFilter: "blur(10px)",
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
   };
   return (
@@ -21,7 +33,7 @@ function Overlay({ onClick }: { onClick: () => void }) {
       className={styles.overlay}
       variants={variants}
       initial="hidden"
-      animate="visible"
+      animate={darker ? "darker" : "visible"}
       exit="hidden"
       onClick={onClick}
     />
@@ -30,7 +42,7 @@ function Overlay({ onClick }: { onClick: () => void }) {
 
 interface BottomSheetProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
-  onDismiss?: () => void;
+  onDismiss: () => void;
 }
 
 export default function BottomSheet({
@@ -39,6 +51,8 @@ export default function BottomSheet({
   className,
   onDismiss,
 }: BottomSheetProps) {
+  const [dragging, setDragging] = useState(false);
+
   const transition = {
     type: "spring",
     damping: 35,
@@ -56,7 +70,7 @@ export default function BottomSheet({
   };
 
   const handlePan = (_: PointerEvent, info: PanInfo) => {
-    if (info.offset.y > 5) onDismiss?.();
+    if (info.offset.y > 5) onDismiss();
   };
 
   return (
@@ -76,13 +90,15 @@ export default function BottomSheet({
             exit="hidden"
             variants={variants}
             className={clsx(styles.container, className)}
+            onDrag={() => setDragging(true)}
+            onDragEnd={() => setDragging(false)}
           >
             <motion.div className={styles.handleContainer} onPan={handlePan}>
               <motion.div className={styles.handle} />
             </motion.div>
             <motion.div>{children}</motion.div>
           </motion.div>
-          <Overlay onClick={() => onDismiss?.()} />
+          <Overlay onClick={onDismiss} darker={dragging} />
         </div>
       )}
     </AnimatePresence>
