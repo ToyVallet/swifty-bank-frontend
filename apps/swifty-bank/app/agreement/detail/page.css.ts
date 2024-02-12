@@ -11,7 +11,7 @@ const container = style({
 });
 
 const header = style({
-  paddingBottom: `${vars.space[3]}`,
+  paddingBottom: vars.space[3],
   borderBottom: `3px solid ${vars.color.gray[300]}`,
 });
 
