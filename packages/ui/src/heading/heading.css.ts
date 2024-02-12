@@ -5,11 +5,11 @@ import { vars } from "../styles/vars.css";
 const h1 = style({
   color: vars.color.text,
   fontWeight: "700",
-  fontSize: "28px",
+  fontSize: "27px",
 });
-const h2 = style([h1, { fontSize: "24px" }]);
+const h2 = style([h1, { fontSize: "22px" }]);
 
-const h3 = style([h1, { fontSize: "20px" }]);
+const h3 = style([h1, { fontSize: "18px" }]);
 
 const styles = {
   h1,
