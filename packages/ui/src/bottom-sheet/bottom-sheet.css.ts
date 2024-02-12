@@ -16,11 +16,10 @@ const container = style({
   bottom: 15,
   left: 15,
   right: 15,
-  // maxHeight: "90%",
   boxSizing: "border-box",
   padding: "0px 27px 0px 27px",
   transition: "top 0.2s ease-in-out",
-  // overflow: "scroll",
+  overflow: "hidden",
 });
 
 const content = style({
@@ -55,6 +54,8 @@ const draggable = style({
 
 const header = style({
   marginBottom: 27,
+  fontSize: 22,
+  fontWeight: "bold",
 });
 
 const styles = {

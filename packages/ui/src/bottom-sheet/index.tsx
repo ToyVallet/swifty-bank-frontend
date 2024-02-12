@@ -7,44 +7,9 @@ import {
 } from "framer-motion";
 import { PointerEvent, useEffect, useState } from "react";
 
-import Heading from "../heading";
 import styles from "./bottom-sheet.css";
-
-function Overlay({
-  onClick,
-  darker,
-}: {
-  onClick: () => void;
-  darker?: boolean;
-}) {
-  const variants = {
-    hidden: {
-      opacity: 0,
-      backdropFilter: "blur(0px)",
-      backgroundColor: "rgba(0, 0, 0, 0)",
-    },
-    visible: {
-      opacity: 1,
-      backdropFilter: "blur(10px)",
-      backgroundColor: "rgba(0, 0, 0, 0.25)",
-    },
-    darker: {
-      opacity: 1,
-      backdropFilter: "blur(10px)",
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
-    },
-  };
-  return (
-    <motion.div
-      className={styles.overlay}
-      variants={variants}
-      initial="hidden"
-      animate={darker ? "darker" : "visible"}
-      exit="hidden"
-      onClick={onClick}
-    />
-  );
-}
+import { transition, variants } from "./motion";
+import Overlay from "./overlay";
 
 interface BottomSheetProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
@@ -73,29 +38,6 @@ export default function BottomSheet({
   const [dragging, setDragging] = useState(false);
   const [touching, setTouching] = useState(false);
 
-  const transition = {
-    type: "spring",
-    damping: 35,
-    stiffness: 300,
-  };
-  const variants = {
-    hidden: {
-      scale: 0.9,
-      translateY: "150%",
-      transition,
-    },
-    visible: {
-      scale: 1,
-      translateY: 0,
-      transition,
-    },
-    smaller: {
-      scale: 0.98,
-      translateY: 0,
-      transition,
-    },
-  };
-
   const startDrag = (e: PointerEvent<HTMLDivElement>) => {
     controls.start(e);
     setDragging(true);
@@ -122,26 +64,22 @@ export default function BottomSheet({
       {open && (
         <div className={styles.wrapper}>
           <motion.div
+            drag
             dragConstraints={{
               top: 0,
-              bottom: 0,
+              bottom: 99999,
               left: 0,
               right: 0,
             }}
-            dragElastic={{
-              top: 0.1,
-              bottom: 0.1,
-              left: 0.1,
-              right: 0.1,
-            }}
+            dragElastic={0.1}
             dragControls={controls}
-            drag
             dragListener={false}
             onDragEnd={handleDragend}
             initial="hidden"
             animate={touching ? "smaller" : "visible"}
             exit="hidden"
-            variants={variants}
+            variants={variants.container}
+            transition={transition.container}
             className={clsx(styles.container, className)}
           >
             <div
@@ -152,12 +90,24 @@ export default function BottomSheet({
             >
               <motion.div className={styles.handle} />
               {!!header && (
-                <Heading type="h2" className={styles.header}>
+                <motion.h2
+                  initial="initial"
+                  animate="animate"
+                  variants={variants.content}
+                  transition={transition.content}
+                  className={styles.header}
+                >
                   {header}
-                </Heading>
+                </motion.h2>
               )}
             </div>
-            <motion.div className={styles.content} drag={false}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={variants.content}
+              transition={transition.content}
+              className={styles.content}
+            >
               {children}
             </motion.div>
           </motion.div>
