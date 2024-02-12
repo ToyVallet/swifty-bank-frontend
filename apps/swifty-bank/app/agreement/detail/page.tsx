@@ -3,7 +3,7 @@ import { styles } from "./page.css";
 import Link from "next/link";
 import Image from "next/image";
 
-type Info = {
+type TermsOfDetail = {
   title: string;
   content: string;
   id: number;
@@ -11,7 +11,7 @@ type Info = {
 };
 
 export default function DetailPage() {
-  const infos: Info[] = [
+  const termsOfDeatils: TermsOfDetail[] = [
     {
       title: "1. 수집·이용 목적",
       content: "• Swify 홈페이지/모바일 서비스 이용을 위한 인증서 등록",
@@ -50,12 +50,12 @@ export default function DetailPage() {
       </header>
       <main>
         <ul className={styles.list}>
-          {infos.map((info) => (
-            <li key={info.id}>
-              <Heading type="h3">{info.title}</Heading>
-              <span className={styles.listContent}>{info.content}</span>
-              {info.detail && (
-                <span className={styles.listDetail}>{info.detail}</span>
+          {termsOfDeatils.map((detailTerm) => (
+            <li key={detailTerm.id}>
+              <Heading type="h3">{detailTerm.title}</Heading>
+              <span className={styles.listContent}>{detailTerm.content}</span>
+              {detailTerm.detail && (
+                <span className={styles.listDetail}>{detailTerm.detail}</span>
               )}
             </li>
           ))}
