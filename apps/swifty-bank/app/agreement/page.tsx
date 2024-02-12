@@ -2,6 +2,7 @@ import { Heading } from "@swifty/ui";
 import Image from "next/image";
 import { styles } from "./page.css";
 import AgreementBtn from "./_component/AgreementBtn";
+
 export default function AgreementPage() {
   return (
     <main className={styles.container}>
