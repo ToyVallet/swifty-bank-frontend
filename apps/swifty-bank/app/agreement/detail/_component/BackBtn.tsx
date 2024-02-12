@@ -13,7 +13,7 @@ export default function BackBtn() {
   return (
     <button className={btn} onClick={handleBtn}>
       <Image
-        src={"/img/agreement/Icon_Cancellation.svg"}
+        src={"/icon/Icon_Cancellation.svg"}
         alt="Icon_Cancellation"
         width={30}
         height={30}
