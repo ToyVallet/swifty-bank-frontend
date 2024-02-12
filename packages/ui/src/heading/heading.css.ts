@@ -6,6 +6,7 @@ const h1 = style({
   color: vars.color.text,
   fontWeight: "700",
   fontSize: "27px",
+  userSelect: "none",
 });
 const h2 = style([h1, { fontSize: "22px" }]);
 
