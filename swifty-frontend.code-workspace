@@ -1,0 +1,48 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "root",
+    },
+    {
+      "path": "./apps/swifty-bank",
+      "name": "swifty-bank",
+    },
+    {
+      "path": "./packages/ui",
+      "name": "ui",
+    },
+    {
+      "path": "./packages/hooks",
+      "name": "hooks",
+    },
+    {
+      "path": "./packages/eslint-config",
+      "name": "eslint-config",
+    },
+    {
+      "path": "./packages/jest-config",
+      "name": "jest-config",
+    },
+    {
+      "path": "./packages/prettier-config",
+      "name": "prettier-config",
+    },
+    {
+      "path": "./packages/typescript-config",
+      "name": "typescript-config",
+    },
+  ],
+  "settings": {
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    ],
+    "eslint.options": {
+      "configFile": "./packages/eslint-config/index.js",
+    },
+    "prettier.configPath": "./packages/prettier-config/index.js",
+  },
+}
