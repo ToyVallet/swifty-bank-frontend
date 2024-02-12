@@ -15,6 +15,12 @@ const header = style({
   borderBottom: `3px solid ${vars.color.gray[300]}`,
 });
 
+const link = style({
+  display: "inline-block",
+  cursor: "pointer",
+  marginBottom: "10%",
+});
+
 const content = style({
   marginTop: vars.space[1],
 });
@@ -38,6 +44,7 @@ const listDetail = style({
 export const styles = {
   container,
   header,
+  link,
   content,
   list,
   listContent,

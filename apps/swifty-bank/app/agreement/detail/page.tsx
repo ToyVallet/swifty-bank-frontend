@@ -1,6 +1,7 @@
 import { Heading } from "@swifty/ui";
 import { styles } from "./page.css";
-import BackBtn from "./_component/BackBtn";
+import Link from "next/link";
+import Image from "next/image";
 
 type Info = {
   title: string;
@@ -32,7 +33,14 @@ export default function DetailPage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <BackBtn />
+        <Link href="/agreement" className={styles.link}>
+          <Image
+            src={"/icon/Icon_Cancellation.svg"}
+            alt="Icon_Cancellation"
+            width={30}
+            height={30}
+          />
+        </Link>
         <Heading type="h2">[필수] 개인정보 처리방침 동의</Heading>
         <p className={styles.content}>
           개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본
