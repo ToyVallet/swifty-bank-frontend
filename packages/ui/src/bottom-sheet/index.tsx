@@ -5,7 +5,7 @@ import {
   PanInfo,
   useDragControls,
 } from "framer-motion";
-import { PointerEvent, useEffect, useState } from "react";
+import { PointerEvent, useCallback, useEffect, useState } from "react";
 
 import styles from "./bottom-sheet.css";
 import { transition, variants } from "./motion";
@@ -49,7 +49,7 @@ export default function BottomSheet({
     setDragging(false);
   };
 
-  useEffect(() => {
+  const preventScroll = useCallback(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
@@ -57,7 +57,7 @@ export default function BottomSheet({
     }
   }, [open]);
 
-  useEffect(() => {
+  const preventTouchMove = useCallback(() => {
     if (dragging) {
       document.body.addEventListener("touchmove", (e) => e.preventDefault(), {
         passive: false,
@@ -67,9 +67,21 @@ export default function BottomSheet({
     }
   }, [dragging]);
 
-  useEffect(() => {
+  const resetHeight = useCallback(() => {
     if (!open) setCurrentHeight(height);
   }, [open, height]);
+
+  useEffect(() => {
+    preventScroll();
+  }, [open, preventScroll]);
+
+  useEffect(() => {
+    preventTouchMove();
+  }, [dragging, preventTouchMove]);
+
+  useEffect(() => {
+    resetHeight();
+  }, [open, resetHeight]);
 
   return (
     <AnimatePresence>
