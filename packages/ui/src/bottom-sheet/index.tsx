@@ -50,15 +50,26 @@ export default function BottomSheet({
   };
 
   useEffect(() => {
-    const html = document.getElementsByTagName("html")[0];
-    if (!html) return;
-
     if (open) {
-      html.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
     } else {
-      html.style.overflow = "";
+      document.body.style.overflow = "auto";
     }
   }, [open]);
+
+  useEffect(() => {
+    if (dragging) {
+      document.body.addEventListener("touchmove", (e) => e.preventDefault(), {
+        passive: false,
+      });
+    } else {
+      document.body.removeEventListener("touchmove", (e) => e.preventDefault());
+    }
+  }, [dragging]);
+
+  useEffect(() => {
+    if (!open) setCurrentHeight(height);
+  }, [open, height]);
 
   return (
     <AnimatePresence>
