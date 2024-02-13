@@ -31,7 +31,7 @@ const content = recipe({
   },
   variants: {
     height: {
-      auto: { height: "fit-content" },
+      auto: { height: "auto" },
       "1/3": { height: "33vh" },
       "2/3": { height: "66vh" },
       full: { height: "calc(100vh - 200px)" },
