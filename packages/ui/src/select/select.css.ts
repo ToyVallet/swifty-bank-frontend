@@ -1,10 +1,12 @@
 import { style } from "@vanilla-extract/css";
 
+import { vars } from "../styles/vars.css";
+
 const select = style({
   width: "100%",
   height: "51px",
   borderRadius: "1.5rem",
-  border: "1px solid #E5FF70",
+  border: `1px solid ${vars.color.primary}`,
   cursor: "pointer",
   padding: "0 1rem 0 1rem",
   textAlign: "left",

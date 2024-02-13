@@ -1,13 +1,15 @@
 import { style } from "@vanilla-extract/css";
 
-const nextButton = style({
-  position: "absolute",
-  bottom: "2rem",
+import { vars } from "@swifty/ui/styles/vars.css";
+
+const header = style({
+  marginBottom: "2rem",
 });
 
 const idInputContainer = style({
   display: "flex",
   flexDirection: "column",
+  marginBottom: "2rem",
 });
 
 const idLabel = style({
@@ -26,10 +28,6 @@ const idInputFront = style({
   width: "40%",
 });
 
-const idInputBack = style({
-  width: "15%",
-});
-
 const idInputHyphen = style({
   width: "20%",
   display: "flex",
@@ -39,19 +37,68 @@ const idInputHyphen = style({
   fontSize: "2rem",
 });
 
-const inputContainer = style({});
+const idInputBackBox = style({
+  width: "40%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const idInputBack = style({
+  minWidth: "20%",
+  width: "20%",
+  fontSize: "1rem",
+  textAlign: "center",
+  alignItems: "center",
+  height: "50%",
+  borderWidth: 1,
+  borderColor: vars.color.primary,
+  borderRadius: 25,
+  outline: "none",
+  backgroundColor: vars.color.background,
+  ":focus": {
+    backgroundColor: vars.color.backgroundDimmer,
+  },
+  transition: "all 0.2s ease-out",
+  "::placeholder": {
+    color: "#ccc",
+    transition: "all 0.2s ease-out",
+  },
+});
+
+const idInputBlind = style({
+  width: "90%",
+  fontSize: "2rem",
+  display: "flex",
+  height: "25%",
+  justifyContent: "space-evenly",
+});
+
+const inputContainer = style({
+  marginBottom: "2rem",
+});
+
+const nextButton = style({
+  position: "absolute",
+  bottom: "2rem",
+  width: "100%",
+});
 
 const hideElement = style({
   display: "none",
 });
 
 const styles = {
-  idInputContainer,
+  header,
   inputContainer,
+  idInputContainer,
   idInputBox,
   idInputFront,
+  idInputBackBox,
   idInputBack,
   idInputHyphen,
+  idInputBlind,
   hideElement,
   nextButton,
   idLabel,
