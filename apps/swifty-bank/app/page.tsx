@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { container } from "./page.css";
 import { BottomSheet } from "@swifty/ui";
+import { useBottomSheet } from "@swifty/hooks";
 
 export default function Page() {
-  const [open, setOpen] = useState(false);
-  const onDismiss = () => setOpen(false);
+  const { isOpen, open, close } = useBottomSheet();
+
   return (
     <main className={container}>
-      <button onClick={() => setOpen(true)}>시트 열기</button>
+      <button onClick={open}>시트 열기</button>
       <BottomSheet
-        open={open}
-        onDismiss={onDismiss}
+        open={isOpen}
+        onDismiss={close}
         header="Swifty를 쓰려면 동의가 필요해요."
         height="1/3"
         expandTo="2/3"
