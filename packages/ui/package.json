@@ -10,14 +10,17 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "code-format": "prettier . --write"
+    "code-format": "prettier . --write",
+    "test": "jest"
   },
   "dependencies": {
     "@swifty/hooks": "*",
-    "@vanilla-extract/recipes": "^0.5.1"
+    "@vanilla-extract/recipes": "^0.5.1",
+    "framer-motion": "^11.0.3"
   },
   "devDependencies": {
     "@swifty/eslint-config": "*",
+    "@swifty/jest-config": "*",
     "@swifty/prettier-config": "*",
     "@swifty/typescript-config": "*",
     "@turbo/gen": "^1.11.3",
@@ -30,6 +33,7 @@
     "clsx": "^2.1.0",
     "eslint": "^8.56.0",
     "react": "^18.2.0",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   }
 }

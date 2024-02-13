@@ -1,0 +1,6 @@
+{
+  "extends": "@swifty/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}

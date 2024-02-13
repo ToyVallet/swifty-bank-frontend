@@ -2,15 +2,15 @@
 
 // import { useId } from "@swifty/hooks";
 import clsx from "clsx";
+import { HTMLMotionProps, motion, useAnimationControls } from "framer-motion";
 import {
   Children,
   cloneElement,
   forwardRef,
   HTMLAttributes,
-  InputHTMLAttributes,
   ReactElement,
   ReactNode,
-  useId,
+  useEffect,
 } from "react";
 
 import styles from "./input.css";
@@ -20,6 +20,7 @@ interface InputProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement;
   bottomText?: string;
   required?: boolean;
+  error?: boolean;
 }
 
 /**
@@ -32,14 +33,12 @@ export default function Input({
   children,
   bottomText,
   required,
+  error,
   ...props
 }: InputProps) {
   const child = Children.only(children);
   const generatedId = useId();
   const id = child.props.id ?? generatedId;
-  // TODO: error prop을 받아서 에러 스타일을 적용.
-  // eslint-disable-next-line
-  const isError: boolean = child.props.error ?? false;
 
   return (
     <div className={clsx(styles.container, props.className)} {...props}>
@@ -53,6 +52,7 @@ export default function Input({
       </div>
       {cloneElement(child, {
         id,
+        error,
         ...child.props,
       })}
       {!!bottomText && <p className={styles.bottomText}>{bottomText}</p>}
@@ -60,11 +60,7 @@ export default function Input({
   );
 }
 
-interface TextProps
-  extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    "size" | "type" | "required"
-  > {
+interface TextProps extends HTMLMotionProps<"input"> {
   error?: boolean;
 }
 // TODO: error prop을 받아서 에러 스타일을 적용.
@@ -73,17 +69,34 @@ interface TextProps
  * 인풋 텍스트 컴포넌트
  * @param {boolean} props.error - 에러 여부
  */
-Input.Text = forwardRef<HTMLInputElement, TextProps>(
-  // TODO: error prop을 받아서 에러 스타일을 적용.
-  function Text({ error, ...props }, ref) {
-    return (
-      <input
-        ref={ref}
-        type="text"
-        className={clsx(styles.input, props.className)}
-        // eslint-disable-next-line
-        {...props}
-      />
-    );
-  },
-);
+Input.Text = forwardRef<HTMLInputElement, TextProps>(function Text(
+  { error, ...props },
+  ref,
+) {
+  const controls = useAnimationControls();
+  const initial = { scale: 1, x: 0 };
+  const tap = { scale: 0.98, transition: { duration: 0.05 } };
+
+  useEffect(() => {
+    if (error) {
+      const shake = {
+        x: [-24, 24, -16, 16, -8, 8, -4, 4, 0],
+        transition: { duration: 0.3 },
+      };
+
+      controls.start(shake);
+    }
+  }, [error, controls]);
+
+  return (
+    <motion.input
+      ref={ref}
+      type="text"
+      animate={controls}
+      initial={initial}
+      whileTap={tap}
+      className={clsx(styles.input, error && styles.error, props.className)}
+      {...props}
+    />
+  );
+});
