@@ -41,7 +41,7 @@ const listDetail = style({
   display: "inline-block",
 });
 
-export const styles = {
+const styles = {
   container,
   header,
   link,
@@ -50,3 +50,5 @@ export const styles = {
   listContent,
   listDetail,
 };
+
+export default styles;

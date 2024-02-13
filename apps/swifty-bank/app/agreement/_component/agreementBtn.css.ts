@@ -10,6 +10,8 @@ const container = style({
   alignItems: "center",
 });
 
-export const styles = {
+const styles = {
   container,
 };
+
+export default styles;

@@ -1,5 +1,5 @@
 import { Heading } from "@swifty/ui";
-import { styles } from "./page.css";
+import styles from "./page.css";
 import Link from "next/link";
 import Image from "next/image";
 
