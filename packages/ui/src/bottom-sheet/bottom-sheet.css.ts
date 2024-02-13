@@ -1,6 +1,8 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { vars } from "../styles/vars.css";
+import { Height } from "./types";
 
 const wrapper = style({
   position: "relative",
@@ -22,11 +24,29 @@ const container = style({
   overflow: "hidden",
 });
 
-const content = style({
-  overflow: "scroll",
-  width: "100%",
-  height: "50vh",
-  transition: "height 0.2s ease-in-out",
+const content = recipe({
+  base: {
+    width: "100%",
+    transition: "height 0.3s ease-in-out",
+  },
+  variants: {
+    height: {
+      auto: { height: "fit-content" },
+      "1/3": { height: "33vh" },
+      "2/3": { height: "66vh" },
+      full: { height: "calc(100vh - 200px)" },
+    } as Record<Height, { height: string }>,
+    expandable: {
+      true: {
+        overflow: "scroll",
+        paddingBottom: 0,
+      },
+      false: {
+        overflow: "hidden",
+        paddingBottom: 27,
+      },
+    },
+  },
 });
 
 const overlay = style({

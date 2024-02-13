@@ -14,56 +14,10 @@ export default function Page() {
         open={open}
         onDismiss={onDismiss}
         header="Swifty를 쓰려면 동의가 필요해요."
+        height="1/3"
+        expandTo="2/3"
       >
         <ul>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
-          <li>항목 1</li>
-          <li>항목 2</li>
-          <li>항목 3</li>
           <li>항목 1</li>
           <li>항목 2</li>
           <li>항목 3</li>

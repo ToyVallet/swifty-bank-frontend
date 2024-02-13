@@ -10,17 +10,16 @@ import { PointerEvent, useEffect, useState } from "react";
 import styles from "./bottom-sheet.css";
 import { transition, variants } from "./motion";
 import Overlay from "./overlay";
+import { Height } from "./types";
 
 interface BottomSheetProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
   open: boolean;
   onDismiss: () => void;
-  header?: React.ReactNode | string;
   children: React.ReactNode;
-  snapPoints?: number[];
-  snapTo?: ({ maxHeight }: { maxHeight: number }) => number;
-  initialSnap?: number;
-  snapThreshold?: number;
+  header?: React.ReactNode | string;
+  height?: Height;
+  expandTo?: Height;
 }
 
 export default function BottomSheet({
@@ -28,15 +27,14 @@ export default function BottomSheet({
   children,
   className,
   header,
-  snapPoints,
-  initialSnap,
-  snapThreshold,
+  height = "auto",
+  expandTo,
   onDismiss,
-  snapTo,
 }: BottomSheetProps) {
   const controls = useDragControls();
   const [dragging, setDragging] = useState(false);
   const [touching, setTouching] = useState(false);
+  const [currentHeight, setCurrentHeight] = useState<Height>(height);
 
   const startDrag = (e: PointerEvent<HTMLDivElement>) => {
     controls.start(e);
@@ -45,6 +43,9 @@ export default function BottomSheet({
 
   const handleDragend = (_: Event, info: PanInfo) => {
     if (info.offset.y > 5) onDismiss();
+    else if (info.offset.y < -5 && expandTo) {
+      if (height !== "auto" && expandTo) setCurrentHeight(expandTo);
+    }
     setDragging(false);
   };
 
@@ -106,7 +107,10 @@ export default function BottomSheet({
               animate="animate"
               variants={variants.content}
               transition={transition.content}
-              className={styles.content}
+              className={styles.content({
+                height: currentHeight,
+                expandable: height !== "auto" && expandTo !== undefined,
+              })}
             >
               {children}
             </motion.div>
