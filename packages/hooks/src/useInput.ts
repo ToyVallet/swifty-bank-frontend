@@ -6,21 +6,10 @@ type UseInputHook = {
   reset: () => void;
 };
 
-type Validator = (value: string) => boolean;
-
-const defaultValidator = () => true;
-
-const useInput = (
-  initialValue: string,
-  validator: Validator = defaultValidator,
-): UseInputHook => {
+const useInput = (initialValue: string): UseInputHook => {
   const [value, setValue] = useState(initialValue);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // TODO: validate input 로직 추가
-    // if (!validator(event.target.value)) {
-    //   return;
-    // }
     setValue(event.target.value);
   };
 

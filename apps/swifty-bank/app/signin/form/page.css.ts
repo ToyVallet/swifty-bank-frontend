@@ -7,7 +7,7 @@ const nextButton = style({
 
 const idInputContainer = style({
   display: "flex",
-  flexDirection: "row",
+  flexDirection: "column",
 });
 
 const idLabel = style({
@@ -16,12 +16,18 @@ const idLabel = style({
   display: "flex",
 });
 
-const idInputFrontBox = style({
+const idInputBox = style({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+});
+
+const idInputFront = style({
   width: "40%",
 });
 
-const idInputBackBox = style({
-  width: "40%",
+const idInputBack = style({
+  width: "15%",
 });
 
 const idInputHyphen = style({
@@ -30,6 +36,7 @@ const idInputHyphen = style({
   justifyContent: "center",
   alignItems: "center",
   lineHeight: "6rem",
+  fontSize: "2rem",
 });
 
 const inputContainer = style({});
@@ -41,8 +48,9 @@ const hideElement = style({
 const styles = {
   idInputContainer,
   inputContainer,
-  idInputFrontBox,
-  idInputBackBox,
+  idInputBox,
+  idInputFront,
+  idInputBack,
   idInputHyphen,
   hideElement,
   nextButton,

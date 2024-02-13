@@ -6,26 +6,35 @@ import { Button, Heading, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
 import validatePN from "../../../_lib/validate/validatePN";
 import { motion } from "framer-motion";
+import telecomServiceProvider from "../../../_lib/constants/tsp";
+import { useRouter } from "next/navigation";
 
 function SigninForm() {
   // stage 0 -> 1 -> 2 -> 3 -> submit
   const [signinStage, setSigninStage] = useState(0);
-  const phoneNumber = useInput("", validatePN);
+  const phoneNumber = useInput("");
   const [telecomProvider, setTelecomProvider] = useState("");
   const idNumberFront = useInput("");
   const idNumberBack = useInput("");
   const username = useInput("");
-
-  const telecomProviderOptions = [
-    // TODO: 통신사 옵션을 서버에서 받아오도록 수정 or 상수화 논의 필요
-    { value: "SKT", label: "SKT" },
-    { value: "KT", label: "KT" },
-    { value: "LG", label: "LG" },
-  ];
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validatePN(phoneNumber.value)) {
+      alert("잘못된 휴대폰번호 형식입니다.");
+      return;
+    }
+
+    if (signinStage >= 1 && telecomProvider === "") {
+      alert("통신사를 선택해주세요.");
+      return;
+    }
+
     setSigninStage((prev) => prev + 1);
+
+    // TODO : 마지막 stage에 도달하면 인증번호 요청 페이지로 리다이렉트
     if (signinStage === 3) {
       console.log(
         phoneNumber.value,
@@ -34,6 +43,8 @@ function SigninForm() {
         idNumberBack.value,
         username.value,
       );
+      // 인증번호 요청 페이지로 이동
+      router.push("/signin/verify");
     }
   };
 
@@ -75,16 +86,19 @@ function SigninForm() {
           transition={{ duration: 1 }}
         >
           <p className={styles.idLabel}>주민등록번호 앞 7자리</p>
-          <div className={styles.idInputFrontBox}>
-            <Input {...idNumberFront}>
-              <Input.Text maxLength={6} />
-            </Input>
-          </div>
-          <span className={styles.idInputHyphen}>-</span>
-          <div className={styles.idInputBackBox}>
-            <Input {...idNumberBack}>
-              <Input.Text maxLength={1} />
-            </Input>
+          <div className={styles.idInputBox}>
+            <div className={styles.idInputFront}>
+              <Input {...idNumberFront}>
+                <Input.Text maxLength={6} />
+              </Input>
+            </div>
+            <span className={styles.idInputHyphen}>-</span>
+            <div className={styles.idInputBack}>
+              <Input {...idNumberBack}>
+                <Input.Text maxLength={1} />
+              </Input>
+              <span className={styles.idInputHyphen}>******</span>
+            </div>
           </div>
         </motion.div>
 
@@ -96,7 +110,7 @@ function SigninForm() {
         >
           <Select
             label="통신사"
-            options={telecomProviderOptions}
+            options={telecomServiceProvider}
             placeholder="통신사 선택"
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setTelecomProvider(e.target.value)
@@ -110,10 +124,10 @@ function SigninForm() {
           </Input>
         </motion.div>
 
-        {/* TODO: Button 컴포넌트 타입 경고 해결 */}
-        <Button className={styles.nextButton} type="submit">
-          다음
-        </Button>
+        <section className={styles.nextButton}>
+          {/* TODO: Button 컴포넌트 타입 경고 해결 */}
+          <Button type="submit">다음</Button>
+        </section>
       </form>
     </>
   );
