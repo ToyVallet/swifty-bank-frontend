@@ -1,5 +1,4 @@
 import { style } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
 
 const container = style({
   width: "100%",
@@ -8,28 +7,6 @@ const container = style({
   display: "flex",
   flexDirection: "column",
   gap: 32,
-});
-
-const header = recipe({
-  base: {
-    paddingBottom: 24,
-  },
-  variants: {
-    borderBottom: {
-      light: { borderBottom: `3px solid #E2E8F0` },
-      dark: { borderBottom: `3px solid #E2E8F0` },
-    },
-  },
-});
-
-const link = style({
-  display: "inline-block",
-  cursor: "pointer",
-  marginBottom: "10%",
-});
-
-const content = style({
-  marginTop: 8,
 });
 
 const list = style({
@@ -50,9 +27,6 @@ const listDetail = style({
 
 const styles = {
   container,
-  header,
-  link,
-  content,
   list,
   listContent,
   listDetail,

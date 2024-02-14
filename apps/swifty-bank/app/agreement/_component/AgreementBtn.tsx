@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@swifty/ui";
 import styles from "./agreementBtn.css";
 
