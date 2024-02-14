@@ -1,7 +1,7 @@
 import { Heading } from "@swifty/ui";
-import styles from "./page.css";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import styles from "./page.css";
 
 type TermsOfDetail = {
   title: string;
@@ -32,7 +32,11 @@ export default function DetailPage() {
   ];
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
+      <header
+        className={styles.header({
+          borderBottom: "light",
+        })}
+      >
         <Link href="/agreement" className={styles.link}>
           <Image
             src={"/icon/Icon_Cancellation.svg"}

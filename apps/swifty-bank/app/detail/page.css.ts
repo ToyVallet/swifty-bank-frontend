@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "@swifty/ui/styles";
+import { recipe } from "@vanilla-extract/recipes";
 
 const container = style({
   width: "100%",
@@ -7,12 +7,19 @@ const container = style({
   fontSize: 16,
   display: "flex",
   flexDirection: "column",
-  gap: vars.space[4],
+  gap: 32,
 });
 
-const header = style({
-  paddingBottom: vars.space[3],
-  borderBottom: `3px solid ${vars.color.gray[300]}`,
+const header = recipe({
+  base: {
+    paddingBottom: 24,
+  },
+  variants: {
+    borderBottom: {
+      light: { borderBottom: `3px solid #E2E8F0` },
+      dark: { borderBottom: `3px solid #E2E8F0` },
+    },
+  },
 });
 
 const link = style({
@@ -22,19 +29,19 @@ const link = style({
 });
 
 const content = style({
-  marginTop: vars.space[1],
+  marginTop: 8,
 });
 
 const list = style({
   listStyle: "none",
   display: "flex",
   flexDirection: "column",
-  gap: vars.space[5],
+  gap: 40,
 });
 
 const listContent = style({
   display: "inline-block",
-  marginTop: vars.space[1],
+  marginTop: 8,
 });
 
 const listDetail = style({
