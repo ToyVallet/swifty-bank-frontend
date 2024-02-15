@@ -43,7 +43,7 @@ const img = style({
   zIndex: 1,
 });
 
-const styles = {
+export const styles = {
   container,
   header,
   explain,
@@ -51,5 +51,3 @@ const styles = {
   imgBackDropCircle,
   img,
 };
-
-export default styles;
