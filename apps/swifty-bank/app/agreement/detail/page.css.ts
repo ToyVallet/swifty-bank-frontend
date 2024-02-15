@@ -1,4 +1,20 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "@swifty/ui/styles/vars.css";
+
+const header = style({
+  paddingBottom: 24,
+  borderBottom: `3px solid ${vars.color.gray[300]}`,
+});
+
+const link = style({
+  display: "inline-block",
+  cursor: "pointer",
+  marginBottom: "10%",
+});
+
+const content = style({
+  marginTop: vars.space[1],
+});
 
 const container = style({
   width: "100%",
@@ -6,19 +22,19 @@ const container = style({
   fontSize: 16,
   display: "flex",
   flexDirection: "column",
-  gap: 32,
+  gap: vars.space[4],
 });
 
 const list = style({
   listStyle: "none",
   display: "flex",
   flexDirection: "column",
-  gap: 40,
+  gap: vars.space[5],
 });
 
 const listContent = style({
   display: "inline-block",
-  marginTop: 8,
+  marginTop: vars.space[1],
 });
 
 const listDetail = style({
@@ -26,6 +42,9 @@ const listDetail = style({
 });
 
 const styles = {
+  header,
+  link,
+  content,
   container,
   list,
   listContent,
