@@ -89,6 +89,13 @@ const hideElement = style({
   display: "none",
 });
 
+const noticeMessage = style({
+  fontSize: "0.8rem",
+  color: vars.color.gray[400],
+  textAlign: "center",
+  marginBottom: "2rem",
+});
+
 const styles = {
   header,
   inputContainer,
@@ -102,6 +109,7 @@ const styles = {
   hideElement,
   nextButton,
   idLabel,
+  noticeMessage,
 };
 
 export default styles;

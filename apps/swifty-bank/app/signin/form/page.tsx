@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import styles from "../form/page.css";
 import { Button, Heading, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
-import validatePN from "../../../_lib/validate/validatePN";
-import validateID from "../../../_lib/validate/validateID";
-import { motion } from "framer-motion";
-import telecomServiceProvider from "../../../_lib/constants/tsp";
-import { useRouter } from "next/navigation";
+import telecomServiceProvider from "../_lib/constants/tsp";
+import isActiveButton, { SigninStage } from "../_lib/validate/isActiveButton";
 
 function SigninForm() {
   // stage : 0 -> 1 -> 2 -> 3 -> submit
-  const [signinStage, setSigninStage] = useState(0);
+  const [signinStage, setSigninStage] = useState<SigninStage>(0);
   const phoneNumber = useInput("");
   const [telecomProvider, setTelecomProvider] = useState("");
   const idNumberFront = useInput("");
@@ -20,34 +19,17 @@ function SigninForm() {
   const username = useInput("");
   const router = useRouter();
 
+  const formData = {
+    phoneNumber: phoneNumber.value,
+    telecomProvider,
+    idNumberFront: idNumberFront.value,
+    idNumberBack: idNumberBack.value,
+    username: username.value,
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!validatePN(phoneNumber.value)) {
-      alert("잘못된 휴대폰번호 형식입니다.");
-      return;
-    }
-
-    if (signinStage >= 1 && telecomProvider === "") {
-      alert("통신사를 선택해주세요.");
-      return;
-    }
-
-    if (
-      signinStage >= 2 &&
-      !validateID(idNumberFront.value, idNumberBack.value)
-    ) {
-      alert("잘못된 주민등록번호 형식입니다.");
-      return;
-    }
-
-    if (signinStage >= 3 && username.value === "") {
-      alert("이름을 입력해주세요.");
-      return;
-    }
-
-    setSigninStage((prev) => prev + 1);
-
+    setSigninStage((prev) => (prev + 1 > 3 ? 3 : prev + 1) as SigninStage);
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (signinStage === 3) {
       console.log(
@@ -118,7 +100,7 @@ function SigninForm() {
                 {...idNumberBack}
                 maxLength={1}
               />
-              <span className={styles.idInputBlind}>******</span>
+              <span className={styles.idInputBlind}>······</span>
             </div>
           </div>
         </motion.div>
@@ -147,13 +129,19 @@ function SigninForm() {
           </Input>
         </motion.div>
 
+        <p className={styles.noticeMessage}>
+          입력한 정보는 7일동안 회원가입 시 쓰일 수 있어요
+        </p>
+
         <section className={styles.nextButton}>
           {/* TODO: Button 컴포넌트 타입 경고 해결 */}
           <Button
-            // variant={isActiveButton ? "active" : "disabled"}
+            variant={
+              isActiveButton(signinStage, formData) ? "active" : "disabled"
+            }
             type="submit"
           >
-            다음
+            {signinStage === 3 ? "본인인증 하기" : "다음"}
           </Button>
         </section>
       </form>
