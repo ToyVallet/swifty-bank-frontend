@@ -58,7 +58,7 @@ function SigninForm() {
         username.value,
       );
       // 인증번호 요청 페이지로 이동 (정확한 경로 확인 필요)
-      router.push("/signin/verify");
+      // router.push("/signin/verify");
     }
   };
 
@@ -75,13 +75,15 @@ function SigninForm() {
           <Heading type="h2">주민등록번호 앞 7자리를 알려주세요</Heading>
         </div>
         <div className={signinStage === 3 ? "" : styles.hideElement}>
-          <Heading type="h2">성명을 알려주세요</Heading>
+          <Heading type="h2">이름을 알려주세요</Heading>
         </div>
       </header>
 
       <form onSubmit={handleSubmit}>
         <motion.div
-          className={signinStage >= 3 ? "" : styles.hideElement}
+          className={
+            signinStage >= 3 ? styles.inputContainer : styles.hideElement
+          }
           initial={{ opacity: 0 }}
           animate={{ opacity: signinStage >= 2 ? 1 : 0 }}
           transition={{ duration: 1 }}
@@ -147,7 +149,12 @@ function SigninForm() {
 
         <section className={styles.nextButton}>
           {/* TODO: Button 컴포넌트 타입 경고 해결 */}
-          <Button type="submit">다음</Button>
+          <Button
+            // variant={isActiveButton ? "active" : "disabled"}
+            type="submit"
+          >
+            다음
+          </Button>
         </section>
       </form>
     </>

@@ -47,7 +47,7 @@ const idInputBackBox = style({
 
 const idInputBack = style({
   minWidth: "20%",
-  width: "20%",
+  width: "30%",
   fontSize: "1rem",
   textAlign: "center",
   alignItems: "center",
