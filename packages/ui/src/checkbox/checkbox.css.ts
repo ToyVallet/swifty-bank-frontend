@@ -4,11 +4,12 @@ import { vars } from "../styles/vars.css";
 const container = style({
   width: "100%",
   display: "flex",
-  padding: "0px 10px",
+
   justifyContent: "space-between",
   alignItems: "center",
-  fontSize: 20,
+  fontSize: 16,
   fontWeight: 500,
+  marginBottom: vars.space[2],
 });
 
 const inputCheck = style({
@@ -21,11 +22,20 @@ const leftSection = style({
   alignItems: "center",
 });
 
+const label = style({
+  cursor: "pointer",
+});
+
 const rightSection = style({
   display: "flex",
   alignItems: "center",
 });
 
-const styles = { container, inputCheck, leftSection, rightSection };
+const svg = style({
+  transition: "stroke 1s ease-in-out",
+  cursor: "pointer",
+});
+
+const styles = { container, inputCheck, leftSection, rightSection, svg, label };
 
 export default styles;

@@ -14,9 +14,9 @@ export default function CheckIcon({ isCheck, ...props }: CheckIcon) {
       <path
         d="M20 6L9 17L4 12"
         stroke={isCheck ? "#6552FE" : "#D9D9D9"}
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -1,28 +1,36 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "@swifty/ui/styles/vars.css";
-
-const header = style({
-  paddingBottom: 24,
-  borderBottom: `3px solid ${vars.color.gray[300]}`,
-});
-
-const link = style({
-  display: "inline-block",
-  cursor: "pointer",
-  marginBottom: "10%",
-});
-
-const content = style({
-  marginTop: vars.space[1],
-});
+import { vars } from "../../styles/vars.css";
 
 const container = style({
+  position: "fixed",
+  top: 0,
+  right: 0,
   width: "100%",
   height: "100%",
   fontSize: 16,
   display: "flex",
   flexDirection: "column",
   gap: vars.space[4],
+  zIndex: 9999,
+  backgroundColor: vars.color.background,
+  padding: `58px 20px 34px`,
+});
+
+const header = style({
+  paddingBottom: 24,
+  borderBottom: `3px solid ${vars.color.gray[300]}`,
+});
+
+const button = style({
+  display: "inline-block",
+  border: "none",
+  backgroundColor: vars.color.background,
+  cursor: "pointer",
+  marginBottom: "10%",
+});
+
+const content = style({
+  marginTop: vars.space[1],
 });
 
 const list = style({
@@ -43,7 +51,7 @@ const listDetail = style({
 
 const styles = {
   header,
-  link,
+  button,
   content,
   container,
   list,

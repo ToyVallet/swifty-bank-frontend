@@ -1,15 +1,13 @@
 "use client";
 
-import type { CheckBoxRef } from "@swifty/ui";
-import { BottomSheet, Button, CheckBox } from "@swifty/ui";
-import styles from "./agreementBtn.css";
+import { BottomSheet, Button } from "@swifty/ui";
+import styles from "./agreementButton.css";
 import { useBottomSheet } from "@swifty/hooks";
-import { useRef } from "react";
+import CheckboxForm from "../checkbox-form/CheckboxForm";
 
 export default function AgreementBtn() {
-  // 버튼 관련 로직을 정의합니다.
   const { isOpen, open, close } = useBottomSheet();
-  const ref = useRef<CheckBoxRef>(null);
+  const title = "Swifty를 쓰려면 동의가 필요해요";
 
   return (
     <>
@@ -21,11 +19,11 @@ export default function AgreementBtn() {
       <BottomSheet
         open={isOpen}
         onDismiss={close}
-        header="헤더"
-        height="2/3"
+        header={title}
+        height="1/3"
         expandTo="full"
       >
-        <CheckBox labelContent="[필수]" isDetail={true} ref={ref} />
+        <CheckboxForm onClose={close} />
       </BottomSheet>
     </>
   );

@@ -1,54 +1,57 @@
 "use client";
 
-import { forwardRef, useRef, useImperativeHandle, useState } from "react";
 import RightIcon from "../icon/RightIcon";
 import CheckIcon from "../icon/CheckIcon";
 import styles from "./checkbox.css";
+import { HTMLAttributes, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
+import Detail from "./detail";
+import { CheckBoxProp } from "./type";
 
-interface Prop {
-  labelContent: string;
-  isDetail?: boolean;
-}
+interface Prop extends HTMLAttributes<HTMLInputElement>, CheckBoxProp {}
 
-const CheckBox = forwardRef((props: Prop, ref) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        isChecked: inputRef.current?.checked,
-      };
-    },
-    [],
-  );
+const CheckBox = ({
+  labelContent,
+  isCheck,
+  id,
+  isDetail,
+  detailInfoType,
+  ...props
+}: Prop) => {
+  const [isOpened, setIsOpened] = useState(false);
 
-  const [isCheck, setIsCheck] = useState(() => {
-    return inputRef.current?.checked !== true ? false : true;
-  });
+  const handleOpen = useCallback(() => {
+    setIsOpened(true);
+  }, []);
 
-  const onClick = () => {
-    setIsCheck(inputRef.current?.checked !== true ? false : true);
-  };
+  const handleClose = useCallback(() => {
+    setIsOpened(false);
+  }, []);
 
   return (
-    <section className={styles.container}>
-      <div className={styles.leftSection}>
-        <input
-          type="checkbox"
-          id="check"
-          ref={inputRef}
-          className={styles.inputCheck}
-        />
-        <CheckIcon isCheck={isCheck} onClick={onClick} />
-        <label htmlFor="check" onClick={onClick}>
-          {props.labelContent}
-        </label>
-      </div>
-      <div className={styles.rightSection}>
-        {props.isDetail && <RightIcon />}
-      </div>
-    </section>
+    <>
+      <section className={styles.container}>
+        <div className={styles.leftSection} onChange={props.onChange}>
+          <input type="checkbox" id={id} className={styles.inputCheck} />
+          <CheckIcon isCheck={isCheck} className={styles.svg} />
+          <label htmlFor={id} className={styles.label}>
+            {labelContent}
+          </label>
+        </div>
+        <div className={styles.rightSection}>
+          {isDetail && (
+            <RightIcon onClick={handleOpen} className={styles.svg} />
+          )}
+        </div>
+        {isDetail &&
+          isOpened &&
+          createPortal(
+            <Detail onClick={handleClose} detailInfoType={detailInfoType!} />,
+            document.body,
+          )}
+      </section>
+    </>
   );
-});
+};
 
 export default CheckBox;
