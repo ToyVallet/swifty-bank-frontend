@@ -2,43 +2,55 @@ import { style } from "@vanilla-extract/css";
 
 import { vars } from "../styles/vars.css";
 
-const select = style({
-  width: "100%",
-  height: "51px",
-  borderRadius: "1.5rem",
-  border: `1px solid ${vars.color.primary}`,
-  cursor: "pointer",
-  padding: "0 1rem 0 1rem",
-  textAlign: "left",
-  ":focus": {
-    outline: "none",
-  },
-  appearance: "none",
-});
-
 const container = style({
-  width: "100%",
   display: "flex",
   flexDirection: "column",
+  marginBottom: "2rem",
 });
 
 const label = style({
-  color: "#FFFFFF",
-  fontSize: "16px",
-  fontStyle: "normal",
-  fontWeight: 700,
-  margin: "0 0 8px 0",
+  fontSize: "1.063rem",
+  fontWeight: "bold",
+  marginBottom: "1.5rem",
 });
 
-const placeholder = style({
-  color: "#000",
+const selectInput = style({
+  width: "100%",
+  height: "3rem",
+  borderWidth: 1,
+  borderColor: vars.color.primary,
+  borderRadius: 25,
+  padding: "0 1rem",
+  marginBottom: "1rem",
+  marginTop: "0.5rem",
+  outline: "none",
+  backgroundColor: vars.color.background,
+  ":focus": {
+    borderColor: vars.color.primary,
+  },
+});
+
+const optionList = style({
+  listStyle: "none",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  height: "90%",
+});
+
+const option = style({
+  fontSize: "1.125rem",
+  // marginBottom: "0.5rem",
+  backgroundColor: "transparent",
+  border: "none",
 });
 
 const styles = {
-  select,
   label,
   container,
-  placeholder,
+  selectInput,
+  optionList,
+  option,
 };
 
 export default styles;

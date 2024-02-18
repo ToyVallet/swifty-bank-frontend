@@ -17,6 +17,7 @@ function SigninForm() {
   const idNumberFront = useInput("");
   const idNumberBack = useInput("");
   const username = useInput("");
+
   const router = useRouter();
 
   const formData = {
@@ -116,8 +117,10 @@ function SigninForm() {
           <Select
             label="통신사"
             options={telecomServiceProvider}
-            placeholder="통신사 선택"
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            placeholder="통신사"
+            value={telecomProvider}
+            optionLabel={"통신사를 선택해주세요"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setTelecomProvider(e.target.value)
             }
           />
