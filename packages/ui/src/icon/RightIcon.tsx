@@ -9,6 +9,7 @@ export default function RightIcon({ onClick, className, ...props }: SVG) {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
+      data-testid="right-icon"
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
     >
