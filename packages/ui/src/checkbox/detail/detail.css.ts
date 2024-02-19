@@ -8,12 +8,15 @@ const container = style({
   width: "100%",
   height: "100%",
   fontSize: 16,
-  display: "flex",
-  flexDirection: "column",
-  gap: vars.space[4],
   zIndex: 9999,
   backgroundColor: vars.color.background,
   padding: `58px 20px 34px`,
+});
+
+const contentContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vars.space[4],
 });
 
 const header = style({
@@ -57,6 +60,7 @@ const styles = {
   list,
   listContent,
   listDetail,
+  contentContainer,
 };
 
 export default styles;

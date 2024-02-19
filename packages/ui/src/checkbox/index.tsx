@@ -46,7 +46,11 @@ const CheckBox = ({
         {isDetail &&
           isOpened &&
           createPortal(
-            <Detail onClick={handleClose} detailInfoType={detailInfoType!} />,
+            <Detail
+              onClick={handleClose}
+              detailInfoType={detailInfoType!}
+              isOpened={isOpened}
+            />,
             document.body,
           )}
       </section>

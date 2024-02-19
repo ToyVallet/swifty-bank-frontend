@@ -21,6 +21,7 @@ export default function AgreementPage() {
           width={50}
           alt="Symbol_Agree"
           className={styles.img}
+          priority
         />
       </div>
       <AgreementBtn />
