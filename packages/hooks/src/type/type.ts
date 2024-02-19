@@ -3,6 +3,6 @@ export interface CheckBoxProp {
   labelContent: string;
   optional: boolean;
   isCheck: boolean;
-  isDetail: boolean;
+  isDetail?: boolean;
   detailInfoType?: TypeOfDetailInfo;
 }

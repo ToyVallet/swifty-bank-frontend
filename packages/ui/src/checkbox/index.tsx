@@ -14,7 +14,7 @@ const CheckBox = ({
   labelContent,
   isCheck,
   id,
-  isDetail,
+  isDetail = false,
   detailInfoType,
   onChange,
   ...props
