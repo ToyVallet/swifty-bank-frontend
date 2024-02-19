@@ -12,6 +12,17 @@ export default function SmsVerificationInput({
 }: SmsVerificationInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+
+    if (value.length > 6) return;
+
+    const isNumber = /^\d*$/.test(value);
+    if (!isNumber) return;
+
+    onChange(value);
+  };
+
   return (
     <div className={styles.display} onClick={() => inputRef.current?.focus()}>
       {Array.from({ length: 6 }).map((_, index) => (
@@ -23,12 +34,13 @@ export default function SmsVerificationInput({
         ref={inputRef}
         className={styles.hidden}
         autoFocus
+        autoComplete="one-time-code"
         aria-hidden
         type="text"
         pattern="\d*"
         maxLength={6}
         value={value}
-        onChange={(e) => onChange(e.currentTarget.value)}
+        onChange={handleChange}
       />
     </div>
   );
