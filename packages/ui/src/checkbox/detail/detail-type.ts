@@ -2,7 +2,9 @@ import { TypeOfDetailInfo } from "../type";
 
 interface TermsOfDetail {
   type: TypeOfDetailInfo;
-  data: {
+  title: string;
+  content: string;
+  list: {
     title: string;
     content: string;
     id: number;
@@ -13,7 +15,10 @@ interface TermsOfDetail {
 export const termsOfDeatils: TermsOfDetail[] = [
   {
     type: "service",
-    data: [
+    title: "[필수] 서비스 이용약관 동의",
+    content:
+      "개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본동의는 '인증서 등록'을 위한 필수적인 사항이므로 동의를 거부하시는 경우 업무 수행이 불가능 할 수 있습니다.",
+    list: [
       {
         title: "1. 수집·이용 목적",
         content: "• Swify 홈페이지/모바일 서비스 이용을 위한 인증서 등록",
@@ -35,7 +40,11 @@ export const termsOfDeatils: TermsOfDetail[] = [
   },
   {
     type: "promotion",
-    data: [
+    title: "[선택] 프로모션 안내 동의",
+    content:
+      "개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본동의는 '인증서 등록'을 위한 필수적인 사항이므로 동의를 거부하시는 경우 업무 수행이 불가능 할 수 있습니다.",
+
+    list: [
       {
         title: "1. 수집·이용 목적",
         content: "• Swify 홈페이지/모바일 서비스 이용을 위한 인증서 등록",
@@ -57,7 +66,11 @@ export const termsOfDeatils: TermsOfDetail[] = [
   },
   {
     type: "personalInfo",
-    data: [
+    title: "[필수] 개인정보 처리방침 동의",
+    content:
+      "개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본동의는 '인증서 등록'을 위한 필수적인 사항이므로 동의를 거부하시는 경우 업무 수행이 불가능 할 수 있습니다.",
+
+    list: [
       {
         title: "1. 수집·이용 목적",
         content: "• Swify 홈페이지/모바일 서비스 이용을 위한 인증서 등록",

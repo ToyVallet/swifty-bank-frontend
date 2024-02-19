@@ -46,16 +46,12 @@ export default function Detail({ onClick, detailInfoType, isOpened }: Prop) {
                 height={30}
               />
             </button>
-            <Heading type="h2">[필수] 개인정보 처리방침 동의</Heading>
-            <p className={styles.content}>
-              개인정보의 수집·이용에 관한 동의를 거부하실 수 있습니다. 다만, 본
-              동의는 '인증서 등록'을 위한 필수적인 사항이므로 동의를 거부하시는
-              경우 업무 수행이 불가능 할 수 있습니다.
-            </p>
+            <Heading type="h2">{data[0]?.title}</Heading>
+            <p className={styles.content}>{data[0]?.content}</p>
           </header>
           <main>
             <ul className={styles.list}>
-              {data[0]?.data.map((detailTerm) => (
+              {data[0]?.list.map((detailTerm) => (
                 <li key={detailTerm.id}>
                   <Heading type="h3">{detailTerm.title}</Heading>
                   <span className={styles.listContent}>

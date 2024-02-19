@@ -17,20 +17,23 @@ export default function CheckboxForm({ onClose }: Prop) {
     {
       labelContent: "[필수] 서비스 이용약과 동의",
       isCheck: false,
+      optional: false,
       isDetail: true,
       detailInfoType: "service",
     },
     {
       labelContent: "[필수] 개인정보 처리방침 동의",
       isCheck: false,
+      optional: false,
       isDetail: true,
-      detailInfoType: "service",
+      detailInfoType: "personalInfo",
     },
     {
-      labelContent: "[필수] 프로모션 등 안내 동의",
+      labelContent: "[선택] 프로모션 등 안내 동의",
       isCheck: false,
+      optional: true,
       isDetail: true,
-      detailInfoType: "service",
+      detailInfoType: "promotion",
     },
   ]);
 
@@ -41,11 +44,16 @@ export default function CheckboxForm({ onClose }: Prop) {
   }, []);
 
   const onClick = () => {
-    if (terms.filter((term) => term.isCheck).length === terms.length) {
-      router.replace("");
+    const termsCheckArr = terms.filter((term) => {
+      if (term.isCheck && !term.optional) return false;
+      if (term.optional) return false;
+      return true;
+    });
+    if (termsCheckArr.length !== 0) {
+      alert("모든 사항을 동의해주세요!");
       return;
     }
-    alert("모든 사항을 동의해주세요!");
+    router.replace("");
   };
 
   return (
