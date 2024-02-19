@@ -1,12 +1,14 @@
 "use client";
 
 import { Button, CheckBox, CheckBoxProp } from "@swifty/ui";
-import { useCallback, useState } from "react";
+import { HTMLAttributes, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./checkboxForm.css";
 
+interface Button extends HTMLAttributes<HTMLButtonElement> {}
+
 interface Prop {
-  onClose: () => void;
+  onClose: Button["onClick"];
 }
 
 export default function CheckboxForm({ onClose }: Prop) {
@@ -41,7 +43,9 @@ export default function CheckboxForm({ onClose }: Prop) {
   const onClick = () => {
     if (terms.filter((term) => term.isCheck).length === terms.length) {
       router.replace("");
+      return;
     }
+    alert("모든 사항을 동의해주세요!");
   };
 
   return (

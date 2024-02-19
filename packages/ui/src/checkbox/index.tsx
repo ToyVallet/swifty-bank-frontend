@@ -8,7 +8,7 @@ import { createPortal } from "react-dom";
 import Detail from "./detail";
 import { CheckBoxProp } from "./type";
 
-interface Prop extends HTMLAttributes<HTMLInputElement>, CheckBoxProp {}
+interface Prop extends HTMLAttributes<HTMLDivElement>, CheckBoxProp {}
 
 const CheckBox = ({
   labelContent,
@@ -16,6 +16,7 @@ const CheckBox = ({
   id,
   isDetail,
   detailInfoType,
+  onChange,
   ...props
 }: Prop) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -31,7 +32,7 @@ const CheckBox = ({
   return (
     <>
       <section className={styles.container}>
-        <div className={styles.leftSection} onChange={props.onChange}>
+        <div className={styles.leftSection} onChange={onChange}>
           <input type="checkbox" id={id} className={styles.inputCheck} />
           <CheckIcon isCheck={isCheck} className={styles.svg} />
           <label htmlFor={id} className={styles.label}>
