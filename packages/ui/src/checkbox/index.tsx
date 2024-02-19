@@ -34,7 +34,11 @@ const CheckBox = ({
       <section className={styles.container}>
         <div className={styles.leftSection} onChange={onChange}>
           <input type="checkbox" id={id} className={styles.inputCheck} />
-          <CheckIcon isCheck={isCheck} className={styles.svg} />
+          <CheckIcon
+            isCheck={isCheck}
+            className={styles.svg}
+            onChange={onChange}
+          />
           <label htmlFor={id} className={styles.label}>
             {labelContent}
           </label>

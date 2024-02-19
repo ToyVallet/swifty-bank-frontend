@@ -12,6 +12,7 @@ export default function RightIcon({ onClick, className, ...props }: SVG) {
       data-testid="right-icon"
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
+      {...props}
     >
       <path
         d="M9 18L15 12L9 6"

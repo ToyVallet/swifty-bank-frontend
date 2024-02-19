@@ -1,7 +1,7 @@
 import type { CheckIcon } from "./type";
 import { clsx } from "clsx";
 
-export default function CheckIcon({ isCheck, ...props }: CheckIcon) {
+export default function CheckIcon({ isCheck, onChange, ...props }: CheckIcon) {
   return (
     <svg
       width="24"
@@ -11,6 +11,7 @@ export default function CheckIcon({ isCheck, ...props }: CheckIcon) {
       data-testid="check-icon"
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(props.className)}
+      {...props}
     >
       <path
         d="M20 6L9 17L4 12"
