@@ -6,7 +6,7 @@ import styles from "./checkbox.css";
 import { HTMLAttributes, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Detail from "./detail";
-import { CheckBoxProp } from "./type";
+import { CheckBoxProp } from "@swifty/hooks";
 
 interface Prop extends HTMLAttributes<HTMLDivElement>, CheckBoxProp {}
 

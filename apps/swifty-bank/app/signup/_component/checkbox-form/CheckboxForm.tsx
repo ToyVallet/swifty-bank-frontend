@@ -1,9 +1,10 @@
 "use client";
 
-import { Button, CheckBox, CheckBoxProp } from "@swifty/ui";
-import { HTMLAttributes, useCallback, useState } from "react";
+import { Button, CheckBox } from "@swifty/ui";
+import { HTMLAttributes } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./checkboxForm.css";
+import { useCheckBox } from "@swifty/hooks";
 
 interface Button extends HTMLAttributes<HTMLButtonElement> {}
 
@@ -13,7 +14,7 @@ interface Prop {
 
 export default function CheckboxForm({ onClose }: Prop) {
   const router = useRouter();
-  const [terms, setTerms] = useState<CheckBoxProp[]>([
+  const { terms, handleChange } = useCheckBox([
     {
       labelContent: "[필수] 서비스 이용약과 동의",
       isCheck: false,
@@ -36,12 +37,6 @@ export default function CheckboxForm({ onClose }: Prop) {
       detailInfoType: "promotion",
     },
   ]);
-
-  const handleChange = useCallback((isCheck: boolean, id: number) => {
-    const cloneTerms = [...terms];
-    cloneTerms[id]!.isCheck = !isCheck;
-    setTerms(cloneTerms);
-  }, []);
 
   const onClick = () => {
     const termsCheckArr = terms.filter((term) => {

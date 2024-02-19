@@ -1,4 +1,4 @@
-import { TypeOfDetailInfo } from "../type";
+import { TypeOfDetailInfo } from "@swifty/hooks";
 
 interface TermsOfDetail {
   type: TypeOfDetailInfo;
