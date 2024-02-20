@@ -6,8 +6,6 @@ const container = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "space-between",
-  height: "100%",
-  flex: 1,
   width: "100%",
 });
 
