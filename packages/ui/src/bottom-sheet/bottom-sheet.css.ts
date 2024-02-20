@@ -8,6 +8,7 @@ const wrapper = style({
   position: "relative",
   width: "100%",
   height: "100%",
+  touchAction: "pan-x pan-y",
 });
 
 const container = style({
@@ -28,6 +29,7 @@ const content = recipe({
   base: {
     width: "100%",
     transition: "height 0.3s ease-in-out",
+    touchAction: "pan-x pan-y",
   },
   variants: {
     height: {
