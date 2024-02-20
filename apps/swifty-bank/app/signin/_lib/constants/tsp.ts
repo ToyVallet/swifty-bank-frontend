@@ -1,5 +1,4 @@
 const telecomServiceProvider = [
-  // TODO: 통신사 옵션을 서버에서 받아오도록 수정 or 상수화
   { value: "SKT", label: "SKT" },
   { value: "KT", label: "KT" },
   { value: "LG", label: "LG" },

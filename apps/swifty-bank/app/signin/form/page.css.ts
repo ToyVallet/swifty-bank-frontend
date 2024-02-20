@@ -71,7 +71,9 @@ const idInputBlind = style({
   width: "90%",
   fontSize: "2rem",
   display: "flex",
-  height: "25%",
+  textAlign: "center",
+  alignItems: "center",
+  height: "100%",
   justifyContent: "space-evenly",
 });
 

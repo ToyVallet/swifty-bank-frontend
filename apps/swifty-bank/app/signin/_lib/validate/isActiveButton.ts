@@ -1,7 +1,7 @@
 import validateID from "./validateID";
 import validatePN from "./validatePN";
 
-interface FormData {
+export interface FormData {
   phoneNumber: string;
   telecomProvider: string;
   idNumberFront: string;

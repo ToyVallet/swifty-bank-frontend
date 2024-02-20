@@ -7,7 +7,10 @@ import styles from "../form/page.css";
 import { Button, Heading, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
 import telecomServiceProvider from "../_lib/constants/tsp";
-import isActiveButton, { SigninStage } from "../_lib/validate/isActiveButton";
+import isActiveButton, {
+  FormData,
+  SigninStage,
+} from "../_lib/validate/isActiveButton";
 
 function SigninForm() {
   // stage : 0 -> 1 -> 2 -> 3 -> submit
@@ -20,7 +23,7 @@ function SigninForm() {
 
   const router = useRouter();
 
-  const formData = {
+  const formData: FormData = {
     phoneNumber: phoneNumber.value,
     telecomProvider,
     idNumberFront: idNumberFront.value,
@@ -28,18 +31,14 @@ function SigninForm() {
     username: username.value,
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSigninStage((prev) => (prev + 1 > 3 ? 3 : prev + 1) as SigninStage);
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (signinStage === 3) {
-      console.log(
-        phoneNumber.value,
-        telecomProvider,
-        idNumberFront.value,
-        idNumberBack.value,
-        username.value,
-      );
+      console.log("submit", formData);
+      console.log(navigator.userAgent);
+      // Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1
       // 인증번호 요청 페이지로 이동 (정확한 경로 확인 필요)
       // router.push("/signin/verify");
     }

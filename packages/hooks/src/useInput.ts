@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 type UseInputHook = {
   value: string;
@@ -9,13 +9,13 @@ type UseInputHook = {
 const useInput = (initialValue: string): UseInputHook => {
   const [value, setValue] = useState(initialValue);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setValue(initialValue);
-  };
+  }, [initialValue]);
 
   return { value, onChange, reset };
 };
