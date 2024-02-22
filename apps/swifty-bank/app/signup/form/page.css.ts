@@ -84,7 +84,11 @@ const inputContainer = style({
 const nextButton = style({
   position: "absolute",
   bottom: "2rem",
+  left: 0,
   width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const hideElement = style({
