@@ -1,5 +1,4 @@
-import validateID from "./validateID";
-import validatePN from "./validatePN";
+import { validateID, validatePN } from "./validator";
 
 export interface FormData {
   phoneNumber: string;
@@ -9,21 +8,18 @@ export interface FormData {
   username: string;
 }
 
-export type SigninStage = 0 | 1 | 2 | 3;
+export type SignupStage = 0 | 1 | 2 | 3;
 
-const isActiveButton = (
-  signinStage: SigninStage,
-  formData: FormData,
-): boolean => {
-  if (signinStage === 0) {
+const isActiveButton = (signupStage: SignupStage, formData: FormData) => {
+  if (signupStage === 0) {
     return validatePN(formData.phoneNumber);
   }
 
-  if (signinStage === 1) {
+  if (signupStage === 1) {
     return validatePN(formData.phoneNumber) && formData.telecomProvider !== "";
   }
 
-  if (signinStage === 2) {
+  if (signupStage === 2) {
     return (
       validatePN(formData.phoneNumber) &&
       formData.telecomProvider !== "" &&
@@ -31,7 +27,7 @@ const isActiveButton = (
     );
   }
 
-  if (signinStage === 3) {
+  if (signupStage === 3) {
     return (
       validatePN(formData.phoneNumber) &&
       formData.telecomProvider !== "" &&
