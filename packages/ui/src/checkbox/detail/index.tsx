@@ -4,7 +4,7 @@ import { Heading } from "@swifty/ui";
 import styles from "./detail.css";
 import Image from "next/image";
 import { TypeOfDetailInfo } from "@swifty/hooks";
-import { termsOfDeatils } from "./detail-type";
+import { termsOfDetails } from "./detail-type";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "./motion";
 import { HTMLAttributes } from "react";
@@ -18,7 +18,7 @@ interface Prop {
 }
 
 export default function Detail({ onClick, detailInfoType, isOpened }: Prop) {
-  const data = termsOfDeatils.filter(({ type }) => type === detailInfoType!);
+  const data = termsOfDetails.filter(({ type }) => type === detailInfoType!);
 
   return (
     <AnimatePresence>

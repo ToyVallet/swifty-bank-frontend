@@ -14,9 +14,9 @@ interface Prop {
 
 export default function CheckboxForm({ onClose }: Prop) {
   const router = useRouter();
-  const { terms, handleChange } = useCheckBox([
+  const { terms, onChange } = useCheckBox([
     {
-      labelContent: "[필수] 서비스 이용약과 동의",
+      labelContent: "[필수] 서비스 이용약관 동의",
       isCheck: false,
       optional: false,
       isDetail: true,
@@ -59,7 +59,8 @@ export default function CheckboxForm({ onClose }: Prop) {
             key={idx}
             {...term}
             id={`${idx}`}
-            onChange={() => handleChange(term.isCheck, idx)}
+            onChange={() => onChange(term.isCheck, idx)}
+            onClick={() => onChange(term.isCheck, idx)}
           />
         ))}
       </div>

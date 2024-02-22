@@ -12,7 +12,7 @@ interface TermsOfDetail {
   }[];
 }
 
-export const termsOfDeatils: TermsOfDetail[] = [
+export const termsOfDetails: TermsOfDetail[] = [
   {
     type: "service",
     title: "[필수] 서비스 이용약관 동의",

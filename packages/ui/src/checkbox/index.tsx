@@ -17,6 +17,7 @@ const CheckBox = ({
   isDetail = false,
   detailInfoType,
   onChange,
+  onClick,
   ...props
 }: Prop) => {
   const [isOpened, setIsOpened] = useState(false);
@@ -32,12 +33,13 @@ const CheckBox = ({
   return (
     <section className={styles.container}>
       <div className={styles.leftSection} onChange={onChange}>
-        <input type="checkbox" id={id} className={styles.inputCheck} />
-        <CheckIcon
-          isCheck={isCheck}
-          className={styles.svg}
-          onChange={onChange}
+        <input
+          type="checkbox"
+          id={id}
+          className={styles.inputCheck}
+          checked={isCheck}
         />
+        <CheckIcon isCheck={isCheck} className={styles.svg} onClick={onClick} />
         <label htmlFor={id} className={styles.label}>
           {labelContent}
         </label>

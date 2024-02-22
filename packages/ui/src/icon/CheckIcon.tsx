@@ -11,6 +11,7 @@ export default function CheckIcon({ isCheck, onChange, ...props }: CheckIcon) {
       data-testid="check-icon"
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(props.className)}
+      onChange={onChange}
       {...props}
     >
       <path
