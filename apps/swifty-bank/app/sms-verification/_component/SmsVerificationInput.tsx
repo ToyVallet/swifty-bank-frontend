@@ -23,8 +23,13 @@ export default function SmsVerificationInput({
     onChange(value);
   };
 
+  const focusOnInput = () => {
+    if (inputRef.current) inputRef.current.focus();
+    else throw new Error("inputRef를 찾을 수 없습니다.");
+  };
+
   return (
-    <div className={styles.display} onClick={() => inputRef.current?.focus()}>
+    <div className={styles.display} onClick={focusOnInput}>
       {Array.from({ length: 6 }).map((_, index) => (
         <div key={index} className={styles.digit}>
           {value[index] || ""}
