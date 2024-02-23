@@ -22,11 +22,11 @@ const CheckBox = ({
 }: Prop) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const onOpen = () => {
+  const open = () => {
     setIsOpened(true);
   };
 
-  const onClose = () => {
+  const close = () => {
     setIsOpened(false);
   };
 
@@ -45,13 +45,13 @@ const CheckBox = ({
         </label>
       </div>
       <div className={styles.rightSection}>
-        {isDetail && <RightIcon onClick={onOpen} className={styles.svg} />}
+        {isDetail && <RightIcon onClick={open} className={styles.svg} />}
       </div>
       {isDetail &&
         isOpened &&
         createPortal(
           <Detail
-            onClick={onClose}
+            onClick={close}
             detailInfoType={detailInfoType!}
             isOpened={isOpened}
           />,

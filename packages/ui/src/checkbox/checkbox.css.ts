@@ -4,7 +4,6 @@ import { vars } from "../styles/vars.css";
 const container = style({
   width: "100%",
   display: "flex",
-
   justifyContent: "space-between",
   alignItems: "center",
   fontSize: 16,
