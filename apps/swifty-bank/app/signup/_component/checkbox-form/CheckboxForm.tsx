@@ -38,22 +38,20 @@ export default function CheckboxForm({ onClose }: Prop) {
     },
   ]);
 
+  const checkTerms = () =>
+    terms.every(({ isCheck, optional }) => optional || isCheck);
+
   const onClick = () => {
-    const termsCheckArr = terms.filter((term) => {
-      if (term.isCheck && !term.optional) return false;
-      if (term.optional) return false;
-      return true;
-    });
-    if (termsCheckArr.length !== 0) {
-      alert("모든 사항을 동의해주세요!");
+    if (!checkTerms()) {
       return;
     }
+
     router.replace("");
   };
 
   return (
     <section className={styles.container}>
-      <div>
+      <div className={styles.termsSection}>
         {terms.map((term, idx) => (
           <CheckBox
             key={idx}
@@ -65,7 +63,12 @@ export default function CheckboxForm({ onClose }: Prop) {
         ))}
       </div>
       <div className={styles.buttonSection}>
-        <Button onClick={onClick}>동의하기</Button>
+        <Button
+          onClick={onClick}
+          variant={checkTerms() ? "active" : "disabled"}
+        >
+          동의하기
+        </Button>
         <Button onClick={onClose} className={styles.closeButton}>
           닫기
         </Button>
