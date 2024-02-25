@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./checkboxForm.css";
 import { useCheckBox } from "@swifty/hooks";
 
-interface Button extends HTMLAttributes<HTMLButtonElement> {}
+type Button = HTMLAttributes<HTMLButtonElement>;
 
 interface Prop {
   onClose: Button["onClick"];

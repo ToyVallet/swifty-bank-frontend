@@ -8,7 +8,7 @@ import { createPortal } from "react-dom";
 import Detail from "./detail";
 import { CheckBoxProp } from "@swifty/hooks";
 
-interface Prop extends HTMLAttributes<HTMLDivElement>, CheckBoxProp {}
+type Prop = HTMLAttributes<HTMLDivElement> & CheckBoxProp;
 
 const CheckBox = ({
   labelContent,

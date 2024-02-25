@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { variants } from "./motion";
 import { HTMLAttributes } from "react";
 
-interface Button extends HTMLAttributes<HTMLButtonElement> {}
+type Button = HTMLAttributes<HTMLButtonElement>;
 
 interface Prop {
   onClick: Button["onClick"];
