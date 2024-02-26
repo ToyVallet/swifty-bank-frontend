@@ -17,8 +17,8 @@ export default function AgreementPage() {
         <div className={styles.imgBackDropCircle} />
         <Image
           src="/img/agreement/Symbol_Agree.webp"
-          height={250}
-          width={250}
+          height={450}
+          width={300}
           alt="Symbol_Agree"
           className={styles.img}
           priority
