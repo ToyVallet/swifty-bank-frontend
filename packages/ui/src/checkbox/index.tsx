@@ -1,12 +1,13 @@
 "use client";
 
-import RightIcon from "../icon/RightIcon";
-import CheckIcon from "../icon/CheckIcon";
 import styles from "./checkbox.css";
 import { HTMLAttributes, useState } from "react";
 import { createPortal } from "react-dom";
 import Detail from "./detail";
 import { CheckBoxProp } from "@swifty/hooks";
+import Checked from "../icon/checkIcon.svg";
+import NonChecken from "../icon/nonCheckIcon.svg";
+import RightIcon from "../icon/rightIcon.svg";
 
 type Prop = HTMLAttributes<HTMLDivElement> & CheckBoxProp;
 
@@ -39,7 +40,11 @@ const CheckBox = ({
           className={styles.inputCheck}
           checked={isCheck}
         />
-        <CheckIcon isCheck={isCheck} className={styles.svg} onClick={onClick} />
+        {isCheck ? (
+          <Checked className={styles.svg} onClick={onClick} />
+        ) : (
+          <NonChecken className={styles.svg} onClick={onClick} />
+        )}
         <label htmlFor={id} className={styles.label}>
           {labelContent}
         </label>

@@ -1,8 +1,9 @@
 {
   "extends": "@swifty/typescript-config/react-library.json",
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "dist",
   },
-  "include": ["src", "../shared/styles"],
+  "include": ["src", "../shared/styles", "./type/type.d.ts"],
   "exclude": ["node_modules", "dist"],
 }

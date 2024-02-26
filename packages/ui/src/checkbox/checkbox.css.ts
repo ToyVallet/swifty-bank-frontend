@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../styles/vars.css";
+import { recipe } from "@vanilla-extract/recipes";
 
 const container = style({
   width: "100%",
@@ -35,6 +36,20 @@ const svg = style({
   cursor: "pointer",
 });
 
-const styles = { container, inputCheck, leftSection, rightSection, svg, label };
+const svgCheck = style({
+  selectors: {
+    [`${svg} &`]: { stroke: "red" },
+  },
+});
+
+const styles = {
+  container,
+  inputCheck,
+  leftSection,
+  rightSection,
+  svg,
+  svgCheck,
+  label,
+};
 
 export default styles;
