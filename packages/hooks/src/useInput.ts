@@ -1,12 +1,6 @@
 import { useCallback, useState } from "react";
 
-type UseInputHook = {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  reset: () => void;
-};
-
-const useInput = (initialValue: string): UseInputHook => {
+const useInput = (initialValue: string) => {
   const [value, setValue] = useState(initialValue);
 
   const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {

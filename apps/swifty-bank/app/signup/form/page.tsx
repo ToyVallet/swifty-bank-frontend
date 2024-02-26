@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
@@ -10,11 +10,11 @@ import telecomServiceProvider from "../lib/constants/tsp";
 import isActiveButton, {
   FormData,
   SignupStage,
+  stages,
 } from "../lib/validate/isActiveButton";
 
 function SignupForm() {
-  // stage : 0 -> 1 -> 2 -> 3 -> submit
-  const [signupStage, setSignupStage] = useState<SignupStage>(0);
+  const [signupStage, setSignupStage] = useState(0);
   const phoneNumber = useInput("");
   const [telecomProvider, setTelecomProvider] = useState("");
   const idNumberFront = useInput("");
@@ -31,14 +31,19 @@ function SignupForm() {
     username: username.value,
   };
 
+  const inputMotion = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 1 },
+    exit: { opacity: 0 },
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSignupStage((prev) => (prev + 1 > 3 ? 3 : prev + 1) as SignupStage);
+    setSignupStage((prev) => (prev + 1 > 3 ? 3 : prev + 1));
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
-    if (signupStage === 3) {
+    if (stages[signupStage] === "이름") {
       console.log("submit", formData);
-      console.log(navigator.userAgent);
-      // Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1
       // 인증번호 요청 페이지로 이동 (정확한 경로 확인 필요)
       // router.push("/signup/verify");
     }
@@ -52,18 +57,23 @@ function SignupForm() {
     <>
       <header className={styles.header}>
         <div>
-          <Heading type="h2">{signupStage}를 알려주세요</Heading>
+          <Heading type="h2">
+            {stages[signupStage]}
+            {stages[signupStage] === "이름" ? "을" : "를"} 알려주세요
+          </Heading>
         </div>
       </header>
 
       <form onSubmit={handleSubmit}>
         <motion.div
+          key={"이름"}
           className={
             signupStage >= 3 ? styles.inputContainer : styles.hideElement
           }
-          initial={{ opacity: 0 }}
-          animate={{ opacity: signupStage >= 2 ? 1 : 0 }}
-          transition={{ duration: 1 }}
+          initial={inputMotion.initial}
+          animate={{ opacity: stages[signupStage] === "이름" ? 1 : 0 }}
+          transition={inputMotion.transition}
+          exit={inputMotion.exit}
         >
           <Input label="이름" {...username}>
             <Input.Text />
@@ -71,14 +81,16 @@ function SignupForm() {
         </motion.div>
 
         <motion.div
+          key="주민등록번호"
           className={
             signupStage >= 2 ? styles.idInputContainer : styles.hideElement
           }
-          initial={{ opacity: 0 }}
+          initial={inputMotion.initial}
           animate={{ opacity: signupStage >= 2 ? 1 : 0 }}
-          transition={{ duration: 1 }}
+          transition={inputMotion.transition}
+          exit={inputMotion.exit}
         >
-          <p className={styles.idLabel}>주민등록번호 앞 7자리</p>
+          <p className={styles.idLabel}>주민등록번호</p>
 
           <div className={styles.idInputBox}>
             <div className={styles.idInputFront}>
@@ -101,12 +113,14 @@ function SignupForm() {
         </motion.div>
 
         <motion.div
+          key="통신사"
           className={
             signupStage >= 1 ? styles.inputContainer : styles.hideElement
           }
-          initial={{ opacity: 0 }} // 초기 상태 설정
-          animate={{ opacity: signupStage >= 1 ? 1 : 0 }} // 특정 상태로 변경될 때 애니메이션 적용
-          transition={{ duration: 1 }} // 애니메이션 지속 시간 설정
+          initial={inputMotion.initial}
+          animate={{ opacity: signupStage >= 1 ? 1 : 0 }}
+          transition={inputMotion.transition}
+          exit={inputMotion.exit}
         >
           <Select
             label="통신사"
@@ -118,11 +132,11 @@ function SignupForm() {
           />
         </motion.div>
 
-        <motion.div className={styles.inputContainer}>
-          <Input label="휴대폰번호" {...phoneNumber}>
-            <Input.Text maxLength={11} />
+        <div key={"휴대폰번호"} className={styles.inputContainer}>
+          <Input label="휴대폰번호">
+            <Input.Text {...phoneNumber} maxLength={11} />
           </Input>
-        </motion.div>
+        </div>
 
         <p className={styles.noticeMessage}>
           입력한 정보는 7일동안 회원가입 시 쓰일 수 있어요
@@ -132,11 +146,13 @@ function SignupForm() {
           {/* TODO: Button 컴포넌트 타입 경고 해결 */}
           <Button
             variant={
-              isActiveButton(signupStage, formData) ? "active" : "disabled"
+              isActiveButton(stages[signupStage] as SignupStage, formData)
+                ? "active"
+                : "disabled"
             }
             type="submit"
           >
-            {signupStage === 3 ? "본인인증 하기" : "다음"}
+            {stages[signupStage] === "이름" ? "본인인증 하기" : "다음"}
           </Button>
         </section>
       </form>

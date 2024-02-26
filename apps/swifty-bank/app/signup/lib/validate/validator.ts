@@ -1,21 +1,22 @@
 export const validateID = (front: string, back: string) => {
-  if (front.length !== 6) return false;
+  const yymmddRegex =
+    /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
 
-  if (back.length !== 1) return false;
+  if (!yymmddRegex.test(front)) {
+    return false;
+  }
 
-  if (Number(front) <= 0) return false;
+  const backIDRegex = /^[1-4]{1}$/;
 
-  if (!Number.isInteger(Number(front))) return false;
-
-  if (Number.isNaN(Number(front))) return false;
-
-  if (Number.isNaN(Number(back))) return false;
+  if (!backIDRegex.test(back)) {
+    return false;
+  }
 
   return true;
 };
 
 export const validatePN = (pn: string): boolean => {
   // 11자리 숫자인지 확인
-  const regex = /^[0-9]{11}$/;
+  const regex = /^\d{11}$/;
   return regex.test(pn);
 };

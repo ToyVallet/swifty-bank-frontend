@@ -1,8 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { useBottomSheet } from "@swifty/hooks";
 import clsx from "clsx";
-import { useRef } from "react";
 
 import BottomSheet from "../bottom-sheet";
 import Heading from "../heading";
@@ -11,17 +11,17 @@ import styles from "./select.css";
 interface SelectProps {
   label?: string;
   placeholder: string;
-  options: SelectOption[];
+  options: SelectOption<string>[];
   className?: string;
   optionLabel: string;
   value: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface SelectOption {
-  value: string;
+export type SelectOption<T> = {
   label: string;
-}
+  value: T;
+};
 
 /**
  * Select 컴포넌트
@@ -29,33 +29,20 @@ interface SelectOption {
  * @param {string} label - 라벨
  */
 
-export default function Select({
-  label,
-  options,
-  optionLabel,
-  value,
-  ...props
-}: SelectProps) {
+function Select({ label, options, optionLabel, value, ...props }: SelectProps) {
   const { isOpen, open, close } = useBottomSheet();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleDismiss = () => {
+  const onDismiss = () => {
     close();
     inputRef.current?.blur();
   };
 
-  const handleClick = (
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLButtonElement>,
-  ) => {
-    const target = e.target as HTMLButtonElement;
-    props.onChange?.({
-      target: {
-        value: target.textContent,
-      } as unknown as EventTarget,
-    } as React.ChangeEvent<HTMLInputElement>);
-    handleDismiss();
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (inputRef.current) {
+      inputRef.current.value = e.currentTarget.textContent || "";
+      onDismiss();
+    }
   };
 
   return (
@@ -73,10 +60,9 @@ export default function Select({
 
       <BottomSheet
         open={isOpen}
-        onDismiss={handleDismiss}
+        onDismiss={onDismiss}
         header={optionLabel}
         height="1/3"
-        expandTo="1/3"
       >
         <ul className={styles.optionList}>
           {options.map((option) => (
@@ -85,7 +71,6 @@ export default function Select({
                 className={styles.option}
                 type="button"
                 onClick={handleClick}
-                onKeyDown={handleClick}
               >
                 {option.label}
               </button>
@@ -96,3 +81,5 @@ export default function Select({
     </div>
   );
 }
+
+export default Select;
