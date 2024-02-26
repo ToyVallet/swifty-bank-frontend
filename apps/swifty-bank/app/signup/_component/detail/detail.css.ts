@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "../../styles/vars.css";
+import { vars } from "@swifty/ui/styles/vars.css";
 
 const container = style({
   position: "fixed",
@@ -8,7 +8,7 @@ const container = style({
   width: "100%",
   height: "100%",
   fontSize: 16,
-  zIndex: 9999,
+  zIndex: 100000,
   backgroundColor: vars.color.background,
   padding: `58px 20px 34px`,
 });

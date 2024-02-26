@@ -3,7 +3,7 @@
 import { BottomSheet, Button } from "@swifty/ui";
 import styles from "./agreementButton.css";
 import { useBottomSheet } from "@swifty/hooks";
-import CheckboxForm from "../checkbox-form/CheckboxForm";
+import CheckForm from "../check-form/CheckForm";
 
 export default function AgreementBtn() {
   const { isOpen, open, close } = useBottomSheet();
@@ -23,7 +23,7 @@ export default function AgreementBtn() {
         height="1/3"
         expandTo="full"
       >
-        <CheckboxForm onClose={close} />
+        <CheckForm onClose={close} />
       </BottomSheet>
     </>
   );
