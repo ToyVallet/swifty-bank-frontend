@@ -2,8 +2,8 @@ import { validateID, validatePN } from "./validator";
 export interface FormData {
   phoneNumber: string | null;
   telecomProvider: string;
-  idNumberFront: string;
-  idNumberBack: string;
+  idFront: string;
+  idBack: string;
   username: string;
 }
 
@@ -23,8 +23,7 @@ const isActiveButton = (signupStage: SignupStage, formData: FormData) => {
     ],
     통신사: [(formData: FormData) => formData.telecomProvider !== ""],
     주민등록번호: [
-      (formData: FormData) =>
-        validateID(formData.idNumberFront, formData.idNumberBack),
+      (formData: FormData) => validateID(formData.idFront, formData.idBack),
     ],
     이름: [(formData: FormData) => formData.username !== ""],
   };

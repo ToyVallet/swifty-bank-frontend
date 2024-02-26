@@ -9,23 +9,29 @@ const header = style({
 const idInputContainer = style({
   display: "flex",
   flexDirection: "column",
-  marginBottom: "2rem",
+  margin: "3rem 0",
+  height: "4rem",
 });
 
 const idLabel = style({
-  fontSize: "1rem",
+  fontSize: "0.75rem",
   fontWeight: "bold",
   display: "flex",
+  color: vars.color.primary,
+  paddingLeft: "1.5rem",
+  marginBottom: "-0.75rem",
 });
 
 const idInputBox = style({
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
+  // height: "100%",
 });
 
 const idInputFront = style({
   width: "40%",
+  height: "100%",
 });
 
 const idInputHyphen = style({
@@ -79,6 +85,7 @@ const idInputBlind = style({
 
 const inputContainer = style({
   marginBottom: "2rem",
+  height: "4rem",
 });
 
 const nextButton = style({
@@ -99,7 +106,7 @@ const noticeMessage = style({
   fontSize: "0.8rem",
   color: vars.color.gray[400],
   textAlign: "center",
-  marginBottom: "2rem",
+  margin: "3rem 0",
 });
 
 const styles = {

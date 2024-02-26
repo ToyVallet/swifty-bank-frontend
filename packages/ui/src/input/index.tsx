@@ -1,6 +1,6 @@
 "use client";
 
-// import { useId } from "@swifty/hooks";
+import { useId } from "@swifty/hooks";
 import clsx from "clsx";
 import { HTMLMotionProps, motion, useAnimationControls } from "framer-motion";
 import {
@@ -11,7 +11,6 @@ import {
   ReactElement,
   ReactNode,
   useEffect,
-  useId,
 } from "react";
 
 import styles from "./input.css";
@@ -38,7 +37,7 @@ export default function Input({
   ...props
 }: InputProps) {
   const child = Children.only(children);
-  const generatedId = useId();
+  const generatedId = useId("input-");
   const id = child.props.id ?? generatedId;
 
   return (

@@ -12,13 +12,14 @@ import isActiveButton, {
   SignupStage,
   stages,
 } from "../lib/validate/isActiveButton";
+import Ellipse from "../components/Ellipse";
 
 function SignupForm() {
   const [signupStage, setSignupStage] = useState(0);
   const phoneNumber = useInput("");
   const [telecomProvider, setTelecomProvider] = useState("");
-  const idNumberFront = useInput("");
-  const idNumberBack = useInput("");
+  const idFront = useInput("");
+  const idBack = useInput("");
   const username = useInput("");
 
   const router = useRouter();
@@ -26,8 +27,8 @@ function SignupForm() {
   const formData: FormData = {
     phoneNumber: phoneNumber.value,
     telecomProvider,
-    idNumberFront: idNumberFront.value,
-    idNumberBack: idNumberBack.value,
+    idFront: idFront.value,
+    idBack: idBack.value,
     username: username.value,
   };
 
@@ -41,6 +42,8 @@ function SignupForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignupStage((prev) => (prev + 1 > 3 ? 3 : prev + 1));
+    console.log("signupStage", signupStage, formData);
+
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (stages[signupStage] === "이름") {
       console.log("submit", formData);
@@ -76,7 +79,7 @@ function SignupForm() {
           exit={inputMotion.exit}
         >
           <Input label="이름" {...username}>
-            <Input.Text />
+            <Input.Text autoComplete="name" defaultValue={username.value} />
           </Input>
         </motion.div>
 
@@ -91,11 +94,16 @@ function SignupForm() {
           exit={inputMotion.exit}
         >
           <p className={styles.idLabel}>주민등록번호</p>
-
           <div className={styles.idInputBox}>
             <div className={styles.idInputFront}>
-              <Input {...idNumberFront}>
-                <Input.Text maxLength={6} />
+              <Input {...idFront}>
+                <Input.Text
+                  maxLength={6}
+                  inputMode="numeric"
+                  placeholder="생년월일"
+                  pattern="\d*"
+                  defaultValue={idFront.value}
+                />
               </Input>
             </div>
 
@@ -104,10 +112,21 @@ function SignupForm() {
             <div className={styles.idInputBackBox}>
               <input
                 className={styles.idInputBack}
-                {...idNumberBack}
+                {...idBack}
                 maxLength={1}
+                inputMode="numeric"
+                placeholder="0"
+                pattern="\d*"
+                defaultValue={idBack.value}
               />
-              <span className={styles.idInputBlind}>······</span>
+              <span className={styles.idInputBlind}>
+                <Ellipse />
+                <Ellipse />
+                <Ellipse />
+                <Ellipse />
+                <Ellipse />
+                <Ellipse />
+              </span>
             </div>
           </div>
         </motion.div>
@@ -135,7 +154,14 @@ function SignupForm() {
 
         <div key={"휴대폰번호"} className={styles.inputContainer}>
           <Input label="휴대폰번호">
-            <Input.Text {...phoneNumber} maxLength={11} />
+            <Input.Text
+              {...phoneNumber}
+              autoComplete="tel"
+              inputMode="tel"
+              maxLength={11}
+              pattern="\d*"
+              defaultValue={phoneNumber.value}
+            />
           </Input>
         </div>
 
