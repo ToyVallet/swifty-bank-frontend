@@ -7,30 +7,26 @@ export interface FormData {
   username: string;
 }
 
-export type SignupStage = "휴대폰번호" | "통신사" | "주민등록번호" | "이름";
-
-export const stages: SignupStage[] = [
+export enum SignupStage {
   "휴대폰번호",
   "통신사",
   "주민등록번호",
   "이름",
-];
+}
 
-const isActiveButton = (signupStage: SignupStage, formData: FormData) => {
-  const validation = {
-    휴대폰번호: [
-      (formData: FormData) => validatePN(formData.phoneNumber ?? ""),
-    ],
-    통신사: [(formData: FormData) => formData.telecomProvider !== ""],
-    주민등록번호: [
-      (formData: FormData) => validateID(formData.idFront, formData.idBack),
-    ],
-    이름: [(formData: FormData) => formData.username !== ""],
-  };
+export type Stage = 0 | 1 | 2 | 3;
 
-  return stages
-    .slice(0, stages.indexOf(signupStage) + 1)
-    .every((stage) => validation[stage].every((fn) => fn(formData)));
+const isActiveButton = (stage: Stage, formData: FormData) => {
+  const validation = [
+    (formData: FormData) => validatePN(formData.phoneNumber ?? ""),
+    (formData: FormData) => formData.telecomProvider !== "",
+    (formData: FormData) => validateID(formData.idFront, formData.idBack),
+    (formData: FormData) => formData.username !== "",
+  ];
+
+  return validation
+    .slice(0, stage + 1)
+    .every((validator) => validator(formData));
 };
 
 export default isActiveButton;
