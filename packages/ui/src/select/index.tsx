@@ -15,6 +15,7 @@ interface SelectProps {
   className?: string;
   optionLabel: string;
   value: string;
+  setValue: (value: string) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,7 +30,14 @@ export type SelectOption<T> = {
  * @param {string} label - 라벨
  */
 
-function Select({ label, options, optionLabel, value, ...props }: SelectProps) {
+function Select({
+  label,
+  options,
+  optionLabel,
+  value,
+  setValue,
+  ...props
+}: SelectProps) {
   const { isOpen, open, close } = useBottomSheet();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,6 +50,7 @@ function Select({ label, options, optionLabel, value, ...props }: SelectProps) {
     if (inputRef.current) {
       inputRef.current.value = e.currentTarget.textContent || "";
       onDismiss();
+      setValue(inputRef.current.value);
     }
   };
 

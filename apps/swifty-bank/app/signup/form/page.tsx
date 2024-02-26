@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
@@ -127,6 +127,7 @@ function SignupForm() {
             options={telecomServiceProvider}
             placeholder="통신사"
             value={telecomProvider}
+            setValue={setTelecomProvider}
             optionLabel={"통신사를 선택해주세요"}
             onChange={handleChange}
           />
