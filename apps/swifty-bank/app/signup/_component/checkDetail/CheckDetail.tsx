@@ -1,7 +1,7 @@
 "use client";
 import { Check } from "@swifty/ui";
 import { useState } from "react";
-import RigthtIcon from "../icon/rightIcon.svg";
+import RigthtIcon from "@icon/rightIcon.svg";
 import { createPortal } from "react-dom";
 import Detail from "../detail";
 import styles from "./checkDetail.css";
