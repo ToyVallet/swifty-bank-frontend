@@ -7,9 +7,4 @@ const telecomServiceProvider = [
   { value: "LG 알뜰폰", label: "LG 알뜰폰" },
 ];
 
-export type SelectOption<T> = {
-  label: string;
-  value: T;
-};
-
 export default telecomServiceProvider;

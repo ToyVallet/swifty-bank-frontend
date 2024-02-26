@@ -8,21 +8,21 @@ import BottomSheet from "../bottom-sheet";
 import Heading from "../heading";
 import styles from "./select.css";
 
+type SelectOption<T> = {
+  label: string;
+  value: T;
+};
+
 interface SelectProps {
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   options: SelectOption<string>[];
+  optionLabel?: string;
   className?: string;
-  optionLabel: string;
   value: string;
   setValue: (value: string) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
-export type SelectOption<T> = {
-  label: string;
-  value: T;
-};
 
 /**
  * Select 컴포넌트
@@ -59,7 +59,7 @@ function Select({
       {label && <Heading type="h3">{label}</Heading>}
       <input
         className={styles.selectInput}
-        placeholder={props.placeholder}
+        placeholder={props.placeholder ?? ""}
         onChange={props.onChange}
         value={value}
         onClick={open}
@@ -70,7 +70,7 @@ function Select({
       <BottomSheet
         open={isOpen}
         onDismiss={onDismiss}
-        header={optionLabel}
+        header={optionLabel ?? ""}
         height="1/3"
       >
         <ul className={styles.optionList}>

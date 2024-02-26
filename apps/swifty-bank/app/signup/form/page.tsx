@@ -84,7 +84,12 @@ function SignupForm() {
           exit={inputMotion.exit}
         >
           <Input label="이름" {...username}>
-            <Input.Text autoComplete="name" defaultValue={username.value} />
+            <Input.Text
+              autoComplete="name"
+              pattern="^[^\d]*$"
+              title="숫자는 입력할 수 없습니다."
+              defaultValue={username.value}
+            />
           </Input>
         </motion.div>
 
@@ -102,15 +107,19 @@ function SignupForm() {
           transition={inputMotion.transition}
           exit={inputMotion.exit}
         >
-          <p className={styles.idLabel}>주민등록번호</p>
+          <label htmlFor="personalId" className={styles.idLabel}>
+            주민등록번호
+          </label>
           <div className={styles.idInputBox}>
             <div className={styles.idInputFront}>
               <Input {...idFront}>
                 <Input.Text
+                  id="personalId"
                   maxLength={6}
                   inputMode="numeric"
                   placeholder="생년월일"
                   pattern="\d*"
+                  title="숫자만 입력해주세요."
                   defaultValue={idFront.value}
                 />
               </Input>
@@ -126,6 +135,7 @@ function SignupForm() {
                 inputMode="numeric"
                 placeholder="0"
                 pattern="\d*"
+                title="숫자만 입력해주세요."
                 defaultValue={idBack.value}
               />
               <span className={styles.idInputBlind}>
@@ -173,6 +183,8 @@ function SignupForm() {
               inputMode="tel"
               maxLength={11}
               pattern="\d*"
+              title="숫자만 입력해주세요."
+              autoFocus
               defaultValue={phoneNumber.value}
             />
           </Input>
