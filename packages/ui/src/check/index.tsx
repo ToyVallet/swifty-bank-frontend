@@ -30,13 +30,14 @@ const Check = (
   const [isCheck, setIsCheck] = useState(defaultChecked || false);
 
   const onChage = () => {
+    console.log("click");
     setIsCheck((prev) => !prev);
   };
 
   const onClick = () => {
     setIsCheck((prev) => !prev);
     if (setValue && uniqueResiter) {
-      setValue(uniqueResiter, !isCheck);
+      setValue(uniqueResiter, !isCheck, { shouldValidate: true });
     }
   };
 
@@ -60,9 +61,9 @@ const Check = (
       </label>
       {position === "right" &&
         (isCheck ? (
-          <Checked onClick={onClick} />
+          <Checked onClickCapture={onClick} />
         ) : (
-          <NonChecked onClick={onClick} />
+          <NonChecked onClickCapture={onClick} />
         ))}
     </section>
   );

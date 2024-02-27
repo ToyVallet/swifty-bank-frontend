@@ -22,7 +22,6 @@ export default function CheckForm({ onClose }: Prop) {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
-    console.log(formState);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
