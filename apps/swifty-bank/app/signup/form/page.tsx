@@ -20,7 +20,6 @@ function SignupForm() {
   const idFront = useInput("");
   const idBack = useInput("");
   const username = useInput("");
-
   const router = useRouter();
 
   const formData: FormData = {
@@ -70,7 +69,7 @@ function SignupForm() {
         </div>
       </header>
 
-      <form onSubmit={handleSubmit}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
         <motion.div
           key={"이름"}
           className={
@@ -79,7 +78,7 @@ function SignupForm() {
               : styles.hideElement
           }
           initial={inputMotion.initial}
-          animate={{ opacity: stage === SignupStage["이름"] ? 1 : 0 }}
+          animate={{ opacity: stage >= SignupStage["이름"] ? 1 : 0 }}
           transition={inputMotion.transition}
           exit={inputMotion.exit}
         >

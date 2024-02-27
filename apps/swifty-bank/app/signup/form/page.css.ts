@@ -6,6 +6,10 @@ const header = style({
   marginBottom: "2rem",
 });
 
+const formContainer = style({
+  position: "relative",
+});
+
 const idInputContainer = style({
   display: "flex",
   flexDirection: "column",
@@ -89,13 +93,15 @@ const inputContainer = style({
 });
 
 const nextButton = style({
-  position: "absolute",
-  bottom: "2rem",
+  position: "fixed",
+  bottom: 0,
+  padding: "0 0 2rem 0",
   left: 0,
   width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  // backgroundColor: "black",
 });
 
 const hideElement = style({
@@ -123,6 +129,7 @@ const styles = {
   nextButton,
   idLabel,
   noticeMessage,
+  formContainer,
 };
 
 export default styles;
