@@ -8,7 +8,7 @@ import styles from "./button.css";
 type ButtonVariant = "disabled" | "active";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariant;
+  variant?: ButtonVariant;
   children: ReactNode;
 }
 
