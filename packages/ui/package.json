@@ -4,7 +4,6 @@
   "private": true,
   "exports": {
     ".": "./src/index.ts",
-    "./styles": "./src/styles/index.ts",
     "./styles/vars.css": "./src/styles/vars.css.ts"
   },
   "scripts": {
