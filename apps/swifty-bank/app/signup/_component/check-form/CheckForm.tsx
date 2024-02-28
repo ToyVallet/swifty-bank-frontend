@@ -50,15 +50,12 @@ export default function CheckForm({ onClose }: Prop) {
       </div>
 
       <div className={styles.buttonSection}>
-        <Button
-          type="submit"
-          variant={!formState.isValid ? "disabled" : "active"}
-        >
+        <Button variant={!formState.isValid ? "disabled" : "active"}>
           동의하기
         </Button>
-        <Button onClick={onClose} className={styles.closeButton}>
+        {/* <Button variant="transparent" onClick={onClose}>
           닫기
-        </Button>
+        </Button> */}
       </div>
     </form>
   );

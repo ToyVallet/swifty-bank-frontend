@@ -12,17 +12,11 @@ export default function AgreementBtn() {
   return (
     <>
       <div className={styles.container}>
-        <Button variant={"active"} onClick={open}>
+        <Button variant={"active"} position="fixed" onClick={open}>
           약관 보기
         </Button>
       </div>
-      <BottomSheet
-        open={isOpen}
-        onDismiss={close}
-        header={title}
-        height="1/3"
-        expandTo="full"
-      >
+      <BottomSheet open={isOpen} onDismiss={close} header={title}>
         <CheckForm onClose={close} />
       </BottomSheet>
     </>

@@ -4,7 +4,6 @@ import { style } from "@vanilla-extract/css";
 const container = style({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
   width: "100%",
   height: "100%",
   color: vars.color.text,
@@ -20,7 +19,7 @@ const explain = style({
 });
 
 const imgContainer = style({
-  margin: "30% 0",
+  margin: "50% 0",
   width: "100%",
   display: "flex",
   justifyContent: "center",
@@ -31,15 +30,15 @@ const imgContainer = style({
 const imgBackDropCircle = style({
   width: "240px",
   height: "240px",
-  backgroundColor: `rgba(101, 82, 254, 0.2) `,
+  backgroundColor: "rgba(101, 82, 254, 0.2)",
   filter: "blur(10px)",
   borderRadius: "50%",
   position: "absolute",
 });
 
 const img = style({
-  width: "40%",
-  height: "40%",
+  width: 180,
+  height: 200,
   zIndex: 1,
 });
 

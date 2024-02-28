@@ -1,9 +1,12 @@
 import { style } from "@vanilla-extract/css";
 
 const layout = style({
-  padding: "0 20px 100px 20px",
-  height: "100svh",
-  touchAction: "pan-x pan-y",
+  paddingTop: 66,
+});
+
+export const title = style({
+  fontSize: 27,
+  fontWeight: "bold",
 });
 
 const styles = {

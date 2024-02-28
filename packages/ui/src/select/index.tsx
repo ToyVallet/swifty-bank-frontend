@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import { useBottomSheet } from "@swifty/hooks";
 import clsx from "clsx";
+import { useRef } from "react";
 
 import BottomSheet from "../bottom-sheet";
 import Heading from "../heading";

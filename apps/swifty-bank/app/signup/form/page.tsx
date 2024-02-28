@@ -11,7 +11,9 @@ import isActiveButton, {
   FormData,
   SignupStage,
 } from "../lib/validate/isActiveButton";
-import Ellipse from "../components/Ellipse";
+import { title } from "../layout.css";
+import Ellipsis from "@icon/signup/ellipsis.svg";
+import Hyphen from "@icon/signup/hyphen.svg";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -62,92 +64,83 @@ function SignupForm() {
     <>
       <header className={styles.header}>
         <div>
-          <Heading type="h2">
+          <h1 className={title}>
             {SignupStage[stage]}
             {stage === 3 ? "을" : "를"} 알려주세요
-          </Heading>
+          </h1>
         </div>
       </header>
 
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        <motion.div
-          key={"이름"}
-          className={
-            stage >= SignupStage["이름"]
-              ? styles.inputContainer
-              : styles.hideElement
-          }
-          initial={inputMotion.initial}
-          animate={{ opacity: stage >= SignupStage["이름"] ? 1 : 0 }}
-          transition={inputMotion.transition}
-          exit={inputMotion.exit}
-        >
-          <Input label="이름" {...username}>
-            <Input.Text
-              autoComplete="name"
-              pattern="^[^\d]*$"
-              title="숫자는 입력할 수 없습니다."
-              defaultValue={username.value}
-            />
-          </Input>
-        </motion.div>
+        {stage >= SignupStage["이름"] && (
+          <motion.div
+            key={"이름"}
+            className={styles.inputContainer}
+            initial={inputMotion.initial}
+            animate={{ opacity: stage >= SignupStage["이름"] ? 1 : 0 }}
+            transition={inputMotion.transition}
+            exit={inputMotion.exit}
+          >
+            <Input label="이름" {...username}>
+              <Input.Text
+                autoComplete="name"
+                pattern="^[^\d]*$"
+                title="숫자는 입력할 수 없습니다."
+                defaultValue={username.value}
+              />
+            </Input>
+          </motion.div>
+        )}
 
-        <motion.div
-          key="주민등록번호"
-          className={
-            stage >= SignupStage["주민등록번호"]
-              ? styles.idInputContainer
-              : styles.hideElement
-          }
-          initial={inputMotion.initial}
-          animate={{
-            opacity: stage >= SignupStage["주민등록번호"] ? 1 : 0,
-          }}
-          transition={inputMotion.transition}
-          exit={inputMotion.exit}
-        >
-          <label htmlFor="personalId" className={styles.idLabel}>
-            주민등록번호
-          </label>
-          <div className={styles.idInputBox}>
-            <div className={styles.idInputFront}>
-              <Input {...idFront}>
-                <Input.Text
-                  id="personalId"
-                  maxLength={6}
+        {stage >= SignupStage["주민등록번호"] && (
+          <motion.div
+            key="주민등록번호"
+            className={styles.idInputContainer}
+            initial={inputMotion.initial}
+            animate={{
+              opacity: stage >= SignupStage["주민등록번호"] ? 1 : 0,
+            }}
+            transition={inputMotion.transition}
+            exit={inputMotion.exit}
+          >
+            <label htmlFor="personalId" className={styles.idLabel}>
+              주민등록번호
+            </label>
+            <div className={styles.idInputBox}>
+              <div className={styles.idInputFront}>
+                <Input {...idFront}>
+                  <Input.Text
+                    id="personalId"
+                    maxLength={6}
+                    inputMode="numeric"
+                    placeholder="생년월일"
+                    pattern="\d*"
+                    title="숫자만 입력해주세요."
+                    defaultValue={idFront.value}
+                  />
+                </Input>
+              </div>
+
+              <span className={styles.idInputHyphen}>
+                <Hyphen />
+              </span>
+
+              <div className={styles.idInputBackBox}>
+                <input
+                  className={styles.idInputBack}
+                  {...idBack}
+                  maxLength={1}
                   inputMode="numeric"
-                  placeholder="생년월일"
+                  placeholder="0"
                   pattern="\d*"
                   title="숫자만 입력해주세요."
-                  defaultValue={idFront.value}
+                  defaultValue={idBack.value}
                 />
-              </Input>
+                <Ellipsis />
+              </div>
             </div>
-
-            <span className={styles.idInputHyphen}>-</span>
-
-            <div className={styles.idInputBackBox}>
-              <input
-                className={styles.idInputBack}
-                {...idBack}
-                maxLength={1}
-                inputMode="numeric"
-                placeholder="0"
-                pattern="\d*"
-                title="숫자만 입력해주세요."
-                defaultValue={idBack.value}
-              />
-              <span className={styles.idInputBlind}>
-                <Ellipse />
-                <Ellipse />
-                <Ellipse />
-                <Ellipse />
-                <Ellipse />
-                <Ellipse />
-              </span>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         <motion.div
           key="통신사"
@@ -197,6 +190,7 @@ function SignupForm() {
           {/* TODO: Button 컴포넌트 타입 경고 해결 */}
           <Button
             variant={isActiveButton(stage, formData) ? "active" : "disabled"}
+            position="fixed"
             type="submit"
           >
             {stage === SignupStage["이름"] ? "본인인증 하기" : "다음"}

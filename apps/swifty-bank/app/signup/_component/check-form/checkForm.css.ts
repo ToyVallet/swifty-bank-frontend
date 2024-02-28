@@ -12,6 +12,7 @@ const termsSection = style({
   marginTop: vars.space[1],
   flexGrow: 1,
   flexBasis: 1,
+  marginBottom: vars.space[5],
 });
 
 const buttonSection = style({
@@ -21,7 +22,6 @@ const buttonSection = style({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  gap: vars.space[2],
 });
 
 const closeButton = style({
@@ -30,6 +30,7 @@ const closeButton = style({
   color: vars.color.gray[600],
   border: "none",
 });
+
 const styles = { container, buttonSection, closeButton, termsSection };
 
 export default styles;

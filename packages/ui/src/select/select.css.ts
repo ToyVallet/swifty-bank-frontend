@@ -17,8 +17,7 @@ const label = style({
 const selectInput = style({
   width: "100%",
   height: "3rem",
-  borderWidth: 1,
-  borderColor: vars.color.primary,
+  border: `solid 2px ${vars.color.primary}`,
   borderRadius: 25,
   padding: "0 1rem",
   marginBottom: "1rem",

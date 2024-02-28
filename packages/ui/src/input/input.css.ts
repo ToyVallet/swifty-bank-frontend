@@ -9,9 +9,8 @@ const container = style({
 });
 
 const input = style({
-  borderWidth: 1,
-  borderColor: vars.color.primary,
   borderRadius: 25,
+  border: `solid 2px ${vars.color.primary}`,
   padding: "13px 23px",
   fontSize: 17,
   outline: "none",
@@ -34,8 +33,8 @@ const error = style({
 });
 
 const label = style({
-  color: vars.color.text,
-  fontSize: 17,
+  color: vars.color.primary,
+  fontSize: 14,
   fontWeight: 700,
 });
 
@@ -50,7 +49,7 @@ const labelContainer = style({
   display: "flex",
   justifyContent: "flex-start",
   alignItems: "center",
-  gap: vars.space[1],
+  gap: 11,
 });
 
 const styles = {
