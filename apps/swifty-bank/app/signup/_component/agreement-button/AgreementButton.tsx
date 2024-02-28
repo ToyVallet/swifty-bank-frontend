@@ -1,6 +1,7 @@
 "use client";
 
-import { BottomSheet, Button } from "@swifty/ui";
+import { BottomSheet } from "@swifty/ui";
+import Button from "@/_component/Button";
 import styles from "./agreementButton.css";
 import { useBottomSheet } from "@swifty/hooks";
 import CheckForm from "../check-form/CheckForm";
@@ -12,7 +13,12 @@ export default function AgreementBtn() {
   return (
     <>
       <div className={styles.container}>
-        <Button variant={"active"} position="fixed" onClick={open}>
+        <Button
+          variant={"active"}
+          position="fixed"
+          onClick={open}
+          vibrateOnPress
+        >
           약관 보기
         </Button>
       </div>
