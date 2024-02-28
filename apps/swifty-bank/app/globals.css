@@ -19,3 +19,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+input {
+  outline: none;
+  border: solid 2px #6253f5;
+}
