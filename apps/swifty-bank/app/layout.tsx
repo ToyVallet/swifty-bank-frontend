@@ -1,7 +1,7 @@
 import "./globals.css";
 import styles from "./layout.css";
 import type { Metadata } from "next";
-import { NextThemeProvider } from "@swifty/ui/styles";
+import Provider from "./_component/Provider";
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -16,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko-KR">
       <body>
-        <NextThemeProvider>
+        <Provider>
           <div className={styles.layout}>{children}</div>
-        </NextThemeProvider>
+        </Provider>
       </body>
     </html>
   );
