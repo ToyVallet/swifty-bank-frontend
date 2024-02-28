@@ -1,6 +1,11 @@
 {
   "extends": "@swifty/typescript-config/nextjs.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"],
+      "@icon/*": ["public/icon/*"],
+    },
     "plugins": [
       {
         "name": "next",

@@ -20,7 +20,7 @@ const explain = style({
 });
 
 const imgContainer = style({
-  margin: "40% 0",
+  margin: "30% 0",
   width: "100%",
   display: "flex",
   justifyContent: "center",
@@ -38,8 +38,8 @@ const imgBackDropCircle = style({
 });
 
 const img = style({
-  width: "60%",
-  height: "60%",
+  width: "40%",
+  height: "40%",
   zIndex: 1,
 });
 

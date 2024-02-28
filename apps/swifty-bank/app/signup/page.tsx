@@ -1,7 +1,7 @@
 import { Heading } from "@swifty/ui";
 import Image from "next/image";
 import { styles } from "./page.css";
-import AgreementBtn from "./_component/AgreementBtn";
+import AgreementBtn from "./_component/agreement-button/AgreementButton";
 
 export default function AgreementPage() {
   return (
@@ -17,10 +17,11 @@ export default function AgreementPage() {
         <div className={styles.imgBackDropCircle} />
         <Image
           src="/img/agreement/Symbol_Agree.webp"
-          height={50}
-          width={50}
+          height={450}
+          width={300}
           alt="Symbol_Agree"
           className={styles.img}
+          priority
         />
       </div>
       <AgreementBtn />
