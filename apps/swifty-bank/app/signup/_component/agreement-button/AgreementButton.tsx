@@ -14,10 +14,10 @@ export default function AgreementBtn() {
     <>
       <div className={styles.container}>
         <Button
-          //variant={"active"}
+          variant={"active"}
           position="fixed"
           onClick={open}
-          vibrateOnPress
+          //vibrateOnPress
         >
           약관 보기
         </Button>
