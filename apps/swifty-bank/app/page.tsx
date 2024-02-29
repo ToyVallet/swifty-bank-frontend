@@ -9,11 +9,6 @@ export default function Page() {
 
   return (
     <main className={container}>
-      <Toast
-        type={"sucess"}
-        time={10}
-        content={"2024년 6월 1일 Swifty의 새로운 계정이 생성되었습니다."}
-      />
       <button onClick={() => {}}>메시지</button>
       <BottomSheet
         open={isOpen}
@@ -23,6 +18,7 @@ export default function Page() {
       >
         asd
       </BottomSheet>
+      <Toast type="sucess" content="test" />
     </main>
   );
 }

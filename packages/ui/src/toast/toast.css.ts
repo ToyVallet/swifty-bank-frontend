@@ -1,25 +1,18 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../styles/vars.css";
 
-const container = style({
-  position: "fixed",
-  bottom: 30,
-  width: "80%",
-  display: "flex",
-  flexDirection: "column",
-  gap: vars.space[1],
-  justifyContent: "center",
-  alignItems: "center",
-  zIndex: 9999,
-  backgroundColor: "transparent",
-});
-
 const toast = style({
-  width: "100",
+  position: "fixed",
+  left: "50%",
+  bottom: 20,
+  width: "90%",
+  transform: "translateX(-50%)",
   padding: vars.space[2],
   textAlign: "center",
+  fontSize: 16,
   color: vars.color.text,
   boxShadow: "0px 4px 3px rgba(0,0,0,0.25)",
+  borderRadius: 20,
 });
 
 const sucessToast = style({
@@ -30,6 +23,6 @@ const errorToast = style({
   backgroundColor: "rgba(254,82,92,0.15)",
 });
 
-const styles = { container, toast, sucessToast, errorToast };
+const styles = { toast, sucessToast, errorToast };
 
 export default styles;

@@ -1,45 +1,53 @@
 "use client";
 
-import { HTMLAttributes, useState } from "react";
-import Toast from "./toast";
+import { useState, useEffect } from "react";
+import { motion, HTMLMotionProps } from "framer-motion";
+import clsx from "clsx";
 import styles from "./toast.css";
-import { useId } from "@swifty/hooks";
-import { createPortal } from "react-dom";
 
-export type Type = "sucess" | "error";
-type ToastProp = {
-  type: Type;
+export type ToastType = "sucess" | "error";
+export type ToastValue = {
+  type: ToastType;
   content: string;
   time?: number;
 };
 
-type Prop = ToastProp & HTMLAttributes<HTMLDivElement>;
+type Prop = ToastValue & HTMLMotionProps<"div">;
 
-export default function Container({ time = 4, type, content, ...props }: Prop) {
-  /*   if (content.length > 20) {
-    throw new Error("toast text의 길이는 20자 이하입니다.");
-  } */
+const ANIMATION_DURATION = 1000;
 
-  const id = useId("toast-");
-  const toastClassification = { id, time, content, type };
-  const [toasts, setToasts] = useState<(typeof toastClassification)[]>(() => {
-    return [toastClassification];
-  });
+export default function Toast({
+  time = 1,
+  type,
+  content,
+  className,
+  ...props
+}: Prop) {
+  const [isShow, setIsShow] = useState(true);
+  const seconds = time * 1000;
 
-  return createPortal(
-    <div className={styles.container}>
-      {toasts.map((toast) => (
-        <Toast
-          type={toast.type}
-          content={toast.content}
-          time={toast.time}
-          setToast={setToasts}
-          id={toast.id}
-          key={toast.id}
-          {...props}
-        />
-      ))}
-    </div>,
-    document.body,
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setIsShow(false);
+    }, seconds + ANIMATION_DURATION);
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, []);
+
+  if (!isShow) return null;
+
+  return (
+    <motion.div
+      className={clsx(
+        styles.toast,
+        type === "error" && styles.errorToast,
+        type === "sucess" && styles.sucessToast,
+        className,
+      )}
+      {...props}
+    >
+      {content}
+    </motion.div>
   );
 }
