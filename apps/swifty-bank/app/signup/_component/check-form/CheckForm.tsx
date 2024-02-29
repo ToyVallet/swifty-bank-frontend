@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@swifty/ui";
 import { HTMLAttributes } from "react";
-import styles from "./checkForm.css";
-import CheckDetail from "../checkDetail/CheckDetail";
+import styles from "@/signup/_component/check-form/checkForm.css";
+import CheckDetail from "@/signup/_component/checkDetail/CheckDetail";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Button = HTMLAttributes<HTMLButtonElement>;

@@ -1,7 +1,7 @@
-import "./globals.css";
-import styles from "./layout.css";
+import "@/globals.css";
+import styles from "@/layout.css";
 import type { Metadata } from "next";
-import Provider from "./_component/Provider";
+import Provider from "@/_component/Provider";
 import { Noto_Sans_KR } from "next/font/google";
 
 const FONT = Noto_Sans_KR({

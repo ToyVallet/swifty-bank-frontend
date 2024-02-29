@@ -1,13 +1,11 @@
 "use client";
 
-import { container } from "./page.css";
+import { container } from "@/page.css";
 import { BottomSheet } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
 
-
 export default function Page() {
   const { isOpen, open, close } = useBottomSheet();
-  
 
   return (
     <main className={container}>

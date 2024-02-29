@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
-import { Button, Heading, Input, Select } from "@swifty/ui";
+import { Button, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
-import telecomServiceProvider from "../lib/constants/tsp";
+import telecomServiceProvider from "@/signup/_lib/constants/tsp";
 import isActiveButton, {
   FormData,
   SignupStage,
-} from "../lib/validate/isActiveButton";
+} from "@/signup/_lib/validate/isActiveButton";
 import { title } from "../layout.css";
 import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";

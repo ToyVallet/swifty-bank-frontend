@@ -3,8 +3,8 @@ import { Check } from "@swifty/ui";
 import { useState } from "react";
 import RigthtIcon from "@icon/rightIcon.svg";
 import { createPortal } from "react-dom";
-import Detail from "../detail";
-import styles from "./checkDetail.css";
+import Detail from "@/signup/_component/detail/Detail";
+import styles from "@/signup/_component/checkDetail/checkDetail.css";
 import { UseFormRegisterReturn, UseFormSetValue } from "react-hook-form";
 
 type Prop = {
