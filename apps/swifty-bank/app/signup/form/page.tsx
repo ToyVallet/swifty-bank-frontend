@@ -192,6 +192,7 @@ function SignupForm() {
             variant={isActiveButton(stage, formData) ? "active" : "disabled"}
             position="fixed"
             type="submit"
+            isShadow
           >
             {stage === SignupStage["이름"] ? "본인인증 하기" : "다음"}
           </Button>

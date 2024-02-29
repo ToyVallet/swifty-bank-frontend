@@ -15,14 +15,15 @@ export interface ButtonProps extends HTMLMotionProps<"button"> {
   children: ReactNode;
   position?: Position;
   type?: "button" | "submit" | "reset";
+  isShadow?: boolean;
 }
 
 export default function Button({
-  variant = "active",
   children,
+  isShadow,
   position = "relative",
   type = "button",
-
+  variant = "active",
   ...props
 }: ButtonProps) {
   return (
@@ -32,11 +33,12 @@ export default function Button({
         variant === "disabled" && styles.disabled,
         variant === "transparent" && styles.transparent,
         position === "fixed" && styles.fixed,
+        isShadow && styles.shadow,
         props.className,
       )}
       type={type}
       disabled={variant === "disabled"}
-      whileTap={tap}
+      whileTap={variant === "active" ? tap : undefined}
       {...props}
     >
       {children}

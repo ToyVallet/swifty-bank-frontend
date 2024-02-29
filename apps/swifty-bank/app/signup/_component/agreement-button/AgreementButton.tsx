@@ -17,6 +17,7 @@ export default function AgreementBtn() {
           variant={"active"}
           position="fixed"
           onClick={open}
+          isShadow
           //vibrateOnPress
         >
           약관 보기

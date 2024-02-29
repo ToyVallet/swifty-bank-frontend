@@ -13,14 +13,19 @@ const base = style({
   fontSize: 18,
   fontWeight: "bold",
   cursor: "pointer",
-  transitionProperty: "background-color, color, border-color",
+  transitionProperty: "background-color, color, border-color ",
   transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
   transitionDuration: "150ms",
 });
 
 const disabled = style({
-  backgroundColor: "#B4B4B4",
+  backgroundColor: "#D9D9D9",
+  color: vars.color.gray[600],
   cursor: "not-allowed",
+});
+
+const shadow = style({
+  boxShadow: `0px 4px 3px rgba(0,0,0,0.25)`,
 });
 
 const transparent = style({
@@ -41,6 +46,7 @@ const styles = {
   disabled,
   transparent,
   fixed,
+  shadow,
 };
 
 export default styles;
