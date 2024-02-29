@@ -1,12 +1,18 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../styles/vars.css";
 
-const toast = style({
+const container = style({
   position: "fixed",
-  left: "50%",
+  left: 0,
+  right: 0,
   bottom: 20,
-  width: "90%",
-  transform: "translateX(-50%)",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+});
+
+const toast = style({
+  width: "80%",
   padding: vars.space[2],
   textAlign: "center",
   fontSize: 16,
@@ -23,6 +29,6 @@ const errorToast = style({
   backgroundColor: "rgba(254,82,92,0.15)",
 });
 
-const styles = { toast, sucessToast, errorToast };
+const styles = { toast, sucessToast, errorToast, container };
 
 export default styles;
