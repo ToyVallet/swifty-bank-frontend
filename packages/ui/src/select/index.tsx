@@ -22,6 +22,7 @@ interface SelectProps {
   value: string;
   setValue: (value: string) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelect?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 /**
@@ -51,6 +52,9 @@ function Select({
       inputRef.current.value = e.currentTarget.textContent || "";
       onDismiss();
       setValue(inputRef.current.value);
+    }
+    if (props.onSelect) {
+      props.onSelect(e);
     }
   };
 

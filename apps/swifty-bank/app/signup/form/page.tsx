@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
-import { Button, Heading, Input, Select } from "@swifty/ui";
+import { Button, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
 import telecomServiceProvider from "../lib/constants/tsp";
 import isActiveButton, {
@@ -52,12 +52,19 @@ function SignupForm() {
     if (stage === SignupStage["이름"]) {
       console.log("submit", formData);
       // 인증번호 요청 페이지로 이동 (정확한 경로 확인 필요)
-      // router.push("/signup/verify");
+      router.push(`/signup/sms-verification?name=${username.value}}`);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTelecomProvider(e.target.value);
+    setStage((prev) => prev + 1);
+  };
+
+  const onSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (stage === SignupStage["통신사"]) {
+      setStage((prev) => prev + 1);
+    }
   };
 
   return (
@@ -164,6 +171,7 @@ function SignupForm() {
             setValue={setTelecomProvider}
             optionLabel={"통신사를 선택해주세요"}
             onChange={handleChange}
+            onSelect={onSelect}
           />
         </motion.div>
 
