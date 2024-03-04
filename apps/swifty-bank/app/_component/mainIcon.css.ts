@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 
 const imgContainer = style({
-  margin: "40% 0",
+  margin: "35% 0",
   width: "100%",
   display: "flex",
   justifyContent: "center",
@@ -10,10 +10,10 @@ const imgContainer = style({
 });
 
 const imgBackDropCircle = style({
-  width: "280px",
-  height: "280px",
+  width: "300px",
+  height: "300px",
   backgroundColor: "rgba(101, 82, 254, 0.2)",
-  filter: "blur(10px)",
+  filter: "blur(30px)",
   borderRadius: "50%",
   position: "absolute",
 });
