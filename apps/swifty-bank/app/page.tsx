@@ -18,7 +18,7 @@ export default function Page() {
       >
         asd
       </BottomSheet>
-      <Toast type="sucess" content="test" />
+      <Toast type="success" content="test" />
     </main>
   );
 }

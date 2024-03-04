@@ -5,7 +5,7 @@ import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import styles from "./toast.css";
 
-export type ToastType = "sucess" | "error";
+export type ToastType = "success" | "error";
 export type ToastValue = {
   type: ToastType;
   content: string;
@@ -50,7 +50,7 @@ export default function Toast({
             className={clsx(
               styles.toast,
               type === "error" && styles.errorToast,
-              type === "sucess" && styles.sucessToast,
+              type === "success" && styles.sucessToast,
               className,
             )}
             variants={toastVariants}
