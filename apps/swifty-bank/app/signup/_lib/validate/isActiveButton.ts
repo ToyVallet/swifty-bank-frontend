@@ -1,4 +1,4 @@
-import { validateID, validatePN } from "./validator";
+import { validateID, validatePN } from "@/signup/_lib/validate/validator";
 export interface FormData {
   phoneNumber: string | null;
   telecomProvider: string;
