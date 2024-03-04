@@ -12,7 +12,7 @@ const container = style({
 });
 
 const toast = style({
-  width: "80%",
+  width: "90%",
   padding: vars.space[2],
   textAlign: "center",
   fontSize: 16,
