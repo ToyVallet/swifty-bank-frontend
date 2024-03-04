@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
@@ -20,7 +20,10 @@ function SignupForm() {
   const phoneNumber = useInput("");
   const [telecomProvider, setTelecomProvider] = useState("");
   const idFront = useInput("");
-  const idBack = useInput("");
+  const idBack = {
+    ref: useRef<HTMLInputElement>(null),
+    ...useInput(""),
+  };
   const username = useInput("");
   const router = useRouter();
 
@@ -51,9 +54,11 @@ function SignupForm() {
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (stage === SignupStage["이름"]) {
       console.log("submit", formData);
-      // 인증번호 요청 페이지로 이동 (정확한 경로 확인 필요)
-      router.push(`/signup/sms-verification?name=${username.value}}`);
+      // 인증번호 요청 페이지로 이동
+      router.push(`/signup/sms-verification?name=${username.value}`);
     }
+
+    // TODO : 요청 실패 시 토스트로 에러 메시지 표시
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +69,13 @@ function SignupForm() {
   const onSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (stage === SignupStage["통신사"]) {
       setStage((prev) => prev + 1);
+    }
+  };
+
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (idFront.value.length === 6) {
+      e.preventDefault();
+      idBack.ref.current?.focus();
     }
   };
 
@@ -88,12 +100,14 @@ function SignupForm() {
             transition={inputMotion.transition}
             exit={inputMotion.exit}
           >
-            <Input label="이름" {...username}>
+            <Input label="이름">
               <Input.Text
                 autoComplete="name"
                 pattern="^[^\d]*$"
                 title="숫자는 입력할 수 없습니다."
                 defaultValue={username.value}
+                autoFocus
+                {...username}
               />
             </Input>
           </motion.div>
@@ -124,13 +138,15 @@ function SignupForm() {
                     pattern="\d*"
                     title="숫자만 입력해주세요."
                     defaultValue={idFront.value}
+                    autoFocus
+                    onKeyUp={onKeyUp}
                   />
                 </Input>
               </div>
 
-              <span className={styles.idInputHyphen}>
+              <div className={styles.idInputHyphen}>
                 <Hyphen />
-              </span>
+              </div>
 
               <div className={styles.idInputBackBox}>
                 <input
@@ -142,6 +158,7 @@ function SignupForm() {
                   pattern="\d*"
                   title="숫자만 입력해주세요."
                   defaultValue={idBack.value}
+                  ref={idBack.ref}
                 />
                 <Ellipsis />
               </div>

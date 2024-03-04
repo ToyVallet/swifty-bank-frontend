@@ -41,6 +41,7 @@ const idInputFront = style({
 const idInputHyphen = style({
   width: "20%",
   display: "flex",
+  margin: "auto 0",
   justifyContent: "center",
   alignItems: "center",
   lineHeight: "6rem",
