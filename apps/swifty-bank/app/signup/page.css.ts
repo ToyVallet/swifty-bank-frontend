@@ -12,28 +12,11 @@ const container = style({
 const header = style({
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
 });
 
 const explain = style({
   marginTop: vars.space[2],
-});
-
-const imgContainer = style({
-  margin: "50% 0",
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-});
-
-const imgBackDropCircle = style({
-  width: "240px",
-  height: "240px",
-  backgroundColor: "rgba(101, 82, 254, 0.2)",
-  filter: "blur(10px)",
-  borderRadius: "50%",
-  position: "absolute",
 });
 
 const img = style({
@@ -46,7 +29,5 @@ export const styles = {
   container,
   header,
   explain,
-  imgContainer,
-  imgBackDropCircle,
   img,
 };

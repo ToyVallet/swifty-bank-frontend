@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { styles } from "./page.css";
-import { title } from "./layout.css";
-import AgreementBtn from "./_component/agreement-button/AgreementButton";
+import { styles } from "@/signup/page.css";
+import { title } from "@/signup/layout.css";
+import AgreementBtn from "@/signup/_component/agreement-button/AgreementButton";
+import MainIcon from "@/_component/MainIcon";
 
 export default function AgreementPage() {
   return (
@@ -14,8 +15,7 @@ export default function AgreementPage() {
           설명 및 약관을 이해하였음을 확인합니다.
         </span>
       </div>
-      <div className={styles.imgContainer}>
-        <div className={styles.imgBackDropCircle} />
+      <MainIcon>
         <Image
           src="/img/agreement/Symbol_Agree.webp"
           height={450}
@@ -24,7 +24,7 @@ export default function AgreementPage() {
           className={styles.img}
           priority
         />
-      </div>
+      </MainIcon>
       <AgreementBtn />
     </main>
   );
