@@ -2,9 +2,9 @@
 
 import { BottomSheet } from "@swifty/ui";
 import Button from "@/_component/Button";
-import styles from "./agreementButton.css";
+import styles from "@/signup/_component/agreement-button/agreementButton.css";
 import { useBottomSheet } from "@swifty/hooks";
-import CheckForm from "../check-form/CheckForm";
+import CheckForm from "@/signup/_component/check-form/CheckForm";
 
 export default function AgreementBtn() {
   const { isOpen, open, close } = useBottomSheet();
@@ -17,7 +17,8 @@ export default function AgreementBtn() {
           variant={"active"}
           position="fixed"
           onClick={open}
-          vibrateOnPress
+          isShadow
+          //vibrateOnPress
         >
           약관 보기
         </Button>

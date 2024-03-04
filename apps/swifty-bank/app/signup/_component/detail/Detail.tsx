@@ -3,7 +3,7 @@
 import { Heading } from "@swifty/ui";
 import styles from "./detail.css";
 import Image from "next/image";
-import { TypeOfDetailInfo } from "@swifty/hooks";
+import { TypeOfDetailInfo } from "@/_utils/type";
 import { termsOfDetails } from "./detail-type";
 import { motion } from "framer-motion";
 import { variants } from "./motion";
