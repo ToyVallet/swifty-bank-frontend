@@ -18,7 +18,7 @@ export default function Page() {
       >
         asd
       </BottomSheet>
-      <Toast type="sucess" content="test" />
+      <Toast time={5}>새로운 계정이 생성되었습니다</Toast>
     </main>
   );
 }

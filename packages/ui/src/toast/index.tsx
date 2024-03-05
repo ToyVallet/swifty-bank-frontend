@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import styles from "./toast.css";
+import { toastVariants } from "./motion";
 
-export type ToastType = "sucess" | "error";
+export type ToastType = "success" | "error";
 export type ToastValue = {
-  type: ToastType;
-  content: string;
+  children: string | JSX.Element;
+  type?: ToastType;
   time?: number;
 };
 
@@ -18,20 +19,14 @@ const ANIMATION_DURATION = 500;
 
 export default function Toast({
   time = 1,
-  type,
-  content,
+  type = "success",
   className,
+  children,
   ...props
 }: Prop) {
   const [isShow, setIsShow] = useState(true);
 
   const seconds = time * 1000;
-
-  const toastVariants = {
-    initial: { y: 10, opacity: 0, scale: 0.2 },
-    animate: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.5 } },
-    exit: { y: 10, opacity: 0, scale: 0.2 },
-  };
 
   useEffect(() => {
     const timeId = setTimeout(() => {
@@ -48,9 +43,8 @@ export default function Toast({
         <motion.div className={styles.container}>
           <motion.div
             className={clsx(
-              styles.toast,
               type === "error" && styles.errorToast,
-              type === "sucess" && styles.sucessToast,
+              type === "success" && styles.successToast,
               className,
             )}
             variants={toastVariants}
@@ -59,7 +53,7 @@ export default function Toast({
             exit="exit"
             {...props}
           >
-            {content}
+            {children}
           </motion.div>
         </motion.div>
       )}
