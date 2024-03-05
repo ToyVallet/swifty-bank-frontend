@@ -1,41 +1,47 @@
 "use client";
 
 import clsx from "clsx";
-import { HTMLAttributes, ReactNode } from "react";
-
+import { ReactNode } from "react";
 import styles from "./button.css";
+import { HTMLMotionProps, motion } from "framer-motion";
+import { tap } from "./motion";
 
 type ButtonVariant = "disabled" | "active" | "transparent";
 
 type Position = "fixed" | "relative";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: ButtonVariant;
   children: ReactNode;
   position?: Position;
   type?: "button" | "submit" | "reset";
+  isShadow?: boolean;
 }
 
 export default function Button({
-  variant = "active",
   children,
+  isShadow,
   position = "relative",
+  type = "button",
+  variant = "active",
   ...props
 }: ButtonProps) {
   return (
-    <button
+    <motion.button
       className={clsx(
         styles.base,
         variant === "disabled" && styles.disabled,
         variant === "transparent" && styles.transparent,
         position === "fixed" && styles.fixed,
+        isShadow && styles.shadow,
         props.className,
       )}
-      type="button"
+      type={type}
       disabled={variant === "disabled"}
+      whileTap={variant === "active" ? tap : undefined}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

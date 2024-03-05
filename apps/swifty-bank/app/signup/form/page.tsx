@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
-import { Button, Heading, Input, Select } from "@swifty/ui";
+import { Button, Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
-import telecomServiceProvider from "../lib/constants/tsp";
+import telecomServiceProvider from "@/signup/_lib/constants/tsp";
 import isActiveButton, {
   FormData,
   SignupStage,
-} from "../lib/validate/isActiveButton";
+} from "@/signup/_lib/validate/isActiveButton";
 import { title } from "../layout.css";
 import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";
@@ -192,6 +192,7 @@ function SignupForm() {
             variant={isActiveButton(stage, formData) ? "active" : "disabled"}
             position="fixed"
             type="submit"
+            isShadow
           >
             {stage === SignupStage["이름"] ? "본인인증 하기" : "다음"}
           </Button>
