@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import styles from "./page.css";
-import { Button, Input, Select } from "@swifty/ui";
+import { Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
 import telecomServiceProvider from "@/signup/_lib/constants/tsp";
 import isActiveButton, {
@@ -14,6 +14,8 @@ import isActiveButton, {
 import { title } from "../layout.css";
 import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";
+import Button from "@/_component/Button";
+import { josa } from "@toss/hangul";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -84,8 +86,7 @@ function SignupForm() {
       <header className={styles.header}>
         <div>
           <h1 className={title}>
-            {SignupStage[stage]}
-            {stage === 3 ? "을" : "를"} 알려주세요
+            {josa(SignupStage[stage], "을/를")} 알려주세요
           </h1>
         </div>
       </header>
