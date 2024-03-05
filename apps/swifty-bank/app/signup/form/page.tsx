@@ -39,7 +39,7 @@ function SignupForm() {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     transition: { duration: 1 },
-    exit: { opacity: 0 },
+    exit: { opacity: 0, y: -20 },
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -149,7 +149,7 @@ function SignupForm() {
               </div>
 
               <div className={styles.idInputBackBox}>
-                <input
+                <motion.input
                   className={styles.idInputBack}
                   {...idBack}
                   maxLength={1}
@@ -159,6 +159,7 @@ function SignupForm() {
                   title="숫자만 입력해주세요."
                   defaultValue={idBack.value}
                   ref={idBack.ref}
+                  whileTap={{ scale: 0.95, transition: { duration: 0.08 } }}
                 />
                 <Ellipsis />
               </div>

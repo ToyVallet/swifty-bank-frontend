@@ -29,8 +29,7 @@ const idLabel = style({
 const idInputBox = style({
   display: "flex",
   flexDirection: "row",
-  justifyContent: "center",
-  // height: "100%",
+  justifyContent: "space-between",
 });
 
 const idInputFront = style({
@@ -39,31 +38,34 @@ const idInputFront = style({
 });
 
 const idInputHyphen = style({
-  width: "20%",
+  width: "24px",
   display: "flex",
+  paddingTop: "1.5rem",
   margin: "auto 0",
   justifyContent: "center",
   alignItems: "center",
   lineHeight: "6rem",
-  fontSize: "2rem",
+  fontSize: "1rem",
 });
 
 const idInputBackBox = style({
   width: "40%",
+  height: "100%",
+  paddingTop: "1.5rem",
   display: "flex",
   flexDirection: "row",
-  justifyContent: "center",
+  // justifyContent: "center",
   alignItems: "center",
 });
 
 const idInputBack = style({
   minWidth: "20%",
-  width: "30%",
+  width: "40px",
   fontSize: "1rem",
   textAlign: "center",
   alignItems: "center",
-  height: "50%",
-  borderWidth: 1,
+  height: "100%",
+  borderWidth: 2,
   borderColor: vars.color.primary,
   borderRadius: 25,
   outline: "none",
@@ -76,16 +78,7 @@ const idInputBack = style({
     color: "#ccc",
     transition: "all 0.2s ease-out",
   },
-});
-
-const idInputBlind = style({
-  width: "90%",
-  fontSize: "2rem",
-  display: "flex",
-  textAlign: "center",
-  alignItems: "center",
-  height: "100%",
-  justifyContent: "space-evenly",
+  marginRight: "0.5rem",
 });
 
 const inputContainer = style({
@@ -102,7 +95,6 @@ const nextButton = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  // backgroundColor: "black",
 });
 
 const hideElement = style({
@@ -125,7 +117,6 @@ const styles = {
   idInputBackBox,
   idInputBack,
   idInputHyphen,
-  idInputBlind,
   hideElement,
   nextButton,
   idLabel,
