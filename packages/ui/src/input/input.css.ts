@@ -23,6 +23,8 @@ const input = style({
     color: "#ccc",
     transition: "all 0.2s ease-out",
   },
+  WebkitAppearance: "none",
+  WebkitUserSelect: "none",
 });
 
 const error = style({

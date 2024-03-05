@@ -18,7 +18,7 @@ const idInputContainer = style({
 });
 
 const idLabel = style({
-  fontSize: "0.75rem",
+  fontSize: "14px",
   fontWeight: "bold",
   display: "flex",
   color: vars.color.primary,
@@ -79,6 +79,9 @@ const idInputBack = style({
     transition: "all 0.2s ease-out",
   },
   marginRight: "0.5rem",
+  WebkitAppearance: "none",
+  MozAppearance: "none",
+  appearance: "none",
 });
 
 const inputContainer = style({

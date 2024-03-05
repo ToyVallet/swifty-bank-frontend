@@ -60,8 +60,13 @@ function Select({
 
   return (
     <div className={clsx(styles.container, props.className)}>
-      {label && <Heading type="h3">{label}</Heading>}
+      {label && (
+        <label htmlFor="select-input" className={styles.label}>
+          {label}
+        </label>
+      )}
       <input
+        id="select-input"
         className={styles.selectInput}
         placeholder={props.placeholder ?? ""}
         onChange={props.onChange}
