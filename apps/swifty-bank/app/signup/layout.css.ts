@@ -7,6 +7,7 @@ const layout = style({
 export const title = style({
   fontSize: 27,
   fontWeight: "bold",
+  whiteSpace: "pre-line",
 });
 
 const styles = {
