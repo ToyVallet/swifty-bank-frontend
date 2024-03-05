@@ -12,8 +12,7 @@ const container = style({
 });
 
 const toast = style({
-  width: "90%",
-  padding: vars.space[2],
+  padding: `${vars.space[1]} ${vars.space[3]}`,
   textAlign: "center",
   fontSize: 16,
   color: vars.color.text,
@@ -21,14 +20,20 @@ const toast = style({
   borderRadius: 20,
 });
 
-const sucessToast = style({
-  backgroundColor: "#E8E5FF",
-});
+const successToast = style([
+  toast,
+  {
+    backgroundColor: "#E8E5FF",
+  },
+]);
 
-const errorToast = style({
-  backgroundColor: "rgba(254,82,92,0.15)",
-});
+const errorToast = style([
+  toast,
+  {
+    backgroundColor: "rgba(254,82,92,0.15)",
+  },
+]);
 
-const styles = { toast, sucessToast, errorToast, container };
+const styles = { successToast, errorToast, container };
 
 export default styles;
