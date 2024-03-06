@@ -16,6 +16,7 @@ import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";
 import Button from "@/_component/Button";
 import { josa } from "@toss/hangul";
+import { inputMotion } from "./motion";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -28,6 +29,7 @@ function SignupForm() {
   };
   const username = useInput("");
   const router = useRouter();
+  const [pnError, setPnError] = useState(false);
 
   const formData: FormData = {
     phoneNumber: phoneNumber.value,
@@ -35,13 +37,6 @@ function SignupForm() {
     idFront: idFront.value,
     idBack: idBack.value,
     username: username.value,
-  };
-
-  const inputMotion = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 1 },
-    exit: { opacity: 0, y: -20 },
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,6 +56,20 @@ function SignupForm() {
     }
 
     // TODO : 요청 실패 시 토스트로 에러 메시지 표시
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Backspace" && isNaN(Number(e.key))) {
+      e.preventDefault();
+      setPnError(true);
+    }
+    setTimeout(() => setPnError(false), 1000);
+    return;
+  };
+
+  const handlePNChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = e.target.value.replace(/[^0-9]/g, "");
+    phoneNumber.setValue(formatted);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -197,13 +206,16 @@ function SignupForm() {
         <div key={"휴대폰번호"} className={styles.inputContainer}>
           <Input label="휴대폰번호">
             <Input.Text
-              {...phoneNumber}
+              value={phoneNumber.value}
+              onChange={handlePNChange}
               autoComplete="tel"
               inputMode="tel"
-              maxLength={11}
+              maxLength={13}
               pattern="\d*"
               title="숫자만 입력해주세요."
               autoFocus
+              onKeyDown={handleKeyDown}
+              error={pnError}
               defaultValue={phoneNumber.value}
             />
           </Input>
