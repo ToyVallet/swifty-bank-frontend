@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 
 const img = style({
-  width: 180,
-  height: 200,
+  width: 190,
+  height: 208.5,
   zIndex: 1,
 });
 

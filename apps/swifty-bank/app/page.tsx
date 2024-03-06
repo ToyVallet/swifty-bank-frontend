@@ -1,7 +1,7 @@
 "use client";
 
-import { container } from "@/page.css";
-import { BottomSheet } from "@swifty/ui";
+import { container } from "./page.css";
+import { BottomSheet, Toast } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
 
 export default function Page() {
@@ -18,6 +18,7 @@ export default function Page() {
       >
         asd
       </BottomSheet>
+      <Toast time={5}>새로운 계정이 생성되었습니다</Toast>
     </main>
   );
 }

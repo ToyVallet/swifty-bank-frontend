@@ -6,3 +6,4 @@ export { default as Heading } from "./heading";
 export { default as Input } from "./input";
 export { default as Select } from "./select";
 export { default as NextThemeProvider } from "./styles/ThemeProvider";
+export { default as Toast } from "./toast";
