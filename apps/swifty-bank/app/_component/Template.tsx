@@ -1,4 +1,3 @@
-import MainIcon from "@/_component/MainIcon";
 import styles from "@/_component/template.css";
 import { title } from "@/signup/layout.css";
 import { ReactNode } from "react";
@@ -29,11 +28,16 @@ Template.Header = ({ main, sub, type = "row" }: HeaderProps) => {
   );
 };
 
-type MainIconProp = {
+type MainIconProps = {
   children: ReactNode;
   type?: "success" | "fail";
 };
 
-Template.MainIcon = ({ children, ...props }: MainIconProp) => {
-  return <MainIcon {...props}> {children} </MainIcon>;
+Template.MainIcon = ({ children, type = "success" }: MainIconProps) => {
+  return (
+    <div className={styles.imgContainer}>
+      <div className={styles.imgBackDropCircle({ backgroundColor: type })} />
+      {children}
+    </div>
+  );
 };

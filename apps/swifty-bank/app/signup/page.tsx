@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { styles } from "@/signup/page.css";
 import AgreementBtn from "@/signup/_component/agreement-button/AgreementButton";
-import ALL from "@icon/Icon_Cancellation.svg";
 import Template from "@/_component/Template";
 
 export default function AgreementPage() {
@@ -21,7 +20,6 @@ export default function AgreementPage() {
             className={styles.img}
             priority
           />
-          <ALL />
         </Template.MainIcon>
         <AgreementBtn />
       </Template>
