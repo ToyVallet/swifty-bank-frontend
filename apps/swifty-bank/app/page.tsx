@@ -5,7 +5,7 @@ import { BottomSheet, Toast } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
 
 export default function Page() {
-  const { isOpen, open, close } = useBottomSheet();
+  const { isOpen, close } = useBottomSheet();
 
   return (
     <main className={container}>

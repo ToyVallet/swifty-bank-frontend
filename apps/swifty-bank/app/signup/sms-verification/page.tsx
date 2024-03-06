@@ -4,9 +4,9 @@ import { useSearchParams } from "next/navigation";
 import SmsVerificationInput from "./_component/SmsVerificationInput";
 import styles from "./page.css";
 import { Heading } from "@swifty/ui";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
-export default function SmsVerificationPage() {
+function SmsVerification() {
   const [verificationCode, setVerifictionCode] = useState("");
   const searchParams = useSearchParams();
 
@@ -24,5 +24,13 @@ export default function SmsVerificationPage() {
       />
       <button className={styles.info}>문자를 못 받았나요?</button>
     </main>
+  );
+}
+
+export default function SmsVerificationPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SmsVerification />
+    </Suspense>
   );
 }
