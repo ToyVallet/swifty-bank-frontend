@@ -91,6 +91,7 @@ const getUser = async (accessToken: string) => {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
+      cache: "no-store",
     });
 
     return res.json();
@@ -213,6 +214,7 @@ const getKeypad = async (temporaryToken: string) => {
         Authorization: `Bearer ${temporaryToken}`,
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     });
 
     return res.json();
