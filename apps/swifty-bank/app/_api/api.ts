@@ -1,5 +1,5 @@
 import URL from "@/_api/url";
-import { User } from "./type";
+import { CheckInfo, User } from "./type";
 
 // SMS 인증 API
 const sendSMSCode = async (phoneNumber: string) => {
@@ -119,7 +119,7 @@ const updateUser = async (accessToken: string, data: User) => {
 // Authentication API
 const signwithForm = async (
   temporaryToken: string,
-  pushOrder: Number[],
+  pushedOrder: Number[],
   deviceId: string,
 ) => {
   try {
@@ -130,7 +130,7 @@ const signwithForm = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        pushOrder,
+        pushedOrder,
         deviceId,
       }),
     });
@@ -185,6 +185,22 @@ const logout = async (accessToken: string) => {
     });
   } catch (error) {
     throw new Error("로그아웃에 실패했습니다.");
+  }
+};
+
+const checkLoginAvailable = async (data: CheckInfo) => {
+  try {
+    const res = await fetch(URL.AUTH.checkLoginAvailable, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res.json();
+  } catch (error) {
+    throw new Error("로그인 가능여부 확인에 실패했습니다.");
   }
 };
 
