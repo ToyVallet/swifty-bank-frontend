@@ -2,9 +2,10 @@
 
 import Template from "@/_component/Template";
 import KeyPad from "@/_component/keypad/KeyPad";
-import useKeyPad from "@/_component/keypad/useKeyPad";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import useKeyPad from "@/_hook/useKeyPad";
+import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import Back from "@icon/Icon_Back_Black.svg";
 
 const LENGTH = 6;
 
@@ -22,6 +23,12 @@ export default function AmimateLayout() {
     handleClick: checkClick,
   } = useKeyPad(LENGTH);
 
+  const onCliCkStageBack = () => {
+    setCheck([]);
+    setPassword([]);
+    setStage("password");
+  };
+
   useEffect(() => {
     if (password.length === LENGTH) {
       setStage("check");
@@ -36,12 +43,11 @@ export default function AmimateLayout() {
       console.log("dismiss");
       setCheck([]);
       setPassword([]);
-      setStage("password");
     }
   }, [password, check]);
 
   return (
-    <AnimatePresence>
+    <>
       {stage === "password" && (
         <motion.div
           key="password"
@@ -50,17 +56,14 @@ export default function AmimateLayout() {
           animate="animate"
         >
           <Template>
+            <Back />
             <Template.Header
               main="비밀번호를 입력해주세요"
               sub={
                 "3자리 이상 반복되거나 연속되지 않도록 \n 생년월일, 전화번호가 포함되지 않도록 입력해주세요."
               }
             />
-            <KeyPad
-              len={LENGTH}
-              password={password}
-              handleClick={handleClick}
-            />
+            <KeyPad len={LENGTH} password={password} onClick={handleClick} />
           </Template>
         </motion.div>
       )}
@@ -72,14 +75,15 @@ export default function AmimateLayout() {
           animate="animate"
         >
           <Template>
+            <Back onClick={onCliCkStageBack} />
             <Template.Header
               main="비밀번호를 확인해주세요"
               sub={"설정한 비밀번호를 한번 더 입력해주세요"}
             />
-            <KeyPad len={LENGTH} password={check} handleClick={checkClick} />
+            <KeyPad len={LENGTH} password={check} onClick={checkClick} />
           </Template>
         </motion.div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

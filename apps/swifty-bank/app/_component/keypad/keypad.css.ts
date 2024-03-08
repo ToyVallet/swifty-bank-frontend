@@ -6,10 +6,13 @@ const container = style({
   display: "grid",
   gridTemplateRows: "repeat(4, 1fr)",
   gridTemplateColumns: "repeat(3, 1fr)",
+  justifyContent: "center",
+  position: "relative",
 });
 
 const button = style({
   backgroundColor: "transparent",
+  position: "relative",
   border: "none",
   display: "flex",
   justifyContent: "center",
@@ -24,7 +27,7 @@ const passwordContainer = style({
   justifyContent: "center",
   gap: 14,
   marginTop: vars.space[6],
-  marginBottom: 198,
+  marginBottom: "20%",
 });
 
 const password = style({
@@ -48,12 +51,42 @@ const selectPassword = style([
   },
 ]);
 
+const outerCircle = style({
+  width: "70%",
+  height: "100%",
+  borderRadius: "50%",
+  position: "absolute",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const innerCircle = style([
+  outerCircle,
+  {
+    width: "80%",
+    height: "80%",
+    zIndex: 1000,
+  },
+]);
+
+const priority = style({
+  zIndex: 1000,
+});
+
+const stroke = style({
+  stroke: "#6552FE",
+});
 const styles = {
   container,
   button,
   passwordContainer,
   selectPassword,
   unSelectPassword,
+  outerCircle,
+  innerCircle,
+  priority,
+  stroke,
 };
 
 export default styles;

@@ -3,25 +3,25 @@ import { useState, MouseEvent } from "react";
 
 const useKeyPad = (length: number) => {
   const [password, setPassword] = useState<string[]>([]);
-  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const button = e.target as HTMLButtonElement;
+    const target = e.currentTarget as HTMLButtonElement;
+
     if (
       password.length < length &&
-      button.value !== "3,1" &&
-      button.value !== "3,3"
+      target.value !== "9" &&
+      target.value !== "11"
     ) {
-      console.log(button.value);
-      setPassword((prev) => [...prev, button.value]);
+      setPassword((prev) => [...prev, target.value]);
     }
 
     // erase
-    if (button.value === "3,3") {
+    if (target.value === "11") {
       setPassword((prev) => prev.slice(0, prev.length - 1));
     }
 
     //reset
-    if (button.value === "3,1") {
+    if (target.value === "9") {
       setPassword([]);
     }
   };
