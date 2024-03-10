@@ -6,8 +6,7 @@ export interface User {
   nationality: string;
 }
 
-export interface CheckInfo
-  extends Omit<User, "gender", "birthDate", "nationality"> {
+export interface CheckInfo extends Pick<User, "name" | "phoneNumber"> {
   residentRegistrationNumber: string;
   mobileCarrier: MobileCarrier;
 }
