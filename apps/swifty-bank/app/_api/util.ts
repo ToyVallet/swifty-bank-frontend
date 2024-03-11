@@ -2,12 +2,12 @@ const commonHeaders = {
   "Content-Type": "application/json",
 };
 
-async function getWithToken(
+async function getWithToken<R>(
   url: string,
   token: string,
   headerOptions: Record<string, unknown> = {},
   errorMessage: string = "",
-) {
+): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "GET",
