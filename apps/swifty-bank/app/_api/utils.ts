@@ -6,6 +6,7 @@ async function getWithToken<R>(
   url: string,
   token: string,
   headerOptions: Record<string, unknown> = {},
+  cache: RequestCache = "no-store",
   errorMessage: string = "",
 ): Promise<R> {
   try {
@@ -17,6 +18,7 @@ async function getWithToken<R>(
         ...commonHeaders,
         ...headerOptions,
       },
+      cache,
     });
 
     if (!res.ok) {
