@@ -77,7 +77,7 @@ async function postWithoutToken<R>(
     });
 
     if (!res.ok) {
-      throw new Error(res.statusText);
+      throw new Error((await res.json()).message);
     }
 
     return res.json();
