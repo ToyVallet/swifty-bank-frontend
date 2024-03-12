@@ -11,7 +11,7 @@ export interface CheckInfo extends Pick<User, "name" | "phoneNumber"> {
   mobileCarrier: MobileCarrier;
 }
 
-type MobileCarrier =
+export type MobileCarrier =
   | "SKT"
   | "KT"
   | "LGU+"
