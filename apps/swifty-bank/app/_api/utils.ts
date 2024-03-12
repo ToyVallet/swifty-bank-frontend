@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 const commonHeaders = {
   "Content-Type": "application/json",
 };
@@ -12,7 +14,7 @@ async function get<R>(
   try {
     const res = await fetch(url, {
       method: "GET",
-      ...(withCredentials && { credentials: "include" }),
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -40,7 +42,7 @@ async function post<R>(
   try {
     const res = await fetch(url, {
       method: "POST",
-      ...(withCredentials && { credentials: "include" }),
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -68,7 +70,7 @@ async function patch<R>(
   try {
     const res = await fetch(url, {
       method: "PATCH",
-      ...(withCredentials && { credentials: "include" }),
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
         ...commonHeaders,
         ...headerOptions,
