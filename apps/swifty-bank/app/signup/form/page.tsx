@@ -2,21 +2,19 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import styles from "./page.css";
-import { Input, Select } from "@swifty/ui";
 import { useInput } from "@swifty/hooks";
-import telecomServiceProvider from "@/signup/_lib/constants/tsp";
 import isActiveButton, {
   FormData,
   SignupStage,
-} from "@/signup/_lib/validate/isActiveButton";
+} from "@/signup/form/_lib/validate/isActiveButton";
 import { title } from "../layout.css";
-import Ellipsis from "@icon/signup/ellipsis.svg";
-import Hyphen from "@icon/signup/hyphen.svg";
 import Button from "@/_component/Button";
 import { josa } from "@toss/hangul";
-import { inputMotion } from "./motion";
+import InputPhoneNumber from "./_component/InputPhoneNumber";
+import InputTsp from "./_component/InputTsp";
+import InputID from "./_component/InputID";
+import InputName from "./_component/InputName";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -29,7 +27,6 @@ function SignupForm() {
   };
   const username = useInput("");
   const router = useRouter();
-  const [pnError, setPnError] = useState(false);
 
   const formData: FormData = {
     phoneNumber: phoneNumber.value,
@@ -58,20 +55,6 @@ function SignupForm() {
     // TODO : 요청 실패 시 토스트로 에러 메시지 표시
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== "Backspace" && isNaN(Number(e.key))) {
-      e.preventDefault();
-      setPnError(true);
-    }
-    setTimeout(() => setPnError(false), 1000);
-    return;
-  };
-
-  const handlePNChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = e.target.value.replace(/[^0-9]/g, "");
-    phoneNumber.setValue(formatted);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTelecomProvider(e.target.value);
     setStage((prev) => prev + 1);
@@ -80,13 +63,6 @@ function SignupForm() {
   const onSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (stage === SignupStage["통신사"]) {
       setStage((prev) => prev + 1);
-    }
-  };
-
-  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (idFront.value.length === 6) {
-      e.preventDefault();
-      idBack.ref.current?.focus();
     }
   };
 
@@ -102,124 +78,37 @@ function SignupForm() {
 
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         {stage >= SignupStage["이름"] && (
-          <motion.div
-            key={"이름"}
+          <InputName
             className={styles.inputContainer}
-            initial={inputMotion.initial}
-            animate={{ opacity: stage >= SignupStage["이름"] ? 1 : 0 }}
-            transition={inputMotion.transition}
-            exit={inputMotion.exit}
-          >
-            <Input label="이름">
-              <Input.Text
-                autoComplete="name"
-                pattern="^[^\d]*$"
-                title="숫자는 입력할 수 없습니다."
-                defaultValue={username.value}
-                autoFocus
-                {...username}
-              />
-            </Input>
-          </motion.div>
+            stage={stage}
+            username={username}
+          />
         )}
 
         {stage >= SignupStage["주민등록번호"] && (
-          <motion.div
-            key="주민등록번호"
+          <InputID
             className={styles.idInputContainer}
-            initial={inputMotion.initial}
-            animate={{
-              opacity: stage >= SignupStage["주민등록번호"] ? 1 : 0,
-            }}
-            transition={inputMotion.transition}
-            exit={inputMotion.exit}
-          >
-            <label htmlFor="personalId" className={styles.idLabel}>
-              주민등록번호
-            </label>
-            <div className={styles.idInputBox}>
-              <div className={styles.idInputFront}>
-                <Input {...idFront}>
-                  <Input.Text
-                    id="personalId"
-                    maxLength={6}
-                    inputMode="numeric"
-                    placeholder="생년월일"
-                    pattern="\d*"
-                    title="숫자만 입력해주세요."
-                    defaultValue={idFront.value}
-                    autoFocus
-                    onKeyUp={onKeyUp}
-                  />
-                </Input>
-              </div>
-
-              <div className={styles.idInputHyphen}>
-                <Hyphen />
-              </div>
-
-              <div className={styles.idInputBackBox}>
-                <motion.input
-                  className={styles.idInputBack}
-                  {...idBack}
-                  maxLength={1}
-                  inputMode="numeric"
-                  placeholder="0"
-                  pattern="\d*"
-                  title="숫자만 입력해주세요."
-                  defaultValue={idBack.value}
-                  ref={idBack.ref}
-                  whileTap={{ scale: 0.95, transition: { duration: 0.08 } }}
-                />
-                <Ellipsis />
-              </div>
-            </div>
-          </motion.div>
+            stage={stage}
+            idFront={idFront}
+            idBack={idBack}
+          />
         )}
 
-        <motion.div
-          key="통신사"
-          className={
-            stage >= SignupStage["통신사"]
-              ? styles.inputContainer
-              : styles.hideElement
-          }
-          initial={inputMotion.initial}
-          animate={{
-            opacity: stage >= SignupStage["통신사"] ? 1 : 0,
-          }}
-          transition={inputMotion.transition}
-          exit={inputMotion.exit}
-        >
-          <Select
-            label="통신사"
-            options={telecomServiceProvider}
-            placeholder="통신사"
-            value={telecomProvider}
-            setValue={setTelecomProvider}
-            optionLabel={"통신사를 선택해주세요"}
-            onChange={handleChange}
+        {stage >= SignupStage["통신사"] && (
+          <InputTsp
+            className={styles.inputContainer}
+            stage={stage}
+            telecomProvider={telecomProvider}
+            setTelecomProvider={setTelecomProvider}
+            handleChange={handleChange}
             onSelect={onSelect}
           />
-        </motion.div>
+        )}
 
-        <div key={"휴대폰번호"} className={styles.inputContainer}>
-          <Input label="휴대폰번호">
-            <Input.Text
-              value={phoneNumber.value}
-              onChange={handlePNChange}
-              autoComplete="tel"
-              inputMode="tel"
-              maxLength={13}
-              pattern="\d*"
-              title="숫자만 입력해주세요."
-              autoFocus
-              onKeyDown={handleKeyDown}
-              error={pnError}
-              defaultValue={phoneNumber.value}
-            />
-          </Input>
-        </div>
+        <InputPhoneNumber
+          className={styles.inputContainer}
+          phoneNumber={phoneNumber}
+        />
 
         <p className={styles.noticeMessage}>
           입력한 정보는 7일동안 회원가입 시 쓰일 수 있어요
