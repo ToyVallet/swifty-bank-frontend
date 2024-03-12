@@ -4,11 +4,13 @@ import { HTMLAttributes } from "react";
 import styles from "@/signup/_component/check-form/checkForm.css";
 import CheckDetail from "@/signup/_component/checkDetail/CheckDetail";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { path } from "@/_constant/path";
 
-type Button = HTMLAttributes<HTMLButtonElement>;
+type ButtonType = HTMLAttributes<HTMLButtonElement>;
 
 interface Prop {
-  onClose: Button["onClick"];
+  onClose: ButtonType["onClick"];
 }
 
 interface FormData {
@@ -19,9 +21,9 @@ interface FormData {
 
 export default function CheckForm({ onClose }: Prop) {
   const { register, handleSubmit, setValue, formState } = useForm<FormData>({});
-
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const router = useRouter();
+  const onSubmit: SubmitHandler<FormData> = () => {
+    router.push(path.form);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
@@ -50,7 +52,11 @@ export default function CheckForm({ onClose }: Prop) {
       </div>
 
       <div className={styles.buttonSection}>
-        <Button variant={!formState.isValid ? "disabled" : "active"} isShadow>
+        <Button
+          variant={!formState.isValid ? "disabled" : "active"}
+          isShadow
+          type="submit"
+        >
           동의하기
         </Button>
         {/* <Button variant="transparent" onClick={onClose}>
