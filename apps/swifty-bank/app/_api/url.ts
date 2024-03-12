@@ -16,7 +16,7 @@ const AUTH = {
   signout: `${baseURL}/auth/sign-out`,
   reissue: `${baseURL}/auth/reissue`,
   logout: `${baseURL}/auth/log-out`,
-  checkLoginAvailable: `${baseURL}/auth/check-login-availabilty`,
+  checkLoginAvailable: `${baseURL}/auth/check-login-availability`,
 };
 
 const KEYPAD = {

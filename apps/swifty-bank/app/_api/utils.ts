@@ -12,9 +12,9 @@ async function getWithToken<R>(
   try {
     const res = await fetch(url, {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
-        credentials: "include",
         ...commonHeaders,
         ...headerOptions,
       },
@@ -41,9 +41,9 @@ async function postWithToken<R>(
   try {
     const res = await fetch(url, {
       method: "POST",
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
-        credentials: "include",
         ...commonHeaders,
         ...headerOptions,
       },
@@ -96,9 +96,9 @@ async function patchWithToken<R>(
   try {
     const res = await fetch(url, {
       method: "PATCH",
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
-        credentials: "include",
         ...commonHeaders,
         ...headerOptions,
       },
