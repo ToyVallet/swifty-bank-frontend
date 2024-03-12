@@ -32,10 +32,8 @@ export default function KeyPad({ len, password, onClick }: Props) {
       result.at(-1),
       <Back />,
     ],
-    [result],
+    [],
   );
-
-  console.log(keys);
 
   return (
     <>

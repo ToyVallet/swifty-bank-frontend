@@ -6,6 +6,7 @@ import useKeyPad from "@/_hook/useKeyPad";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import Back from "@icon/Icon_Back_Black.svg";
+import styles from "@/signup/password/_component/keyPadLayout.css";
 
 const PASSWORD_LENGTH = 6;
 
@@ -42,13 +43,12 @@ export default function AmimateLayout() {
       check.length === PASSWORD_LENGTH &&
       password.join("") === check.join("")
     ) {
-      console.log("check");
+      // 일치
     }
     if (
       check.length === PASSWORD_LENGTH &&
       password.join("") !== check.join("")
     ) {
-      console.log("dismiss");
       setCheck([]);
       setPassword([]);
     }
@@ -65,7 +65,7 @@ export default function AmimateLayout() {
           animate="animate"
         >
           <Template>
-            <Back />
+            <Back className={styles.headerIcon} />
             <Template.Header
               main="비밀번호를 입력해주세요"
               sub={
@@ -89,7 +89,7 @@ export default function AmimateLayout() {
           animate="animate"
         >
           <Template>
-            <Back onClick={onClickStageBack} />
+            <Back onClick={onClickStageBack} className={styles.headerIcon} />
             <Template.Header
               main="비밀번호를 확인해주세요"
               sub={"설정한 비밀번호를 한번 더 입력해주세요"}
