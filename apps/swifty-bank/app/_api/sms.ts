@@ -1,17 +1,17 @@
-import URL from "./url";
-import { postWithToken } from "./utils";
+import URL from "@/_api/url";
+import { post } from "@/_api/utils";
 
 interface SMSResponse {
   isSuccess: true;
 }
 
 // SMS 인증 API
-const sendSMSCode = async (phoneNumber: string, temporaryToken: string) => {
+const sendSMSCode = async (phoneNumber: string) => {
   try {
-    const res = await postWithToken<SMSResponse>(
+    const res = await post<SMSResponse>(
       URL.SMS.sendCode,
       { phoneNumber },
-      temporaryToken,
+      true,
     );
 
     return res;
@@ -22,19 +22,15 @@ const sendSMSCode = async (phoneNumber: string, temporaryToken: string) => {
   }
 };
 
-const checkSMSCode = async (
-  temporaryToken: string,
-  phoneNumber: string,
-  verficationCode: string,
-) => {
+const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
   try {
-    const res = await postWithToken<SMSResponse>(
+    const res = await post<SMSResponse>(
       URL.SMS.checkCode,
       {
         phoneNumber,
         verficationCode,
       },
-      temporaryToken,
+      true,
     );
 
     return res;

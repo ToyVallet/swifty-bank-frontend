@@ -1,16 +1,11 @@
-import exp from "constants";
-import { CheckInfo } from "./type";
-import URL from "./url";
-import { postWithToken, postWithoutToken } from "./utils";
+import { CheckInfo } from "@/_api/type";
+import URL from "@/_api/url";
+import { post } from "@/_api/utils";
 
 // Authentication API
-const signwithForm = async (
-  temporaryToken: string,
-  pushedOrder: Number[],
-  deviceId: string,
-) => {
+const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
   try {
-    const res = await postWithToken<{
+    const res = await post<{
       tokens: string;
       success: true;
       availablePassword: true;
@@ -20,7 +15,7 @@ const signwithForm = async (
         pushedOrder,
         deviceId,
       },
-      temporaryToken,
+      true,
     );
 
     return res;
@@ -29,11 +24,11 @@ const signwithForm = async (
   }
 };
 
-const signOut = async (accessToken: string) => {
+const signOut = async () => {
   try {
-    const res = await postWithToken<{
+    const res = await post<{
       wasSignedOut: true;
-    }>(URL.AUTH.signout, {}, accessToken);
+    }>(URL.AUTH.signout, {}, true);
 
     return res;
   } catch (error) {
@@ -41,12 +36,12 @@ const signOut = async (accessToken: string) => {
   }
 };
 
-const reissueToken = async (refreshToken: string) => {
+const reissueToken = async () => {
   try {
-    const res = await postWithToken<{
+    const res = await post<{
       isSuccess: true;
       tokens: string;
-    }>(URL.AUTH.reissue, {}, refreshToken);
+    }>(URL.AUTH.reissue, {}, true);
 
     return res;
   } catch (error) {
@@ -54,11 +49,11 @@ const reissueToken = async (refreshToken: string) => {
   }
 };
 
-const logout = async (accessToken: string) => {
+const logout = async () => {
   try {
-    const res = await postWithToken<{
+    const res = await post<{
       isSuccessful: true;
-    }>(URL.AUTH.logout, {}, accessToken);
+    }>(URL.AUTH.logout, {}, true);
     return res;
   } catch (error) {
     throw new Error("로그아웃에 실패했습니다.");
@@ -67,10 +62,10 @@ const logout = async (accessToken: string) => {
 
 const checkLoginAvailable = async (data: CheckInfo) => {
   try {
-    const res = await postWithoutToken<{
+    const res = await post<{
       isAvailable: true;
       temporaryToken: string;
-    }>(URL.AUTH.checkLoginAvailable, { ...data });
+    }>(URL.AUTH.checkLoginAvailable, { ...data }, false);
 
     return res;
   } catch (error) {
