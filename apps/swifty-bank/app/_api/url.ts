@@ -12,18 +12,22 @@ const USER = {
 };
 
 const AUTH = {
-  signup: `${baseURL}/auth/sign-up-with-form`,
+  signup: `${baseURL}/auth/sign-with-form`,
   signout: `${baseURL}/auth/sign-out`,
   reissue: `${baseURL}/auth/reissue`,
   logout: `${baseURL}/auth/log-out`,
-  signinWithJWT: `${baseURL}/auth/sign-in-with-jwt`,
-  signinWithForm: `${baseURL}/auth/sign-in-with-form`,
+  checkLoginAvailable: `${baseURL}/auth/check-login-availabilty`,
+};
+
+const KEYPAD = {
+  getKeypad: `${baseURL}/secure-keypad/create-keypad`,
 };
 
 const URL = {
   SMS,
   USER,
   AUTH,
+  KEYPAD,
 } as const;
 
 export default URL;
