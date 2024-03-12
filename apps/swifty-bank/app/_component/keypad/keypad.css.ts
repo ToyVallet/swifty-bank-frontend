@@ -51,7 +51,7 @@ const selectPassword = style([
   },
 ]);
 
-const outerCircle = style({
+const circle = style({
   width: "70%",
   height: "100%",
   borderRadius: "50%",
@@ -61,12 +61,20 @@ const outerCircle = style({
   alignItems: "center",
 });
 
-const innerCircle = style([
-  outerCircle,
+const outerCircle = style([
+  circle,
   {
-    width: "80%",
-    height: "80%",
+    backgroundColor: "#EFEAFF",
+  },
+]);
+
+const innerCircle = style([
+  circle,
+  {
+    width: "70%",
+    height: "70%",
     zIndex: 1000,
+    backgroundColor: "#E4DDFF",
   },
 ]);
 
