@@ -1,31 +1,33 @@
 "use client";
-import { useState, MouseEvent } from "react";
+import {
+  useState,
+  MouseEvent,
+  Dispatch,
+  SetStateAction,
+  HTMLAttributes,
+} from "react";
 
-const useKeyPad = (length: number) => {
-  const [password, setPassword] = useState<string[]>([]);
+const useKeyPad = (
+  length: number,
+): [
+  string[],
+  Dispatch<SetStateAction<string[]>>,
+  HTMLAttributes<HTMLButtonElement>["onClick"],
+] => {
+  const [key, setKey] = useState<string[]>([]);
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const target = e.currentTarget as HTMLButtonElement;
+    const target = e.currentTarget;
 
-    if (
-      password.length < length &&
-      target.value !== "9" &&
-      target.value !== "11"
-    ) {
-      setPassword((prev) => [...prev, target.value]);
-    }
-
-    // erase
     if (target.value === "11") {
-      setPassword((prev) => prev.slice(0, prev.length - 1));
-    }
-
-    //reset
-    if (target.value === "9") {
-      setPassword([]);
+      setKey((prev) => prev.slice(0, prev.length - 1));
+    } else if (target.value === "9") {
+      setKey([]);
+    } else if (key.length < length) {
+      setKey((prev) => [...prev, target.value]);
     }
   };
-  return { password, setPassword, handleClick };
+  return [key, setKey, handleClick];
 };
 
 export default useKeyPad;

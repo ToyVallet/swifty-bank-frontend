@@ -24,6 +24,7 @@ export default function Key({
     await circleAnimate([
       ["ul", { scale: [0, 1, 0] }, { duration: 0.6 }],
       ["li", { scale: [1, 0] }, { duration: 0.3, delay: stagger(0.3) }],
+      ["div", { stroke: ["#6552FE", "#B4B4B4"] }, { duration: 0.4 }],
     ]);
   };
 

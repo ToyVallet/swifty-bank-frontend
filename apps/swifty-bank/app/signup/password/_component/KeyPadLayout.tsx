@@ -7,7 +7,7 @@ import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import Back from "@icon/Icon_Back_Black.svg";
 
-const LENGTH = 6;
+const PASSWORD_LENGTH = 6;
 
 export default function AmimateLayout() {
   const variants: Variants = {
@@ -16,30 +16,38 @@ export default function AmimateLayout() {
     exit: { opacity: 0, transition: { duration: 1 } },
   };
   const [stage, setStage] = useState<"password" | "check">("password");
-  const { password, setPassword, handleClick } = useKeyPad(LENGTH);
-  const {
-    password: check,
-    setPassword: setCheck,
-    handleClick: checkClick,
-  } = useKeyPad(LENGTH);
+  const [password, setPassword, handleClick] = useKeyPad(PASSWORD_LENGTH);
+  const [check, setCheck, checkClick] = useKeyPad(PASSWORD_LENGTH);
 
-  const onCliCkStageBack = () => {
+  const onClickStageBack = () => {
     setCheck([]);
     setPassword([]);
     setStage("password");
   };
 
   useEffect(() => {
-    if (password.length === LENGTH) {
-      setStage("check");
+    let id: string | number | undefined;
+    if (password.length === PASSWORD_LENGTH) {
+      id = window.setTimeout(() => {
+        setStage("check");
+      }, 400);
     }
+    return () => {
+      clearTimeout(id);
+    };
   }, [password]);
 
   useEffect(() => {
-    if (check.length === LENGTH && password.join("") === check.join("")) {
+    if (
+      check.length === PASSWORD_LENGTH &&
+      password.join("") === check.join("")
+    ) {
       console.log("check");
     }
-    if (check.length === LENGTH && password.join("") !== check.join("")) {
+    if (
+      check.length === PASSWORD_LENGTH &&
+      password.join("") !== check.join("")
+    ) {
       console.log("dismiss");
       setCheck([]);
       setPassword([]);
@@ -50,6 +58,7 @@ export default function AmimateLayout() {
     <>
       {stage === "password" && (
         <motion.div
+          layout
           key="password"
           variants={variants}
           initial="initial"
@@ -63,24 +72,33 @@ export default function AmimateLayout() {
                 "3자리 이상 반복되거나 연속되지 않도록 \n 생년월일, 전화번호가 포함되지 않도록 입력해주세요."
               }
             />
-            <KeyPad len={LENGTH} password={password} onClick={handleClick} />
+            <KeyPad
+              len={PASSWORD_LENGTH}
+              password={password}
+              onClick={handleClick}
+            />
           </Template>
         </motion.div>
       )}
       {stage === "check" && (
         <motion.div
+          layout
           key="check"
           variants={variants}
           initial="initial"
           animate="animate"
         >
           <Template>
-            <Back onClick={onCliCkStageBack} />
+            <Back onClick={onClickStageBack} />
             <Template.Header
               main="비밀번호를 확인해주세요"
               sub={"설정한 비밀번호를 한번 더 입력해주세요"}
             />
-            <KeyPad len={LENGTH} password={check} onClick={checkClick} />
+            <KeyPad
+              len={PASSWORD_LENGTH}
+              password={check}
+              onClick={checkClick}
+            />
           </Template>
         </motion.div>
       )}

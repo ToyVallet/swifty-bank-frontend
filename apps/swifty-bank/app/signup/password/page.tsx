@@ -1,5 +1,5 @@
-import AmimateLayout from "@/signup/password/_component/AmimateLayout";
+import KeyPadLayout from "@/signup/password/_component/KeyPadLayout";
 
 export default function PasswordPage() {
-  return <AmimateLayout />;
+  return <KeyPadLayout />;
 }
