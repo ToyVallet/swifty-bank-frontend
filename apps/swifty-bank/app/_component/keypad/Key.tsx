@@ -1,18 +1,14 @@
 "use client";
 
 import styles from "@/_component/keypad/keypad.css";
-import {
-  motion,
-  HTMLMotionProps,
-  AnimatePresence,
-  Variants,
-} from "framer-motion";
-import { MouseEvent, useState } from "react";
+import { motion, AnimatePresence, useAnimate, stagger } from "framer-motion";
+import { HTMLAttributes, MouseEvent } from "react";
 import clsx from "clsx";
 
 type KeyProps = {
   children: React.ReactNode;
-} & HTMLMotionProps<"button">;
+  value: number | string;
+} & HTMLAttributes<HTMLButtonElement>;
 
 export default function Key({
   children,
@@ -20,52 +16,30 @@ export default function Key({
   onClick,
   ...props
 }: KeyProps) {
-  const [isClick, setIsClick] = useState(false);
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const [circleRef, circleAnimate] = useAnimate();
+
+  const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsClick(true);
     onClick?.(e);
+    await circleAnimate([
+      ["ul", { scale: [0, 1, 0] }, { duration: 0.6 }],
+      ["li", { scale: [1, 0] }, { duration: 0.3, delay: stagger(0.3) }],
+    ]);
   };
 
-  const variantsOuter: Variants = {
-    initial: { backgroundColor: "transparent" },
-    animate: { backgroundColor: "#EFEAFF", transition: { duration: 0.3 } },
-    exit: { scale: 0, transition: { duration: 0.2 } },
-  };
-  const variantsInner: Variants = {
-    initial: { backgroundColor: "transparent", scale: 0 },
-    animate: {
-      backgroundColor: "#E4DDFF",
-      scale: 0.9,
-      transition: { duration: 0.3 },
-    },
-  };
   return (
-    <motion.button
+    <button
       {...props}
-      className={clsx(styles.button, isClick && styles.stroke, className)}
+      className={clsx(styles.button, className)}
       onClick={handleClick}
+      ref={circleRef}
     >
       <AnimatePresence>
-        {isClick && (
-          <motion.div
-            className={styles.outerCircle}
-            variants={variantsOuter}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            onAnimationComplete={() => setIsClick(false)}
-          >
-            <motion.div
-              variants={variantsInner}
-              initial="initial"
-              animate="animate"
-              className={styles.innerCircle}
-            ></motion.div>
-          </motion.div>
-        )}
+        <motion.ul className={styles.outerCircle} initial={{ scale: 0 }}>
+          <motion.li className={styles.innerCircle}></motion.li>
+        </motion.ul>
       </AnimatePresence>
       <div className={styles.priority}>{children}</div>
-    </motion.button>
+    </button>
   );
 }
