@@ -17,6 +17,7 @@ import InputID from "./_component/InputID";
 import InputName from "./_component/InputName";
 import auth from "@/_api/auth";
 import { MobileCarrier } from "@/_api/type";
+import sms from "@/_api/sms";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -49,7 +50,6 @@ function SignupForm() {
 
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (stage === SignupStage["이름"]) {
-      console.log("submit", formData);
       const data = {
         name: username.value,
         phoneNumber: phoneNumber.value,
@@ -60,8 +60,18 @@ function SignupForm() {
 
       const res = await auth.checkLoginAvailable(data);
       console.log("res", res);
-      // 인증번호 요청 페이지로 이동
-      // router.push(`/signup/sms-verification?name=${username.value}`);
+
+      // 가입이 가능하다면, 인증번호 요청 페이지로 이동
+      if (res.isAvailable) {
+        const res2 = await sms.sendSMSCode(
+          { phoneNumber: phoneNumber.value },
+          true,
+        );
+        router.push(`/signup/sms-verification?name=${username.value}`);
+      } else {
+        // 가입이 불가능하다면, 에러 메시지 표시
+        alert("가입이 불가능합니다. 다시 시도해주세요.");
+      }
     }
 
     // TODO : 요청 실패 시 토스트로 에러 메시지 표시
