@@ -1,20 +1,21 @@
+import { cookies } from "next/headers";
+
 const commonHeaders = {
   "Content-Type": "application/json",
 };
 
-async function getWithToken<R>(
+async function get<R>(
   url: string,
-  token: string,
+  withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
-  cache: RequestCache = "no-store",
+  cache: RequestCache = "force-cache",
   errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "GET",
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
-        Authorization: `Bearer ${token}`,
-        credentials: "include",
         ...commonHeaders,
         ...headerOptions,
       },
@@ -31,44 +32,17 @@ async function getWithToken<R>(
   }
 }
 
-async function postWithToken<R>(
+async function post<R>(
   url: string,
   data: Record<string, unknown>,
-  token: string,
+  withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
   errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        credentials: "include",
-        ...commonHeaders,
-        ...headerOptions,
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) {
-      throw new Error((await res.json()).message);
-    }
-
-    return res.json();
-  } catch (error) {
-    throw new Error(errorMessage);
-  }
-}
-
-async function postWithoutToken<R>(
-  url: string,
-  data: Record<string, unknown>,
-  headerOptions: Record<string, unknown> = {},
-  errorMessage: string = "",
-): Promise<R> {
-  try {
-    const res = await fetch(url, {
-      method: "POST",
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -86,19 +60,18 @@ async function postWithoutToken<R>(
   }
 }
 
-async function patchWithToken<R>(
+async function patch<R>(
   url: string,
   data: Record<string, unknown>,
-  token: string,
+  withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
   errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "PATCH",
+      ...(withCredentials && { Cookie: cookies().toString() }),
       headers: {
-        Authorization: `Bearer ${token}`,
-        credentials: "include",
         ...commonHeaders,
         ...headerOptions,
       },
@@ -115,4 +88,4 @@ async function patchWithToken<R>(
   }
 }
 
-export { getWithToken, postWithToken, postWithoutToken, patchWithToken };
+export { get, post, patch };
