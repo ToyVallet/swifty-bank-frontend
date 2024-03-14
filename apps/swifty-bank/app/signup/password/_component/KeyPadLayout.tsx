@@ -7,6 +7,7 @@ import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import Back from "@icon/Icon_Back_Black.svg";
 import styles from "@/signup/password/_component/keyPadLayout.css";
+import CancelButton from "@/_component/CancelButton";
 
 const PASSWORD_LENGTH = 6;
 
@@ -65,7 +66,7 @@ export default function AmimateLayout() {
           animate="animate"
         >
           <Template>
-            <Back className={styles.headerIcon} />
+            <CancelButton />
             <Template.Header
               main="비밀번호를 입력해주세요"
               sub={
