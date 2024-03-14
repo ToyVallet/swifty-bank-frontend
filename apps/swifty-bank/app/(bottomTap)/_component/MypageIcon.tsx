@@ -1,8 +1,5 @@
 import { PropSVG } from "@/(bottomTap)/_type/type";
-export default function MypageIcon({
-  isStroke = false,
-  darkmode = "light",
-}: PropSVG) {
+export default function MypageIcon({ isStroke = false }: PropSVG) {
   return (
     <svg
       width="29"
