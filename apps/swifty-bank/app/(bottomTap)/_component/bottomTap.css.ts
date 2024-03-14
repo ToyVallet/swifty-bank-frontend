@@ -15,6 +15,9 @@ const container = style({
   borderTopRightRadius: 30,
   boxShadow: "0px -1px 6px rgba(0, 0, 0, 0.15)",
 });
+const link = style({
+  flexGrow: 1,
+});
 
 const li = style({
   listStyle: "none",
@@ -48,9 +51,9 @@ const emphasisCircle = style({
   backgroundColor: "#6552FE",
   borderRadius: "50%",
   top: -3,
-  right: -9,
+  right: "27%",
 });
 
-const styles = { container, emphasis, unemphasis, emphasisCircle };
+const styles = { container, emphasis, unemphasis, emphasisCircle, link };
 
 export default styles;
