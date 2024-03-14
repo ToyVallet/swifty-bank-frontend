@@ -1,19 +1,15 @@
-import { User } from "./type";
-import URL from "./url";
-import { getWithToken, patchWithToken, postWithToken } from "./utils";
+import { User } from "@/_api/type";
+import URL from "@/_api/url";
+import { get, patch, post } from "@/_api/utils";
 
 interface Response {
   message: string;
 }
 
 // 회원 API
-const checkPassword = async (accessToken: string, password: string) => {
+const checkPassword = async (password: string) => {
   try {
-    const res = await postWithToken<Response>(
-      URL.USER.password,
-      { password },
-      accessToken,
-    );
+    const res = await post<Response>(URL.USER.password, { password }, true);
 
     return res;
   } catch (error) {
@@ -21,13 +17,9 @@ const checkPassword = async (accessToken: string, password: string) => {
   }
 };
 
-const changePassword = async (accessToken: string, password: string) => {
+const changePassword = async (password: string) => {
   try {
-    const res = await patchWithToken<Response>(
-      URL.USER.password,
-      { password },
-      accessToken,
-    );
+    const res = await patch<Response>(URL.USER.password, { password }, true);
 
     return res;
   } catch (error) {
@@ -35,9 +27,9 @@ const changePassword = async (accessToken: string, password: string) => {
   }
 };
 
-const getUser = async (accessToken: string) => {
+const getUser = async () => {
   try {
-    const res = await getWithToken<User>(URL.USER.info, accessToken);
+    const res = await get<User>(URL.USER.info, true);
 
     return res;
   } catch (error) {
@@ -45,13 +37,9 @@ const getUser = async (accessToken: string) => {
   }
 };
 
-const updateUser = async (accessToken: string, data: User) => {
+const updateUser = async (data: User) => {
   try {
-    const res = await patchWithToken<Response>(
-      URL.USER.info,
-      { data },
-      accessToken,
-    );
+    const res = await patch<Response>(URL.USER.info, { data }, true);
 
     return res;
   } catch (error) {
