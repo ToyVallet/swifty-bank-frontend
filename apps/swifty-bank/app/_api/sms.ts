@@ -2,7 +2,7 @@ import URL from "@/_api/url";
 import { post } from "@/_api/utils";
 
 interface SMSResponse {
-  isSuccess: true;
+  isSuccess: boolean;
 }
 
 // SMS 인증 API
@@ -11,7 +11,7 @@ const sendSMSCode = async (phoneNumber: string) => {
     const res = await post<SMSResponse>(
       URL.SMS.sendCode,
       { phoneNumber },
-      true,
+      // true,
     );
 
     return res;
@@ -30,7 +30,7 @@ const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
         phoneNumber,
         verficationCode,
       },
-      true,
+      // true,
     );
 
     return res;

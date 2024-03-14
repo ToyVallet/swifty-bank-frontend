@@ -1,8 +1,8 @@
 const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const SMS = {
+  stealCode: `${baseURL}/sms/steal-verification-code`,
   sendCode: `${baseURL}/sms/send-verification-code`,
-  getCode: `${baseURL}/sms/get-verification-code`,
   checkCode: `${baseURL}/sms/check-verification-code`,
 };
 

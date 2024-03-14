@@ -36,7 +36,7 @@ function InputTsp({
         options={telecomServiceProvider}
         placeholder="통신사"
         value={telecomProvider}
-        setValue={setTelecomProvider}
+        setvalue={setTelecomProvider}
         optionLabel={"통신사를 선택해주세요"}
         onChange={handleChange}
         onSelect={onSelect}

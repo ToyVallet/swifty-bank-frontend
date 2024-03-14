@@ -20,7 +20,7 @@ interface SelectProps {
   optionLabel?: string;
   className?: string;
   value: string;
-  setValue: (value: string) => void;
+  setvalue: (value: string) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSelect?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -36,7 +36,7 @@ function Select({
   options,
   optionLabel,
   value,
-  setValue,
+  setvalue,
   ...props
 }: SelectProps) {
   const { isOpen, open, close } = useBottomSheet();
@@ -51,7 +51,7 @@ function Select({
     if (inputRef.current) {
       inputRef.current.value = e.currentTarget.textContent || "";
       onDismiss();
-      setValue(inputRef.current.value);
+      setvalue(inputRef.current.value);
     }
     if (props.onSelect) {
       props.onSelect(e);

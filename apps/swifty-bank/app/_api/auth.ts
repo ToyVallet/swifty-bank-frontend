@@ -7,15 +7,15 @@ const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
   try {
     const res = await post<{
       tokens: string;
-      success: true;
-      availablePassword: true;
+      success: boolean;
+      availablePassword: boolean;
     }>(
       URL.AUTH.signup,
       {
         pushedOrder,
         deviceId,
       },
-      true,
+      // true,
     );
 
     return res;
@@ -27,8 +27,12 @@ const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
 const signOut = async () => {
   try {
     const res = await post<{
-      wasSignedOut: true;
-    }>(URL.AUTH.signout, {}, true);
+      wasSignedOut: boolean;
+    }>(
+      URL.AUTH.signout,
+      {},
+      // true
+    );
 
     return res;
   } catch (error) {
@@ -39,9 +43,13 @@ const signOut = async () => {
 const reissueToken = async () => {
   try {
     const res = await post<{
-      isSuccess: true;
+      isSuccess: boolean;
       tokens: string;
-    }>(URL.AUTH.reissue, {}, true);
+    }>(
+      URL.AUTH.reissue,
+      {},
+      // true
+    );
 
     return res;
   } catch (error) {
@@ -52,8 +60,12 @@ const reissueToken = async () => {
 const logout = async () => {
   try {
     const res = await post<{
-      isSuccessful: true;
-    }>(URL.AUTH.logout, {}, true);
+      isSuccessful: boolean;
+    }>(
+      URL.AUTH.logout,
+      {},
+      // true
+    );
     return res;
   } catch (error) {
     throw new Error("로그아웃에 실패했습니다.");
@@ -63,9 +75,13 @@ const logout = async () => {
 const checkLoginAvailable = async (data: CheckInfo) => {
   try {
     const res = await post<{
-      isAvailable: true;
+      isAvailable: boolean;
       temporaryToken: string;
-    }>(URL.AUTH.checkLoginAvailable, { ...data }, false);
+    }>(
+      URL.AUTH.checkLoginAvailable,
+      { ...data },
+      // false
+    );
 
     return res;
   } catch (error) {

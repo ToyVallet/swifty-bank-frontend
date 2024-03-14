@@ -46,32 +46,31 @@ function SignupForm() {
         ? SignupStage["이름"]
         : ((prev + 1) as SignupStage),
     );
-    console.log("stage", stage, formData);
 
     // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (stage === SignupStage["이름"]) {
       const data = {
         name: username.value,
-        phoneNumber: phoneNumber.value,
+        phoneNumber: "+82" + phoneNumber.value.slice(1),
         residentRegistrationNumber: idFront.value + idBack.value,
         mobileCarrier: telecomProvider as MobileCarrier,
       };
       console.log(data);
 
-      const res = await auth.checkLoginAvailable(data);
-      console.log("res", res);
-
+      // const res = await auth.checkLoginAvailable(data);
+      // console.log("res", res);
+      router.push(
+        `/signup/sms-verification?name=${username.value}&phoneNumber=${phoneNumber.value}`,
+      );
       // 가입이 가능하다면, 인증번호 요청 페이지로 이동
-      if (res.isAvailable) {
-        const res2 = await sms.sendSMSCode(
-          { phoneNumber: phoneNumber.value },
-          true,
-        );
-        router.push(`/signup/sms-verification?name=${username.value}`);
-      } else {
-        // 가입이 불가능하다면, 에러 메시지 표시
-        alert("가입이 불가능합니다. 다시 시도해주세요.");
-      }
+      // if (res.isAvailable) {
+      //   const res2 = await sms.sendSMSCode("+82" + phoneNumber.value.slice(1));
+      //   console.log(res2);
+
+      // } else {
+      //   // 가입이 불가능하다면, 에러 메시지 표시
+      //   alert("가입이 불가능합니다. 다시 시도해주세요.");
+      // }
     }
 
     // TODO : 요청 실패 시 토스트로 에러 메시지 표시
