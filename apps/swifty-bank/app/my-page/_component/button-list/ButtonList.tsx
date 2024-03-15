@@ -34,6 +34,10 @@ export function ButtonList({
     open();
   }
 
+  const resetPassword = () => {
+    replace(`${pathname}/reset-password`);
+  }
+
   const withdrawAccount = () => {
     replace(`${pathname}/withdraw-account`);
   }
@@ -46,7 +50,10 @@ export function ButtonList({
   return (
     <ul className={styles.list}>
       <li className={styles.item}>
-        <Button label='비밀번호 변경' />
+        <Button
+          label='비밀번호 변경'
+          onClick={resetPassword}
+        />
       </li>
       <li className={styles.item}>
         <Button label='로그아웃하기' />
