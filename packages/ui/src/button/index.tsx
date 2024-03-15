@@ -16,6 +16,7 @@ export interface ButtonProps extends HTMLMotionProps<"button"> {
   position?: Position;
   type?: "button" | "submit" | "reset";
   isShadow?: boolean;
+  isPale?: boolean;
 }
 
 export default function Button({
@@ -24,6 +25,7 @@ export default function Button({
   position = "relative",
   type = "button",
   variant = "active",
+  isPale = false,
   ...props
 }: ButtonProps) {
   return (
@@ -34,6 +36,7 @@ export default function Button({
         variant === "transparent" && styles.transparent,
         position === "fixed" && styles.fixed,
         isShadow && styles.shadow,
+        { [styles.pale]: isPale },
         props.className,
       )}
       type={type}
