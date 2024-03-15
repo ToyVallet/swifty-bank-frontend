@@ -5,6 +5,7 @@ import GlobalButton from "@/_component/Button";
 import { AgreementType } from "@/my-page/_type/agreement";
 import { Button } from "@/my-page/_component/button/Button";
 import { Checkbox } from "@/my-page/_component/checkbox/Checkbox";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./button-list.css";
 
 
@@ -17,6 +18,8 @@ export function ButtonList({
 }: ButtonListProps) {
   const { isOpen, open, close } = useBottomSheet();
   const [checkList, setCheckList] = useState(Array(agreements.length).fill(false));
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   const checkButtonVarint = () => {
     return agreements.every(({ required }, idx) =>
@@ -27,14 +30,18 @@ export function ButtonList({
     setCheckList(checkList.map((check, idx) => (checkedIdx === idx) ? !check : check));
   }
 
+  const showWithdrawAgreement = () => {
+    open();
+  }
+
+  const withdrawAccount = () => {
+    replace(`${pathname}/withdraw-account`);
+  }
+
   useEffect(() => {
     if (!isOpen)
       setCheckList(Array(agreements.length).fill(false));
   }, [isOpen]);
-
-  const deleteAccount = () => {
-    open();
-  }
 
   return (
     <ul className={styles.list}>
@@ -47,7 +54,7 @@ export function ButtonList({
       <li className={styles.item}>
         <Button
           label='탈퇴하기'
-          onClick={deleteAccount}
+          onClick={showWithdrawAgreement}
         />
       </li>
       <BottomSheet
@@ -68,6 +75,7 @@ export function ButtonList({
           ))}
         </ul>
         <GlobalButton
+          onClick={withdrawAccount}
           variant={checkButtonVarint() ? 'active' : 'disabled'}
         >
           동의하기
