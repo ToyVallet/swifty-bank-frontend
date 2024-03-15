@@ -1,10 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import { ReactNode } from "react";
-import styles from "./button.css";
 import { HTMLMotionProps, motion } from "framer-motion";
-import { tap } from "./motion";
+import { ReactNode } from "react";
+
+import styles from "./button.css";
+import tap from "./motion";
 
 type ButtonVariant = "disabled" | "active" | "transparent";
 
