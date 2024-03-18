@@ -54,7 +54,6 @@ const idInputBackBox = style({
   paddingTop: "1.5rem",
   display: "flex",
   flexDirection: "row",
-  // justifyContent: "center",
   alignItems: "center",
 });
 

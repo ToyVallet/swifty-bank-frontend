@@ -11,13 +11,13 @@ import isActiveButton, {
 import { title } from "../layout.css";
 import Button from "@/_component/Button";
 import { josa } from "@toss/hangul";
-import InputPhoneNumber from "./_component/InputPhoneNumber";
-import InputTsp from "./_component/InputTsp";
-import InputID from "./_component/InputID";
-import InputName from "./_component/InputName";
+import InputPhoneNumber from "@/signup/form/_component/InputPhoneNumber";
+import InputTsp from "@/signup/form/_component/InputTsp";
+import InputID from "@/signup/form/_component/InputID";
+import InputName from "@/signup/form/_component/InputName";
 import auth from "@/_api/auth";
-import { MobileCarrier } from "@/_api/type";
 import sms from "@/_api/sms";
+import { MobileCarrier } from "@/_api/type";
 
 function SignupForm() {
   const [stage, setStage] = useState(SignupStage["휴대폰번호"]);
@@ -47,7 +47,6 @@ function SignupForm() {
         : ((prev + 1) as SignupStage),
     );
 
-    // TODO : 마지막 stage에 도달하면 API에 해당 정보를 담아 인증번호 요청
     if (stage === SignupStage["이름"]) {
       const data = {
         name: username.value,
@@ -55,25 +54,20 @@ function SignupForm() {
         residentRegistrationNumber: idFront.value + idBack.value,
         mobileCarrier: telecomProvider as MobileCarrier,
       };
-      console.log(data);
 
-      // const res = await auth.checkLoginAvailable(data);
-      // console.log("res", res);
+      const res = await auth.checkLoginAvailable(data);
+      console.log("res", res);
       router.push(
         `/signup/sms-verification?name=${username.value}&phoneNumber=${phoneNumber.value}`,
       );
-      // 가입이 가능하다면, 인증번호 요청 페이지로 이동
-      // if (res.isAvailable) {
-      //   const res2 = await sms.sendSMSCode("+82" + phoneNumber.value.slice(1));
-      //   console.log(res2);
-
-      // } else {
-      //   // 가입이 불가능하다면, 에러 메시지 표시
-      //   alert("가입이 불가능합니다. 다시 시도해주세요.");
-      // }
+      if (res.isAvailable) {
+        const res2 = await sms.sendSMSCode("+82" + phoneNumber.value.slice(1));
+        console.log(res2);
+      } else {
+        // TODO: 가입이 불가능하다면, Toast로 에러 메시지 표시
+        alert("가입이 불가능합니다. 다시 시도해주세요.");
+      }
     }
-
-    // TODO : 요청 실패 시 토스트로 에러 메시지 표시
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,7 +130,6 @@ function SignupForm() {
         </p>
 
         <section className={styles.nextButton}>
-          {/* TODO: Button 컴포넌트 타입 경고 해결 */}
           <Button
             variant={isActiveButton(stage, formData) ? "active" : "disabled"}
             position="fixed"

@@ -12,13 +12,16 @@ export default function SmsVerificationPage() {
   const [verificationCode, setVerifictionCode] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const phoneNumber = new URLSearchParams(searchParams.toString());
+  const phoneNumber = searchParams.get("phoneNumber") as string;
 
   const checkSMSCode = useCallback(
     async (phoneNumber: string) => {
-      const res = await sms.checkSMSCode(verificationCode, phoneNumber);
-      if (res.isSuccess) router.push("/signup/password");
-
+      // cf. steal-verificaiton-code API로 API 연결만 확인. 추후 send-verificaiton-code API로 변경 필요
+      const res = await sms.checkSMSCode(phoneNumber, verificationCode);
+      if (res.isSuccess) {
+        console.log("인증번호 확인 성공", res);
+        router.push("/signup/password");
+      }
       if (!res.isSuccess)
         throw new Error("인증번호가 일치하지 않습니다. 다시 확인해주세요.");
 
@@ -28,11 +31,9 @@ export default function SmsVerificationPage() {
   );
 
   useEffect(() => {
-    // TODO : 인증번호 확인 API 요청
     if (verificationCode.length === 6) {
-      console.log("인증번호 확인 API 요청", verificationCode);
-      console.log("phoneNumber", phoneNumber);
-      checkSMSCode(phoneNumber.toString() as string);
+      const formattedPhoneNumber = "+82" + phoneNumber.toString().slice(1);
+      checkSMSCode(formattedPhoneNumber);
     }
   }, [verificationCode]);
 
