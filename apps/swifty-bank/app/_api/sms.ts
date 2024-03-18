@@ -8,11 +8,7 @@ interface SMSResponse {
 // SMS 인증 API
 const sendSMSCode = async (phoneNumber: string) => {
   try {
-    const res = await post<SMSResponse>(
-      URL.SMS.sendCode,
-      { phoneNumber },
-      // true,
-    );
+    const res = await post<SMSResponse>(URL.SMS.stealCode, { phoneNumber });
 
     return res;
   } catch (error) {
@@ -24,14 +20,10 @@ const sendSMSCode = async (phoneNumber: string) => {
 
 const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
   try {
-    const res = await post<SMSResponse>(
-      URL.SMS.checkCode,
-      {
-        phoneNumber,
-        verficationCode,
-      },
-      // true,
-    );
+    const res = await post<SMSResponse>(URL.SMS.checkCode, {
+      phoneNumber,
+      verficationCode,
+    });
 
     return res;
   } catch (error) {

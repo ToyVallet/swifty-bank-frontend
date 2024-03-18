@@ -9,7 +9,7 @@ interface Response {
 // 회원 API
 const checkPassword = async (password: string) => {
   try {
-    const res = await post<Response>(URL.USER.password, { password }, true);
+    const res = await post<Response>(URL.USER.password, { password });
 
     return res;
   } catch (error) {
@@ -19,7 +19,7 @@ const checkPassword = async (password: string) => {
 
 const changePassword = async (password: string) => {
   try {
-    const res = await patch<Response>(URL.USER.password, { password }, true);
+    const res = await patch<Response>(URL.USER.password, { password });
 
     return res;
   } catch (error) {
@@ -29,7 +29,7 @@ const changePassword = async (password: string) => {
 
 const getUser = async () => {
   try {
-    const res = await get<User>(URL.USER.info, true);
+    const res = await get<User>(URL.USER.info);
 
     return res;
   } catch (error) {
@@ -39,7 +39,7 @@ const getUser = async () => {
 
 const updateUser = async (data: User) => {
   try {
-    const res = await patch<Response>(URL.USER.info, { data }, true);
+    const res = await patch<Response>(URL.USER.info, { data });
 
     return res;
   } catch (error) {

@@ -2,11 +2,11 @@ import URL from "@/_api/url";
 import { get } from "@/_api/utils";
 
 // 보안 키패드 관련 API
-const getKeypad = async (temporaryToken: string) => {
+const getKeypad = async () => {
   try {
     const res = await get<{
       keypad: string;
-    }>(URL.KEYPAD.getKeypad, true, {}, "no-cache");
+    }>(URL.KEYPAD.getKeypad, {}, "no-cache");
 
     return res;
   } catch (error) {
