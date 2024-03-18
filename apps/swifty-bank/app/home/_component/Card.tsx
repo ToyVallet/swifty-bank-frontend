@@ -8,5 +8,15 @@ type CardProps = {
 };
 
 export default function Card({ cardType, children, className }: CardProps) {
-  return <div className={clsx(styles.common, className)}>{children}</div>;
+  return (
+    <div
+      className={clsx(styles.common, className, {
+        [styles.banner]: cardType === "Banner",
+        [styles.list]: cardType === "List",
+        [styles.link]: cardType === "Link",
+      })}
+    >
+      {children}
+    </div>
+  );
 }
