@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "@swifty/ui/styles/vars.css";
 
-const NotDefinition = style({
+const notDefinition = style({
   width: "100%",
   height: "6.75rem",
   background: vars.color.gray[600],
@@ -10,7 +10,7 @@ const NotDefinition = style({
 });
 
 const styles = {
-  NotDefinition,
+  notDefinition,
 };
 
 export default styles;

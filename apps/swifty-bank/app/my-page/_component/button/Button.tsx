@@ -12,7 +12,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button className={styles.Button} {...props}>
+    <button className={styles.button} {...props}>
       {label}
       <RightIcon />
     </button>

@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-const Button = style({
+const button = style({
   fontSize: "18px",
   paddingTop: "1.688rem",
   width: "100%",
@@ -18,7 +18,7 @@ const Button = style({
 
 
 const styles = {
-  Button
+  button
 };
 
 export default styles;

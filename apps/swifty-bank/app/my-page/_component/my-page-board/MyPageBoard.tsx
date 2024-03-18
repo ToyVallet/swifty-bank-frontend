@@ -11,7 +11,7 @@ interface MyPageBoardProps extends HTMLAttributes<HTMLDivElement> {
 
 export function MyPageBoard({ className, ...props }: MyPageBoardProps) {
   return (
-    <section className={clsx(styles.Board, className)} {...props}>
+    <section className={clsx(styles.board, className)} {...props}>
       <InfoList
         name='김성명'
         birthDay="20000101"

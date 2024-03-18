@@ -5,7 +5,7 @@ import styles from "./page.css";
 export default function MyPageOfPage() {
   return (
     <>
-      <div className={styles.NotDefinition} aria-label="아직 기획 구상중인 부분" />
+      <div className={styles.notDefinition} aria-label="아직 기획 구상중인 부분" />
       <MyPageBoard />
     </>
   );
