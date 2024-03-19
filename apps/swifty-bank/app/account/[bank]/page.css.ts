@@ -21,8 +21,7 @@ const imageContainer = style({
 });
 
 const exchangeImg = style({
-  width: "auto",
-  height: "auto",
+  width: "60%",
 });
 const styles = { imageSection, imageContainer, exchangeImg };
 
