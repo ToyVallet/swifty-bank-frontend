@@ -1,6 +1,6 @@
 import CancelButton from "@/_component/CancelButton";
 import Template from "@/_component/Template";
-import KeyPads from "@/password/_component/KeyPads";
+import KeyPads from "@/user-password/_component/KeyPads";
 
 export default function UserPasswordPage() {
   return (

@@ -12,7 +12,7 @@ export default async function ForeignExchangePage({
     <Template>
       <CancelButton />
       <Template.Header main="1개 이상의 외환을 선택하세요" />
-      <SelectMultipleExchange />
+      <SelectMultipleExchange bank={bank} />
     </Template>
   );
 }

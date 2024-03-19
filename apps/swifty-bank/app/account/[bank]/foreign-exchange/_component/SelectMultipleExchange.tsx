@@ -4,12 +4,13 @@ import Button from "@/_component/Button";
 import styles from "@/account/[bank]/foreign-exchange/_component/selectMultipleExchange.css";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { AccountProps } from "@/_utils/type";
 
 interface FormData {
   selectedItems: string[];
 }
 
-export default function SelectMultipleExchange() {
+export default function SelectMultipleExchange({ bank }: AccountProps) {
   const { control, handleSubmit, setValue, getValues } = useForm<FormData>({
     defaultValues: {
       selectedItems: ["한국 원화", "일본 엔화", "중국 위안화", "미국 달러화"],
@@ -31,9 +32,9 @@ export default function SelectMultipleExchange() {
     "멕시코 페소화",
   ];
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data.selectedItems);
-    router.push("/user-password?to=account-password");
+  const onSubmit: SubmitHandler<FormData> = () => {
+    // 외화 설정 api post 필요
+    router.push(`/user-password?to=account/${bank}/account-password`);
   };
 
   const handleSelectItem = (item: string) => {
