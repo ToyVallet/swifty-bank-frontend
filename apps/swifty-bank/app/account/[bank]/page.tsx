@@ -2,11 +2,30 @@ import CancelButton from "@/_component/CancelButton";
 import Template from "@/_component/Template";
 import Image from "next/image";
 import styles from "@/account/[bank]/page.css";
+import OpeningAccountButton from "@/account/[bank]/_component/OpeningAccountButton";
 
-type Props = {
+export type ParamsProps = {
   params: { bank: string };
 };
-export default function BankPage({ params: { bank } }: Props) {
+export default function BankPage({ params: { bank } }: ParamsProps) {
+  const baseExchange = [
+    {
+      image: "/img/account/won.png",
+      name: "한국 원환",
+    },
+    {
+      image: "/img/account/dollar.png",
+      name: "미국 달러화",
+    },
+    {
+      image: "/img/account/yen.png",
+      name: "일본 엔화",
+    },
+    {
+      image: "/img/account/yuan.png",
+      name: "중국 위완환",
+    },
+  ];
   return (
     <Template>
       <CancelButton />
@@ -17,19 +36,20 @@ export default function BankPage({ params: { bank } }: Props) {
         }
       />
       <section className={styles.imageSection}>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/img/account/won.png"
-            alt="won"
-            width={135}
-            height={105}
-          />
-          <span>한국 원화</span>
-        </div>
-        <div>일본 엔화</div>
-        <div>중국 위완화</div>
-        <div>미국 달러</div>
+        {baseExchange.map((exchange) => (
+          <div className={styles.imageContainer}>
+            <Image
+              src={exchange.image}
+              alt={exchange.name}
+              width={135}
+              height={105}
+              className={styles.exchangeImg}
+            />
+            <span>{exchange.name}</span>
+          </div>
+        ))}
       </section>
+      <OpeningAccountButton bank={bank} />
     </Template>
   );
 }

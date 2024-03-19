@@ -19,6 +19,11 @@ const imageContainer = style({
   width: 162,
   height: 192,
 });
-const styles = { imageSection, imageContainer };
+
+const exchangeImg = style({
+  width: "auto",
+  height: "auto",
+});
+const styles = { imageSection, imageContainer, exchangeImg };
 
 export default styles;
