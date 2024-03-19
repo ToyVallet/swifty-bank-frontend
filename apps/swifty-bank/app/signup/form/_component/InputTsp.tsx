@@ -18,7 +18,7 @@ function InputTsp({
   telecomProvider: string;
   setTelecomProvider: Dispatch<SetStateAction<string>>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSelect: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onSelect: () => void;
 }) {
   return (
     <motion.div

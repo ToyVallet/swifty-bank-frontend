@@ -75,7 +75,7 @@ function SignupForm() {
     setStage((prev) => prev + 1);
   };
 
-  const onSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onSelect = () => {
     if (stage === SignupStage["통신사"]) {
       setStage((prev) => prev + 1);
     }
