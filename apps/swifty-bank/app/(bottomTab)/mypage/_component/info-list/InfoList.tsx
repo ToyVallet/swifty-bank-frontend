@@ -1,6 +1,6 @@
 "use client";
 import { HTMLAttributes } from "react";
-import { format } from "@/my-page/_utils/format";
+import { format } from "../../_utils/format";
 import clsx from "clsx";
 import styles from "./info-list.css";
 

@@ -1,10 +1,10 @@
 "use client";
 import { HTMLAttributes } from "react";
-import { InfoList } from "@/my-page/_component/info-list/InfoList";
-import { ButtonList } from "@/my-page/_component/button-list/ButtonList";
+import { InfoList } from "../info-list/InfoList";
+import { ButtonList } from "../button-list/ButtonList";
 import clsx from "clsx";
 import styles from "./my-page-board.css";
-import agreements from "@/my-page/_lib/constants/agreement";
+import agreements from "../../_lib/constants/agreement";
 
 interface MyPageBoardProps extends HTMLAttributes<HTMLDivElement> {
 }

@@ -2,9 +2,9 @@ import { HTMLAttributes, useEffect, useState } from "react";
 import { useBottomSheet } from "@swifty/hooks";
 import { BottomSheet } from "@swifty/ui";
 import GlobalButton from "@/_component/Button";
-import { AgreementType } from "@/my-page/_type/agreement";
-import { Button } from "@/my-page/_component/button/Button";
-import { Checkbox } from "@/my-page/_component/checkbox/Checkbox";
+import { AgreementType } from "../../_type/agreement";
+import { Button } from "../button/Button";
+import { Checkbox } from "../checkbox/Checkbox";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./button-list.css";
 
