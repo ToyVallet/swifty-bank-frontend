@@ -29,7 +29,7 @@ const changePassword = async (password: string) => {
 
 const getUser = async () => {
   try {
-    const res = await get<User>(URL.USER.info);
+    const res = await get<User>(URL.USER.info, {}, "no-store");
 
     return res;
   } catch (error) {
