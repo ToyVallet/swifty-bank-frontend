@@ -22,6 +22,9 @@ const link = style({
   borderRadius: "12px",
   width: "30%",
   height: "48px",
+  ":hover": {
+    backgroundColor: vars.color.secondary,
+  },
 });
 
 const styles = {
