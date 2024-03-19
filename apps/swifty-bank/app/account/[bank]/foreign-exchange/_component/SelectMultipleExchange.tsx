@@ -33,6 +33,7 @@ export default function SelectMultipleExchange() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data.selectedItems);
+    router.push("/user-password?to=account-password");
   };
 
   const handleSelectItem = (item: string) => {
