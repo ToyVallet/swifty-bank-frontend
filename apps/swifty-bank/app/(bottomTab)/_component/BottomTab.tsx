@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "@/(bottomTap)/_component/bottomTap.css";
-import Home from "@/(bottomTap)/_component/HomeIcon";
-import MyPage from "@/(bottomTap)/_component/MypageIcon";
-import Exchange from "@/(bottomTap)/_component/ExchangeIcon";
+import styles from "@/(bottomTab)/_component/bottomTab.css";
+import Home from "@/(bottomTab)/_component/HomeIcon";
+import MyPage from "@/(bottomTab)/_component/MypageIcon";
+import Exchange from "@/(bottomTab)/_component/ExchangeIcon";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useSelectedLayoutSegment } from "next/navigation";
@@ -19,8 +19,8 @@ export default function BottomTap() {
       icon: <Home isStroke={segment === "home"} darkmode={theme} />,
     },
     {
-      name: "account",
-      title: "계좌 관리",
+      name: "foreignExchange",
+      title: "외환 관리",
       link: "/account",
       icon: <Exchange isStroke={segment === "account"} darkmode={theme} />,
     },

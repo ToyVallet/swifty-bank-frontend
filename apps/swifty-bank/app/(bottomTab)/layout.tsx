@@ -1,4 +1,4 @@
-import BottomTap from "@/(bottomTap)/_component/BottomTap";
+import BottomTab from "@/(bottomTab)/_component/BottomTab";
 import styles from "@/layout.css";
 
 export default function SignupLayout({
@@ -9,7 +9,7 @@ export default function SignupLayout({
   return (
     <div className={styles.layout}>
       {children}
-      <BottomTap />
+      <BottomTab />
     </div>
   );
 }
