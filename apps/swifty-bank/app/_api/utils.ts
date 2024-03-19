@@ -1,12 +1,9 @@
-// import { cookies } from "next/headers";
-
 const commonHeaders = {
   "Content-Type": "application/json",
 };
 
 async function get<R>(
   url: string,
-  // withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
   cache: RequestCache = "force-cache",
   errorMessage: string = "",
@@ -14,7 +11,7 @@ async function get<R>(
   try {
     const res = await fetch(url, {
       method: "GET",
-      // ...(withCredentials && { Cookie: cookies().toString() }),
+      credentials: "same-origin",
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -35,14 +32,13 @@ async function get<R>(
 async function post<R>(
   url: string,
   data: Record<string, unknown>,
-  // withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
   errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "POST",
-      // ...(withCredentials && { Cookie: cookies().toString() }),
+      credentials: "same-origin",
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -63,14 +59,13 @@ async function post<R>(
 async function patch<R>(
   url: string,
   data: Record<string, unknown>,
-  // withCredentials: boolean = true,
   headerOptions: Record<string, unknown> = {},
   errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
       method: "PATCH",
-      // ...(withCredentials && { Cookie: cookies().toString() }),
+      credentials: "same-origin",
       headers: {
         ...commonHeaders,
         ...headerOptions,
