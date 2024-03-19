@@ -1,4 +1,4 @@
-import { PropSVG } from "@/(bottomTap)/_type/type";
+import { PropSVG } from "@/(bottomTab)/_type/type";
 export default function Exchange({
   isStroke = false,
   darkmode = "light",

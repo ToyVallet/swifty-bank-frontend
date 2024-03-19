@@ -1,4 +1,4 @@
-import { PropSVG } from "@/(bottomTap)/_type/type";
+import { PropSVG } from "@/(bottomTab)/_type/type";
 export default function HomeIcon({ isStroke = false }: PropSVG) {
   return (
     <svg

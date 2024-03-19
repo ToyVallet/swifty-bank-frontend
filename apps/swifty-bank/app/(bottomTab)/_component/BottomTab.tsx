@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-export default function BottomTap() {
+export default function BottomTab() {
   const segment = useSelectedLayoutSegment();
   const { theme } = useTheme();
   const menus = [
