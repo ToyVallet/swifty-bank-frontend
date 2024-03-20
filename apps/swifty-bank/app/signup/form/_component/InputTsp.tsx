@@ -5,6 +5,15 @@ import telecomServiceProvider from "@/signup/form/_lib/constants/tsp";
 import { inputMotion } from "../motion";
 import { SignupStage } from "@/signup/form/_lib/validate/isActiveButton";
 
+interface InputTspProps {
+  className: string;
+  stage: number;
+  telecomProvider: string;
+  setTelecomProvider: Dispatch<SetStateAction<string>>;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelect: () => void;
+}
+
 function InputTsp({
   className,
   stage,
@@ -12,14 +21,7 @@ function InputTsp({
   setTelecomProvider,
   handleChange,
   onSelect,
-}: {
-  className: string;
-  stage: number;
-  telecomProvider: string;
-  setTelecomProvider: Dispatch<SetStateAction<string>>;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSelect: () => void;
-}) {
+}: InputTspProps) {
   return (
     <motion.div
       key="통신사"

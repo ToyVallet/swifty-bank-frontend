@@ -1,13 +1,12 @@
 import { Input } from "@swifty/ui";
 import { useEffect, useState } from "react";
 
-function InputPhoneNumber({
-  phoneNumber,
-  className,
-}: {
+interface InputPhoneNumberProps {
   className: string;
   phoneNumber: { value: string; setValue: (value: string) => void };
-}) {
+}
+
+function InputPhoneNumber({ phoneNumber, className }: InputPhoneNumberProps) {
   const [pnError, setPnError] = useState(false);
 
   useEffect(() => {
@@ -21,7 +20,9 @@ function InputPhoneNumber({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
-      !["Backspace", "Enter", "Tab"].includes(e.key) &&
+      !["Backspace", "Enter", "Tab", "ArrowLeft", "ArrowRight"].includes(
+        e.key,
+      ) &&
       isNaN(Number(e.key))
     ) {
       e.preventDefault();

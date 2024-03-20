@@ -3,18 +3,16 @@ import { inputMotion } from "../motion";
 import { SignupStage } from "@/signup/form/_lib/validate/isActiveButton";
 import { Input } from "@swifty/ui";
 
-function InputName({
-  stage,
-  className,
-  username,
-}: {
+interface InputNameProps {
   stage: number;
   className: string;
   username: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
-}) {
+}
+
+function InputName({ stage, className, username }: InputNameProps) {
   return (
     <motion.div
       key={"이름"}
