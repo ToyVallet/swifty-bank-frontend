@@ -4,7 +4,7 @@ import { SignupStage } from "@/signup/form/_lib/validate/isActiveButton";
 import { Input } from "@swifty/ui";
 import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";
-import styles from "@/signup/form/_component/InputID.css";
+import styles from "./InputID.css";
 
 interface InputIDProps {
   className: string;
