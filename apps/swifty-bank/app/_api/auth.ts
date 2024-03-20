@@ -1,76 +1,84 @@
 import { CheckInfo } from "@/_api/type";
 import URL from "@/_api/url";
-import { post } from "@/_api/utils";
+import { get, post } from "@/_api/utils";
 
-// Authentication API
+interface SMSResponse {
+  isSuccess: boolean;
+}
+
 const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
-  try {
-    const res = await post<{
-      tokens: string;
-      success: true;
-      availablePassword: true;
-    }>(
-      URL.AUTH.signup,
-      {
-        pushedOrder,
-        deviceId,
-      },
-      true,
-    );
+  const res = await post<{
+    tokens: string;
+    success: boolean;
+    availablePassword: boolean;
+  }>(URL.AUTH.signup, {
+    pushedOrder,
+    deviceId,
+  });
 
-    return res;
-  } catch (error) {
-    throw new Error("로그인에 실패했습니다.");
-  }
+  return res;
 };
 
 const signOut = async () => {
-  try {
-    const res = await post<{
-      wasSignedOut: true;
-    }>(URL.AUTH.signout, {}, true);
+  const res = await post<{
+    wasSignedOut: boolean;
+  }>(URL.AUTH.signout, {});
 
-    return res;
-  } catch (error) {
-    throw new Error("로그아웃에 실패했습니다.");
-  }
+  return res;
 };
 
 const reissueToken = async () => {
-  try {
-    const res = await post<{
-      isSuccess: true;
-      tokens: string;
-    }>(URL.AUTH.reissue, {}, true);
+  const res = await post<{
+    isSuccess: boolean;
+    tokens: string;
+  }>(URL.AUTH.reissue, {});
 
-    return res;
-  } catch (error) {
-    throw new Error("토큰 재발급에 실패했습니다.");
-  }
+  return res;
 };
 
 const logout = async () => {
-  try {
-    const res = await post<{
-      isSuccessful: true;
-    }>(URL.AUTH.logout, {}, true);
-    return res;
-  } catch (error) {
-    throw new Error("로그아웃에 실패했습니다.");
-  }
+  const res = await post<{
+    isSuccessful: boolean;
+  }>(URL.AUTH.logout, {});
+  return res;
 };
 
 const checkLoginAvailable = async (data: CheckInfo) => {
-  try {
-    const res = await post<{
-      isAvailable: true;
-      temporaryToken: string;
-    }>(URL.AUTH.checkLoginAvailable, { ...data }, false);
+  const res = await post<{
+    isAvailable: boolean;
+    temporaryToken: string;
+  }>(URL.AUTH.checkLoginAvailable, { ...data });
 
-    return res;
-  } catch (error) {
-    throw new Error("로그인 가능여부 확인에 실패했습니다.");
-  }
+  return res;
+};
+
+const stealSMSCode = async (phoneNumber: string) => {
+  const res = await post<SMSResponse>(URL.AUTH.stealCode, { phoneNumber });
+
+  return res;
+};
+
+const sendSMSCode = async (phoneNumber: string) => {
+  const res = await post<SMSResponse>(URL.AUTH.sendCode, { phoneNumber });
+
+  return res;
+};
+
+const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
+  const res = await post<SMSResponse>(URL.AUTH.checkCode, {
+    phoneNumber,
+    verficationCode,
+  });
+
+  return res;
+};
+
+const getKeypad = async () => {
+  const res = await get<{
+    keypad: string;
+  }>(URL.AUTH.keypad, {}, "no-store");
+
+  return res;
 };
 
 const auth = {
@@ -79,6 +87,10 @@ const auth = {
   reissueToken,
   logout,
   checkLoginAvailable,
+  stealSMSCode,
+  sendSMSCode,
+  checkSMSCode,
+  getKeypad,
 };
 
 export default auth;
