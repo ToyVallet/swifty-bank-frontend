@@ -7,51 +7,45 @@ interface Response {
 }
 
 // 회원 API
-const checkPassword = async (password: string) => {
-  try {
-    const res = await post<Response>(URL.USER.password, { password });
+const validatePassword = async (pushedOrder: Number[]) => {
+  const res = await post<Response>(URL.USER.validatePassword, { pushedOrder });
 
-    return res;
-  } catch (error) {
-    throw new Error("비밀번호 일치여부 확인에 실패했습니다.");
-  }
+  return res;
 };
 
-const changePassword = async (password: string) => {
-  try {
-    const res = await patch<Response>(URL.USER.password, { password });
+const updatePassword = async (pushedOrder: Number[]) => {
+  const res = await patch<Response>(URL.USER.updatePassword, { pushedOrder });
 
-    return res;
-  } catch (error) {
-    throw new Error("비밀번호 변경에 실패했습니다.");
-  }
+  return res;
 };
 
 const getUser = async () => {
-  try {
-    const res = await get<User>(URL.USER.info, {}, "no-store");
+  const res = await get<User>(URL.USER.info, {}, "no-store");
 
-    return res;
-  } catch (error) {
-    throw new Error("유저 정보를 가져오는데 실패했습니다.");
-  }
+  return res;
 };
 
 const updateUser = async (data: User) => {
-  try {
-    const res = await patch<Response>(URL.USER.info, { data });
+  const res = await patch<Response>(URL.USER.info, { data });
 
-    return res;
-  } catch (error) {
-    throw new Error("유저 정보를 업데이트하는데 실패했습니다.");
-  }
+  return res;
+};
+
+const getKeypad = async () => {
+  const res = await get<{
+    keypad: string;
+    keypadToken: string;
+  }>(URL.USER.keypad, {}, "no-store");
+
+  return res;
 };
 
 const user = {
-  checkPassword,
-  changePassword,
+  validatePassword,
+  updatePassword,
   getUser,
   updateUser,
+  getKeypad,
 };
 
 export default user;

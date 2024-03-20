@@ -1,3 +1,5 @@
+import Error from "next/error";
+
 const commonHeaders = {
   "Content-Type": "application/json",
 };
@@ -6,7 +8,6 @@ async function get<R>(
   url: string,
   headerOptions: Record<string, unknown> = {},
   cache: RequestCache = "force-cache",
-  errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
@@ -24,8 +25,8 @@ async function get<R>(
     }
 
     return res.json();
-  } catch (error) {
-    throw new Error(errorMessage);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 }
 
@@ -33,7 +34,6 @@ async function post<R>(
   url: string,
   data: Record<string, unknown>,
   headerOptions: Record<string, unknown> = {},
-  errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
@@ -51,8 +51,8 @@ async function post<R>(
     }
 
     return res.json();
-  } catch (error) {
-    throw new Error(errorMessage);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 }
 
@@ -60,7 +60,6 @@ async function patch<R>(
   url: string,
   data: Record<string, unknown>,
   headerOptions: Record<string, unknown> = {},
-  errorMessage: string = "",
 ): Promise<R> {
   try {
     const res = await fetch(url, {
@@ -78,8 +77,8 @@ async function patch<R>(
     }
 
     return res.json();
-  } catch (error) {
-    throw new Error(errorMessage);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 }
 
