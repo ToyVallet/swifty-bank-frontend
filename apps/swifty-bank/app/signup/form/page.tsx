@@ -16,7 +16,6 @@ import InputTsp from "@/signup/form/_component/InputTsp";
 import InputID from "@/signup/form/_component/InputID";
 import InputName from "@/signup/form/_component/InputName";
 import auth from "@/_api/auth";
-import sms from "@/_api/sms";
 import { MobileCarrier } from "@/_api/type";
 
 function SignupForm() {
@@ -61,7 +60,7 @@ function SignupForm() {
         `/signup/sms-verification?name=${username.value}&phoneNumber=${phoneNumber.value}`,
       );
       if (res.isAvailable) {
-        const res2 = await sms.sendSMSCode("+82" + phoneNumber.value.slice(1));
+        const res2 = await auth.sendSMSCode("+82" + phoneNumber.value.slice(1));
         console.log(res2);
       } else {
         // TODO: 가입이 불가능하다면, Toast로 에러 메시지 표시
