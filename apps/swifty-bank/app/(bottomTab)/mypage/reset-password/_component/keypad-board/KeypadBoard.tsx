@@ -2,8 +2,8 @@ import { motion, Variants } from "framer-motion";
 import Template from "@/_component/Template";
 import Back from "@icon/Icon_Back_Black.svg";
 import KeyPad from "@/_component/keypad/KeyPad";
-import { Stage } from "../../_type/stage";
-import { useKeyPadBoard } from "../../_hook/useKeyPadBoard";
+import { Stage } from "@/(bottomTab)/mypage/reset-password/_type/stage";
+import { useKeyPadBoard } from "@/(bottomTab)/mypage/reset-password/_hook/useKeyPadBoard";
 import styles from "./keypad-board.css";
 
 const PASSWORD_LEGTH = 6;

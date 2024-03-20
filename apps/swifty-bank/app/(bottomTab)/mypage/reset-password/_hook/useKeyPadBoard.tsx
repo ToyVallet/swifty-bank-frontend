@@ -1,6 +1,6 @@
 import useKeyPad from "@/_hook/useKeyPad";
 import { useRouter } from "next/navigation";
-import { Stage } from "../_type/stage";
+import { Stage } from "@/(bottomTab)/mypage/reset-password/_type/stage";
 import { useCallback, useEffect } from "react";
 
 export const useKeyPadBoard = (
@@ -21,7 +21,7 @@ export const useKeyPadBoard = (
   const backStage = useCallback(() => {
     initPasswords();
     if (stage === Stage.PASSWORD) {
-      router.push(`/my-page`);
+      router.push(`/mypage`);
       return;
     }
     prevStage();

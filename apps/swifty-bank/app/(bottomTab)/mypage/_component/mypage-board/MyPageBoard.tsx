@@ -1,10 +1,9 @@
 "use client";
 import { HTMLAttributes } from "react";
-import { InfoList } from "../info-list/InfoList";
-import { ButtonList } from "../button-list/ButtonList";
+import { InfoList } from "@/(bottomTab)/mypage/_component/info-list/InfoList";
+import { MypageNav } from "@/(bottomTab)/mypage/_component/mypage-nav/MypageNav";
 import clsx from "clsx";
-import styles from "./my-page-board.css";
-import agreements from "../../_lib/constants/agreement";
+import styles from "./mypage-board.css";
 
 interface MyPageBoardProps extends HTMLAttributes<HTMLDivElement> {
 }
@@ -17,9 +16,7 @@ export function MyPageBoard({ className, ...props }: MyPageBoardProps) {
         birthDay="20000101"
         phone='+821012345678'
       />
-      <ButtonList
-        agreements={agreements}
-      />
+      <MypageNav />
     </section>
   );
 }

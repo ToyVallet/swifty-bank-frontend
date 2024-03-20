@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducer } from "react";
-import { Stage } from "./_type/stage";
-import KeypadBoard from "./_component/keypad-board/KeypadBoard";
+import { Stage } from "@/(bottomTab)/mypage/reset-password/_type/stage";
+import KeypadBoard from "@/(bottomTab)/mypage/reset-password/_component/keypad-board/KeypadBoard";
 
 const initialStage: Stage = Stage.PASSWORD;
 
