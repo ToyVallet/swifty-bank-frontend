@@ -36,8 +36,8 @@ function InputPhoneNumber({
   };
 
   return (
-    <div key={"휴대폰번호"} className={className}>
-      <Input label="휴대폰번호">
+    <div key={"휴대폰 번호"} className={className}>
+      <Input label="휴대폰 번호">
         <Input.Text
           value={phoneNumber.value}
           onChange={handlePNChange}

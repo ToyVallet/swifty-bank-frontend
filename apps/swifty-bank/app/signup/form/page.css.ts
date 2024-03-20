@@ -84,6 +84,7 @@ const idInputBack = style({
 });
 
 const inputContainer = style({
+  marginTop: "3rem",
   marginBottom: "2rem",
   height: "4rem",
 });
