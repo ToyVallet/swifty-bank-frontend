@@ -1,4 +1,4 @@
-import { validateID, validatePN } from "@/signup/form/_lib/validate/validator";
+import validator from "@/signup/form/_lib/validate/validator";
 export interface FormData {
   phoneNumber: string | null;
   telecomProvider: string;
@@ -18,15 +18,13 @@ export type Stage = 0 | 1 | 2 | 3;
 
 const isActiveButton = (stage: Stage, formData: FormData) => {
   const validation = [
-    (formData: FormData) => validatePN(formData.phoneNumber ?? ""),
+    (formData: FormData) => validator.phoneNumber(formData.phoneNumber ?? ""),
     (formData: FormData) => formData.telecomProvider !== "",
-    (formData: FormData) => validateID(formData.idFront, formData.idBack),
-    (formData: FormData) => formData.username !== "",
+    (formData: FormData) => validator.id(formData.idFront, formData.idBack),
+    (formData: FormData) => validator.username(formData.username),
   ];
 
-  return validation
-    .slice(0, stage + 1)
-    .every((validator) => validator(formData));
+  return validation.slice(0, stage + 1).every((fn) => fn(formData));
 };
 
 export default isActiveButton;
