@@ -1,30 +1,36 @@
-"use client";
 import { Button } from "@swifty/ui";
-import { HTMLAttributes } from "react";
+import { FormHTMLAttributes, HTMLAttributes } from "react";
 import styles from "@/signup/_component/check-form/checkForm.css";
 import CheckDetail from "@/signup/_component/checkDetail/CheckDetail";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import clsx from "clsx";
 
 type Button = HTMLAttributes<HTMLButtonElement>;
 
-interface Prop {
-  onClose: Button["onClick"];
+interface Prop extends FormHTMLAttributes<HTMLFormElement> {
+  submit: SubmitHandler<FormData>;
 }
 
-interface FormData {
+export interface FormData {
   service: boolean;
   promotion: boolean;
   personalInfo: boolean;
 }
 
-export default function CheckForm({ onClose }: Prop) {
+export default function CheckForm({ submit, className, ...props }: Prop) {
   const { register, handleSubmit, setValue, formState } = useForm<FormData>({});
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-  };
+  /*
+    const onSubmit: SubmitHandler<FormData> = (data) => {
+    };
+  */
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+    <form
+      onSubmit={handleSubmit(submit)}
+      className={clsx(styles.container, className)}
+      {...props}
+    >
       <div className={styles.termsSection}>
         <CheckDetail
           detailInfoType="personalInfo"
@@ -50,7 +56,11 @@ export default function CheckForm({ onClose }: Prop) {
       </div>
 
       <div className={styles.buttonSection}>
-        <Button variant={!formState.isValid ? "disabled" : "active"} isShadow>
+        <Button
+          type='submit'
+          variant={!formState.isValid ? "disabled" : "active"}
+          isShadow
+        >
           동의하기
         </Button>
         {/* <Button variant="transparent" onClick={onClose}>
