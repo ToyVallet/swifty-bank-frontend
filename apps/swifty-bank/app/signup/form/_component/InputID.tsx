@@ -6,12 +6,7 @@ import Ellipsis from "@icon/signup/ellipsis.svg";
 import Hyphen from "@icon/signup/hyphen.svg";
 import styles from "@/signup/form/_component/InputID.css";
 
-function InputID({
-  className,
-  stage,
-  idFront,
-  idBack,
-}: {
+interface InputIDProps {
   className: string;
   stage: number;
   idFront: {
@@ -23,7 +18,9 @@ function InputID({
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
-}) {
+}
+
+function InputID({ className, stage, idFront, idBack }: InputIDProps) {
   const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (idFront.value.length === 6) {
       e.preventDefault();
