@@ -1,5 +1,5 @@
 "use client";
-import { MyPageBoard } from "../_component/mypage-board/MyPageBoard";
+import { MyPageBoard } from "@/(bottomTab)/mypage/_component/mypage-board/MyPageBoard";
 import styles from "./page.css";
 
 export default function MyPageOfPage() {

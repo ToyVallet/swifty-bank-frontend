@@ -1,5 +1,5 @@
-import { Header } from "../_component/header/Header";
-import { Logo } from "../_component/logo/Logo";
+import { Header } from "@/(bottomTab)/mypage/_component/header/Header";
+import { Logo } from "@/(bottomTab)/mypage/_component/logo/Logo";
 import { Metadata } from "next";
 import { styles } from "./layout.css";
 
