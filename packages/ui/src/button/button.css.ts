@@ -41,17 +41,12 @@ const fixed = style({
   right: 20,
 });
 
-const pale = style({
-  backgroundColor: vars.color.pale,
-});
-
 const styles = {
   base,
   disabled,
   transparent,
   fixed,
   shadow,
-  pale
 };
 
 export default styles;

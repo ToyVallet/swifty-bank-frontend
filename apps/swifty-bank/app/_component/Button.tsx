@@ -8,12 +8,10 @@ import useWebview, { IOSContextAction } from "@/_hook/useWebview";
 
 type ButtonProps = GlobalButtonProp & {
   vibrateOnPress?: boolean;
-  isPale?: boolean;
 };
 
 export default function Button({
   vibrateOnPress,
-  isPale,
   children,
   onClick,
   ...props
@@ -21,7 +19,6 @@ export default function Button({
   const { send } = useWebview();
   return (
     <GlobalButton
-      isPale={isPale}
       onClick={(e) => {
         if (vibrateOnPress) {
           send({
