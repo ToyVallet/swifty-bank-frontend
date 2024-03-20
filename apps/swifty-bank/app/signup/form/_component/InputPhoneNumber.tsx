@@ -1,5 +1,5 @@
 import { Input } from "@swifty/ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function InputPhoneNumber({
   phoneNumber,
@@ -10,6 +10,15 @@ function InputPhoneNumber({
 }) {
   const [pnError, setPnError] = useState(false);
 
+  useEffect(() => {
+    if (pnError) {
+      const timerId = setTimeout(() => {
+        setPnError(false);
+      }, 1000);
+      return () => clearTimeout(timerId);
+    }
+  }, [pnError]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       !["Backspace", "Enter", "Tab"].includes(e.key) &&
@@ -18,7 +27,6 @@ function InputPhoneNumber({
       e.preventDefault();
       setPnError(true);
     }
-    setTimeout(() => setPnError(false), 1000);
     return;
   };
 
