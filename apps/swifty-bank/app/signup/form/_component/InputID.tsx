@@ -37,7 +37,6 @@ function InputID({ className, stage, idFront, idBack }: InputIDProps) {
         opacity: stage >= SignupStage["주민등록번호"] ? 1 : 0,
       }}
       transition={inputMotion.transition}
-      exit={inputMotion.exit}
     >
       <label htmlFor="personalId" className={styles.idLabel}>
         주민등록번호

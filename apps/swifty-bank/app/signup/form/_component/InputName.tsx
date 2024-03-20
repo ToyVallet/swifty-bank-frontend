@@ -20,7 +20,6 @@ function InputName({ stage, className, username }: InputNameProps) {
       initial={inputMotion.initial}
       animate={{ opacity: stage >= SignupStage["이름"] ? 1 : 0 }}
       transition={inputMotion.transition}
-      exit={inputMotion.exit}
     >
       <Input label="이름">
         <Input.Text

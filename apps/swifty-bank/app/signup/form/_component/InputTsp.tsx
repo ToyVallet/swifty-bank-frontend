@@ -31,7 +31,6 @@ function InputTsp({
         opacity: stage >= SignupStage["통신사"] ? 1 : 0,
       }}
       transition={inputMotion.transition}
-      exit={inputMotion.exit}
     >
       <Select
         label="통신사"
