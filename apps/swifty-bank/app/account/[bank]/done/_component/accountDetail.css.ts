@@ -1,6 +1,6 @@
 import { vars } from "@swifty/ui/styles/vars.css";
 import { style } from "@vanilla-extract/css";
-import background from "../../../../../public/img/account/rectangle.png";
+import background from "../../../../../public/img/account/background.png";
 
 const flexColumn = style({
   display: "flex",
