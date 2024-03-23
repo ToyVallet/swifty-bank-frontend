@@ -9,7 +9,7 @@ import Back from "@icon/Icon_Back_Black.svg";
 import styles from "@/signup/password/_component/keyPadLayout.css";
 import CancelButton from "@/_component/CancelButton";
 
-export default function AmimateLayout({ length }: { length: number }) {
+export default function AccountKeyPads({ length }: { length: number }) {
   const variants: Variants = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { duration: 1 } },
@@ -42,8 +42,8 @@ export default function AmimateLayout({ length }: { length: number }) {
       // 일치
     }
     if (check.length === length && password.join("") !== check.join("")) {
+      // 불일치
       setCheck([]);
-      setPassword([]);
     }
   }, [password, check]);
 
@@ -59,12 +59,7 @@ export default function AmimateLayout({ length }: { length: number }) {
         >
           <Template>
             <CancelButton />
-            <Template.Header
-              main="비밀번호를 입력해주세요"
-              sub={
-                "3자리 이상 반복되거나 연속되지 않도록 \n 생년월일, 전화번호가 포함되지 않도록 입력해주세요."
-              }
-            />
+            <Template.Header main="계좌 비밀번호를 입력해주세요" />
             <KeyPad len={length} password={password} onClick={handleClick} />
           </Template>
         </motion.div>
@@ -79,10 +74,7 @@ export default function AmimateLayout({ length }: { length: number }) {
         >
           <Template>
             <Back onClick={onClickStageBack} className={styles.headerIcon} />
-            <Template.Header
-              main="비밀번호를 확인해주세요"
-              sub={"설정한 비밀번호를 한번 더 입력해주세요"}
-            />
+            <Template.Header main="계좌 비밀번호를 확인해주세요" />
             <KeyPad len={length} password={check} onClick={checkClick} />
           </Template>
         </motion.div>

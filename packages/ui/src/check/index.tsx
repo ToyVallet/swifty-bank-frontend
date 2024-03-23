@@ -1,11 +1,12 @@
 "use client";
 
-import styles from "./check.css";
-import { HTMLAttributes, forwardRef, ForwardedRef, useState } from "react";
+import { useId } from "@swifty/hooks";
+import { ForwardedRef, forwardRef, HTMLAttributes, useState } from "react";
+import { UseFormSetValue } from "react-hook-form";
+
 import Checked from "../icon/checkIcon.svg";
 import NonChecked from "../icon/nonCheckIcon.svg";
-import { useId } from "@swifty/hooks";
-import { UseFormSetValue } from "react-hook-form";
+import styles from "./check.css";
 
 type Prop = HTMLAttributes<HTMLDivElement> & {
   labelContent: string;
@@ -14,7 +15,7 @@ type Prop = HTMLAttributes<HTMLDivElement> & {
   uniqueResiter?: string;
 };
 
-const Check = (
+function Check(
   {
     labelContent,
     position = "left",
@@ -25,12 +26,11 @@ const Check = (
     ...props
   }: Prop,
   ref: ForwardedRef<HTMLInputElement>,
-) => {
+) {
   const uniqueId = useId();
   const [isCheck, setIsCheck] = useState(defaultChecked || false);
 
   const onChage = () => {
-    console.log("click");
     setIsCheck((prev) => !prev);
   };
 
@@ -67,7 +67,7 @@ const Check = (
         ))}
     </section>
   );
-};
+}
 
 export default forwardRef<HTMLInputElement, Prop>((props, ref) =>
   Check(props, ref),
