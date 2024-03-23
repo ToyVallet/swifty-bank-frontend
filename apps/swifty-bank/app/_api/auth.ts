@@ -64,10 +64,10 @@ const sendSMSCode = async (phoneNumber: string) => {
   return res;
 };
 
-const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
+const checkSMSCode = async (phoneNumber: string, verificationCode: string) => {
   const res = await post<SMSResponse>(URL.AUTH.checkCode, {
     phoneNumber,
-    verficationCode,
+    verificationCode,
   });
 
   return res;
