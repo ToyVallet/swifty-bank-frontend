@@ -1,21 +1,5 @@
-import { style } from "@vanilla-extract/css";
-
 import { vars } from "@swifty/ui/styles/vars.css";
-
-const header = style({
-  marginBottom: "2rem",
-});
-
-const formContainer = style({
-  position: "relative",
-});
-
-const idInputContainer = style({
-  display: "flex",
-  flexDirection: "column",
-  margin: "3rem 0",
-  height: "4rem",
-});
+import { style } from "@vanilla-extract/css";
 
 const idLabel = style({
   fontSize: "14px",
@@ -54,6 +38,7 @@ const idInputBackBox = style({
   paddingTop: "1.5rem",
   display: "flex",
   flexDirection: "row",
+  // justifyContent: "center",
   alignItems: "center",
 });
 
@@ -83,48 +68,13 @@ const idInputBack = style({
   appearance: "none",
 });
 
-const inputContainer = style({
-  marginTop: "3rem",
-  marginBottom: "2rem",
-  height: "4rem",
-});
-
-const nextButton = style({
-  position: "fixed",
-  bottom: 0,
-  padding: "0 0 2rem 0",
-  left: 0,
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-});
-
-const hideElement = style({
-  display: "none",
-});
-
-const noticeMessage = style({
-  fontSize: "0.8rem",
-  color: vars.color.gray[400],
-  textAlign: "center",
-  margin: "3rem 0",
-});
-
 const styles = {
-  header,
-  inputContainer,
-  idInputContainer,
+  idLabel,
   idInputBox,
   idInputFront,
+  idInputHyphen,
   idInputBackBox,
   idInputBack,
-  idInputHyphen,
-  hideElement,
-  nextButton,
-  idLabel,
-  noticeMessage,
-  formContainer,
 };
 
 export default styles;

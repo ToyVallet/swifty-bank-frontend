@@ -23,6 +23,8 @@ const input = style({
     color: "#ccc",
     transition: "all 0.2s ease-out",
   },
+  WebkitAppearance: "none",
+  WebkitUserSelect: "none",
 });
 
 const error = style({
@@ -36,6 +38,8 @@ const label = style({
   color: vars.color.primary,
   fontSize: 14,
   fontWeight: 700,
+  paddingLeft: "1.5rem",
+  marginBottom: "-0.75rem",
 });
 
 const bottomText = style({

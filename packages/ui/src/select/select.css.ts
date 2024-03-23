@@ -9,9 +9,11 @@ const container = style({
 });
 
 const label = style({
-  fontSize: "1.063rem",
+  fontSize: "14px",
   fontWeight: "bold",
-  marginBottom: "1.5rem",
+  color: vars.color.primary,
+  marginBottom: "0.25rem",
+  paddingLeft: "1.5rem",
 });
 
 const selectInput = style({
@@ -27,6 +29,9 @@ const selectInput = style({
   ":focus": {
     borderColor: vars.color.primary,
   },
+  WebkitAppearance: "none",
+  MozAppearance: "none",
+  appearance: "none",
 });
 
 const optionList = style({
