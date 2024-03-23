@@ -1,10 +1,12 @@
 "use client";
+import user from "@/_api/user";
 import {
   useState,
   MouseEvent,
   Dispatch,
   SetStateAction,
   HTMLAttributes,
+  useEffect,
 } from "react";
 
 const useKeyPad = (
@@ -13,8 +15,10 @@ const useKeyPad = (
   string[],
   Dispatch<SetStateAction<string[]>>,
   HTMLAttributes<HTMLButtonElement>["onClick"],
+  string[],
 ] => {
   const [key, setKey] = useState<string[]>([]);
+  const [keypads, setKeyPads] = useState<string[]>([]);
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const target = e.currentTarget;
@@ -27,7 +31,11 @@ const useKeyPad = (
       setKey((prev) => [...prev, target.value]);
     }
   };
-  return [key, setKey, handleClick];
+  useEffect(() => {
+    user.getKeypad().then((data) => setKeyPads(data.keypad));
+  }, []);
+
+  return [key, setKey, handleClick, keypads];
 };
 
 export default useKeyPad;

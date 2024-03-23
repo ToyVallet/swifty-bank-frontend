@@ -17,7 +17,8 @@ export default function AmimateLayout() {
     exit: { opacity: 0, transition: { duration: 1 } },
   };
   const [stage, setStage] = useState<"password" | "check">("password");
-  const [password, setPassword, handleClick] = useKeyPad(PASSWORD_LENGTH);
+  const [password, setPassword, handleClick, keyPads] =
+    useKeyPad(PASSWORD_LENGTH);
   const [check, setCheck, checkClick] = useKeyPad(PASSWORD_LENGTH);
 
   const onClickStageBack = () => {
@@ -76,6 +77,7 @@ export default function AmimateLayout() {
               len={PASSWORD_LENGTH}
               password={password}
               onClick={handleClick}
+              keypads={keyPads}
             />
           </Template>
         </motion.div>
@@ -98,6 +100,7 @@ export default function AmimateLayout() {
               len={PASSWORD_LENGTH}
               password={check}
               onClick={checkClick}
+              keypads={keyPads}
             />
           </Template>
         </motion.div>
