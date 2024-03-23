@@ -1,5 +1,5 @@
 "use client";
-import user from "@/_api/user";
+import auth from "@/_api/auth";
 import {
   useState,
   MouseEvent,
@@ -32,7 +32,7 @@ const useKeyPad = (
     }
   };
   useEffect(() => {
-    user.getKeypad().then((data) => setKeyPads(data.keypad));
+    auth.getKeypad().then((data) => setKeyPads(data.keypad));
   }, []);
 
   return [key, setKey, handleClick, keypads];

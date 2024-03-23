@@ -75,7 +75,7 @@ const checkSMSCode = async (phoneNumber: string, verificationCode: string) => {
 
 const getKeypad = async () => {
   const res = await get<{
-    keypad: string;
+    keypad: string[];
   }>(URL.AUTH.keypad, {}, "no-store");
 
   return res;
