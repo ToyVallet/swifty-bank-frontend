@@ -6,7 +6,7 @@ interface SMSResponse {
   isSuccess: boolean;
 }
 
-const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
+const signwithForm = async (pushedOrder: string[], deviceId: string) => {
   const res = await post<{
     tokens: string;
     success: boolean;

@@ -11,6 +11,7 @@ import {
 
 const useKeyPad = (
   length: number,
+  callApi: boolean = false,
 ): [
   string[],
   Dispatch<SetStateAction<string[]>>,
@@ -25,14 +26,16 @@ const useKeyPad = (
 
     if (target.value === "11") {
       setKey((prev) => prev.slice(0, prev.length - 1));
-    } else if (target.value === "9") {
+    } else if (target.value === "10") {
       setKey([]);
     } else if (key.length < length) {
       setKey((prev) => [...prev, target.value]);
     }
   };
   useEffect(() => {
-    auth.getKeypad().then((data) => setKeyPads(data.keypad));
+    if (callApi) {
+      auth.getKeypad().then((data) => setKeyPads(data.keypad));
+    }
   }, []);
 
   return [key, setKey, handleClick, keypads];
