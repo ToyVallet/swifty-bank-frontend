@@ -1,11 +1,16 @@
 "use client";
 
 import { container } from "./page.css";
-import { BottomSheet, Toast } from "@swifty/ui";
+import { BottomSheet, ToastContext } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
+import { useContext } from "react";
 
 export default function Page() {
   const { isOpen, open, close } = useBottomSheet();
+  const { showToast } = useContext(ToastContext);
+  const onClick = () => {
+    showToast({ content: "text", timer: 1 });
+  };
 
   return (
     <main className={container}>
@@ -18,7 +23,7 @@ export default function Page() {
       >
         asd
       </BottomSheet>
-      <Toast time={5}>새로운 계정이 생성되었습니다</Toast>
+      <button onClick={onClick}>Toast</button>
     </main>
   );
 }
