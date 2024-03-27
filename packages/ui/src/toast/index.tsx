@@ -1,62 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion";
-import clsx from "clsx";
-import styles from "./toast.css";
-import { toastVariants } from "./motion";
+import { AnimatePresence } from "framer-motion";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-export type ToastType = "success" | "error";
-export type ToastValue = {
-  children: string | JSX.Element;
-  type?: ToastType;
-  time?: number;
-};
+import Toast from "./Toast";
 
-type Prop = ToastValue & HTMLMotionProps<"div">;
+interface ToastFn {
+  content: string;
+  toastType?: "success" | "error";
+  timer?: number;
+}
+
+export const ToastContext = createContext<{
+  showToast: (value: ToastFn) => void;
+}>({ showToast() {} });
 
 const ANIMATION_DURATION = 500;
 
-export default function Toast({
-  time = 1,
-  type = "success",
-  className,
-  children,
-  ...props
-}: Prop) {
-  const [isShow, setIsShow] = useState(true);
+export default function ToastProvider({ children }: { children: ReactNode }) {
+  const [isShow, setIsShow] = useState(false);
+  const [message, setMessage] = useState("");
+  const [type, setType] = useState<"success" | "error">("success");
+  const toastTimer = useRef<NodeJS.Timeout>();
 
-  const seconds = time * 1000;
+  const showToast = useCallback(
+    ({ content, timer = 1, toastType = "success" }: ToastFn) => {
+      setMessage(content);
+      setIsShow(true);
+      setType(toastType);
 
-  useEffect(() => {
-    const timeId = setTimeout(() => {
-      setIsShow(false);
-    }, seconds + ANIMATION_DURATION);
-    return () => {
-      clearTimeout(timeId);
-    };
-  }, []);
+      if (toastTimer.current) {
+        clearTimeout(toastTimer.current);
+      }
+
+      const timerId = setTimeout(
+        () => {
+          setIsShow(false);
+          setMessage("");
+        },
+        timer * 1000 + ANIMATION_DURATION,
+      );
+
+      toastTimer.current = timerId;
+    },
+    [],
+  );
+
+  const obj = useMemo(
+    () => ({
+      showToast,
+    }),
+    [showToast],
+  );
 
   return (
-    <AnimatePresence>
-      {isShow && (
-        <motion.div className={styles.container}>
-          <motion.div
-            className={clsx(
-              type === "error" && styles.errorToast,
-              type === "success" && styles.successToast,
-              className,
-            )}
-            variants={toastVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            {...props}
-          >
-            {children}
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <ToastContext.Provider value={obj}>
+      {children}
+      <AnimatePresence>
+        {isShow && <Toast type={type}>{message}</Toast>}
+      </AnimatePresence>
+    </ToastContext.Provider>
   );
 }
