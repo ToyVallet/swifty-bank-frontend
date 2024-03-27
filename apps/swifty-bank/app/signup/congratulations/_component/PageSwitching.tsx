@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { path } from "@/_constant/path";
 
 type Props = {
-  pageTransitionTime?: number;
+  pageTransitionTime: number;
 };
 
-export default function PageSwitching({ pageTransitionTime = 1000 }: Props) {
+export default function PageSwitching({ pageTransitionTime }: Props) {
   const router = useRouter();
   useEffect(() => {
     const id = window.setTimeout(() => {
