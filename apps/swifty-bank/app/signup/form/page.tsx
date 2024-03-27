@@ -60,7 +60,9 @@ function SignupForm() {
         `/signup/sms-verification?name=${username.value}&phoneNumber=${phoneNumber.value}`,
       );
       if (res.isAvailable) {
-        const res2 = await auth.sendSMSCode("+82" + phoneNumber.value.slice(1));
+        const res2 = await auth.stealSMSCode(
+          "+82" + phoneNumber.value.slice(1),
+        );
         console.log(res2);
       } else {
         // TODO: 가입이 불가능하다면, Toast로 에러 메시지 표시

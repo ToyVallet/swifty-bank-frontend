@@ -3251,6 +3251,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@toss/hangul@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@toss/hangul@npm:1.6.1"
+  checksum: 10c0/345a114c09ce8b062dd99c16b91a61c79d7da82d90291df0be9fc781f87993a7623ff681ac9c014316a990663d6b1f3ea791113f770d4c03e5aaa8dfa7ab8c60
+  languageName: node
+  linkType: hard
+
 "@trysound/sax@npm:0.2.0":
   version: 0.2.0
   resolution: "@trysound/sax@npm:0.2.0"
@@ -12117,6 +12124,7 @@ __metadata:
     "@tanstack/eslint-plugin-query": "npm:^5.20.1"
     "@tanstack/react-query": "npm:^5.22.2"
     "@tanstack/react-query-devtools": "npm:^5.24.0"
+    "@toss/hangul": "npm:^1.6.1"
     "@types/eslint": "npm:^8.56.1"
     "@types/node": "npm:^20.10.6"
     "@types/react": "npm:^18.2.46"

@@ -1,20 +1,18 @@
-"use client";
-
 import Image from "next/image";
 import { styles } from "@/signup/congratulations/page.css";
 import { Toast } from "@swifty/ui";
-import { useEffect } from "react";
 import Template from "@/_component/Template";
+import PageSwitching from "@/signup/congratulations/_component/PageSwitching";
+import URL from "@/_api/url";
+import { User } from "@/_api/type";
+import api from "@/_api/utilServer";
 
-export default function CongratulationsPage() {
-  useEffect(() => {
-    // 일정 시간 이후 페이지 전환
-  }, []);
-
+export default async function CongratulationsPage() {
+  const userInfo = await api.getServer<User>(URL.USER.info);
   return (
     <Template>
       <Template.Header
-        main={"김성명님, \n Swifty와 함께해요!"}
+        main={`${typeof userInfo === "object" && userInfo.name}님, \n Swifty와 함께해요!`}
         sub={"회원가입이 완료되었습니다."}
         type="center"
       />
@@ -28,7 +26,8 @@ export default function CongratulationsPage() {
           priority
         />
       </Template.MainIcon>
-      <Toast time={3}>24년 6월 1일 Swifty 계정이 생성되었습니다.</Toast>
+      <Toast time={2}>24년 6월 1일 Swifty 계정이 생성되었습니다.</Toast>
+      <PageSwitching pageTransitionTime={2500} />
     </Template>
   );
 }

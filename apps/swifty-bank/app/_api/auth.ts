@@ -6,7 +6,7 @@ interface SMSResponse {
   isSuccess: boolean;
 }
 
-const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
+const signwithForm = async (pushedOrder: string[], deviceId: string) => {
   const res = await post<{
     tokens: string;
     success: boolean;
@@ -64,10 +64,10 @@ const sendSMSCode = async (phoneNumber: string) => {
   return res;
 };
 
-const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
+const checkSMSCode = async (phoneNumber: string, verificationCode: string) => {
   const res = await post<SMSResponse>(URL.AUTH.checkCode, {
     phoneNumber,
-    verficationCode,
+    verificationCode,
   });
 
   return res;
@@ -75,7 +75,7 @@ const checkSMSCode = async (phoneNumber: string, verficationCode: string) => {
 
 const getKeypad = async () => {
   const res = await get<{
-    keypad: string;
+    keypad: string[];
   }>(URL.AUTH.keypad, {}, "no-store");
 
   return res;

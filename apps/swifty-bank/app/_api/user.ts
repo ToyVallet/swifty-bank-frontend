@@ -33,9 +33,9 @@ const updateUser = async (data: User) => {
 
 const getKeypad = async () => {
   const res = await get<{
-    keypad: string;
+    keypad: string[];
     keypadToken: string;
-  }>(URL.USER.keypad, {}, "no-store");
+  }>(URL.USER.keypad, {}, "force-cache");
 
   return res;
 };

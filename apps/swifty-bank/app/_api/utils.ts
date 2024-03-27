@@ -12,7 +12,7 @@ async function get<R>(
   try {
     const res = await fetch(url, {
       method: "GET",
-      credentials: "same-origin",
+      credentials: "include",
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -38,7 +38,7 @@ async function post<R>(
   try {
     const res = await fetch(url, {
       method: "POST",
-      credentials: "same-origin",
+      credentials: "include",
       headers: {
         ...commonHeaders,
         ...headerOptions,
@@ -64,7 +64,7 @@ async function patch<R>(
   try {
     const res = await fetch(url, {
       method: "PATCH",
-      credentials: "same-origin",
+      credentials: "include",
       headers: {
         ...commonHeaders,
         ...headerOptions,

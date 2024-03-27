@@ -5,8 +5,10 @@ import KeyPad from "@/_component/keypad/KeyPad";
 import useKeyPad from "@/_hook/useKeyPad";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Back from "@icon/Icon_Back_Black.svg";
 import styles from "@/signup/password/_component/keyPadLayout.css";
+import auth from "@/_api/auth";
 
 const PASSWORD_LENGTH = 6;
 
@@ -17,8 +19,12 @@ export default function AmimateLayout() {
     exit: { opacity: 0, transition: { duration: 1 } },
   };
   const [stage, setStage] = useState<"password" | "check">("password");
-  const [password, setPassword, handleClick] = useKeyPad(PASSWORD_LENGTH);
+  const [password, setPassword, handleClick, keyPads] = useKeyPad(
+    PASSWORD_LENGTH,
+    true,
+  );
   const [check, setCheck, checkClick] = useKeyPad(PASSWORD_LENGTH);
+  const router = useRouter();
 
   const onClickStageBack = () => {
     setCheck([]);
@@ -44,13 +50,22 @@ export default function AmimateLayout() {
       password.join("") === check.join("")
     ) {
       // 일치
+      auth.signwithForm(password, "test").then((data) => {
+        if (data.availablePassword && data.success) {
+          router.replace("/signup/congratulations");
+        }
+        if (!data.availablePassword) {
+          window.alert("유효하지 않은 비밀번호입니다.");
+          onClickStageBack();
+        }
+      });
     }
     if (
       check.length === PASSWORD_LENGTH &&
       password.join("") !== check.join("")
     ) {
       setCheck([]);
-      setPassword([]);
+      window.alert("비밀번호가 동일하지 않습니다.");
     }
   }, [password, check]);
 
@@ -76,6 +91,7 @@ export default function AmimateLayout() {
               len={PASSWORD_LENGTH}
               password={password}
               onClick={handleClick}
+              keypads={keyPads}
             />
           </Template>
         </motion.div>
@@ -98,6 +114,7 @@ export default function AmimateLayout() {
               len={PASSWORD_LENGTH}
               password={check}
               onClick={checkClick}
+              keypads={keyPads}
             />
           </Template>
         </motion.div>
