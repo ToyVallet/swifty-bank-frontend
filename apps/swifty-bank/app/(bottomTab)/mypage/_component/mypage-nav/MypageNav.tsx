@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { BottomSheet } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
 import { SubmitHandler } from "react-hook-form";
-import CheckForm, { FormData } from "@/signup/_component/check-form/CheckForm";
+import CheckForm, { FormData } from "@/(bottomTab)/mypage/_component/check-form/CheckForm";
 import RightIcon from "/public/icon/rightIcon.svg";
 import clsx from "clsx";
 import styles from "./mypage-nav.css";
@@ -17,8 +17,8 @@ export function MypageNav() {
     open();
   }
 
-  const checkDetails = ({ personalInfo, service }: FormData) => {
-    return personalInfo && service;
+  const checkDetails = ({ consentTocollection, consentToUse, consentToProvide }: FormData) => {
+    return consentTocollection && consentToUse && consentToProvide;
   }
 
   const submitWithdrawAccount: SubmitHandler<FormData> = async (data: FormData) => {
@@ -62,7 +62,7 @@ export function MypageNav() {
       <BottomSheet
         open={isOpen}
         onDismiss={close}
-        header="Swifty를 탈퇴하시려면 동의가 필요해요"
+        header="Swifty를 탈퇴하기 전 동의가 필요해요"
         height="auto"
       >
         <CheckForm submit={submitWithdrawAccount} />

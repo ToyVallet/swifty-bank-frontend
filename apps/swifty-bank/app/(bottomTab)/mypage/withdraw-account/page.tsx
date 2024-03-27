@@ -20,7 +20,7 @@ export default function WithdrawAccountPage() {
     <Template className={styles.template}>
       <Template.Header
         main="탈퇴가 완료되었습니다."
-        sub="지금까지 Swifty를 이용해주셔서 감사합니다."
+        sub="더 나은 Swifty로 찾아뵙겠습니다."
         type='center' />
       <Template.MainIcon>
         <Image src='/icon/layer_1.svg' width={120} height={183.36} alt='swifty logo image' />
