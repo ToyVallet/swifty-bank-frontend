@@ -1,7 +1,7 @@
 export function format() { };
 
 format.phone = (phone: string) => {
-  return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+  return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1 $2 $3');
 }
 
 format.birthday = (birthday: string) => {

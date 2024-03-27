@@ -1,8 +1,9 @@
 import { style } from "@vanilla-extract/css";
 
 const board = style({
-  margin: "4.625rem 0",
-  fontSize: "18px"
+  margin: "2.75rem 0",
+  fontSize: "18px",
+  fontWeight: 500,
 });
 
 const styles = {

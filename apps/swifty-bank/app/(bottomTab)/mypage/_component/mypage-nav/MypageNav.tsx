@@ -46,14 +46,14 @@ export function MypageNav() {
           onClick={logout}
           className={clsx(styles.flexWrapper, styles.button)}
         >
-          로그아웃하기
+          로그아웃
           <RightIcon />
         </button>
       </li>
-      <li className={styles.item}>
+      <li className={clsx(styles.item, styles.lastItem)}>
         <button
           onClick={showWithdrawAgreement}
-          className={clsx(styles.flexWrapper, styles.button)}
+          className={clsx(styles.flexWrapper, styles.button, styles.withdrawButton)}
         >
           탈퇴하기
           <RightIcon />

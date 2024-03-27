@@ -1,15 +1,21 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "@swifty/ui/styles/vars.css";
 
 const list = style({
-  margin: "2.313rem 0",
 });
 
 const item = style({
   width: "100%",
+  height: "4.813rem",
   listStyle: "none",
   display: "flex",
   flexFlow: "row nowrap",
   justifyContent: "space-between",
+  borderBottom: `1px solid ${vars.color.gray[300]}`,
+});
+
+const lastItem = style({
+  borderBottom: 0,
 });
 
 const flexWrapper = style({
@@ -17,14 +23,20 @@ const flexWrapper = style({
   display: "flex",
   flexFlow: "row nowrap",
   justifyContent: "space-between",
-  padding: "1.656rem 0"
+  alignItems: "center"
 });
 
 const button = style({
   background: "transparent",
   border: "none",
   fontSize: "18px",
-  cursor: "pointer"
+  cursor: "pointer",
+  fontWeight: 500,
+  letterSpacing: "2px",
+});
+
+const withdrawButton = style({
+  color: 'red',
 });
 
 const styles = {
@@ -32,6 +44,8 @@ const styles = {
   item,
   flexWrapper,
   button,
+  lastItem,
+  withdrawButton
 };
 
 export default styles;
