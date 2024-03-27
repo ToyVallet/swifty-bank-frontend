@@ -6,20 +6,26 @@ import styles from "./info-list.css";
 
 interface InfoListProps extends HTMLAttributes<HTMLDListElement> {
   name: string;
-  birthDay: string;
-  phone: string;
+  birthDate: string;
+  phoneNumber: string;
 }
 
-export function InfoList({ name, birthDay, phone, className, ...props }: InfoListProps) {
+export function InfoList({
+  name,
+  birthDate,
+  phoneNumber,
+  className,
+  ...props
+}: InfoListProps) {
   return (
     <dl className={clsx(styles.infoList, className)} {...props}>
       <dt className={styles.infoTerm}>이름</dt>
-      <dl className={styles.infoDescription}>{name}</dl>
+      <dl className={styles.infoDescription}>{name || '없음'}</dl>
       <dt className={styles.infoTerm}>생년월일</dt>
-      <dl className={styles.infoDescription}>{format.birthday(birthDay)}</dl>
+      <dl className={styles.infoDescription}>{format.birthday(birthDate) || '없음'}</dl>
       <dt className={styles.infoTerm}>휴대폰번호</dt>
       <dt className={styles.infoDescription}>{
-        format.phone(format.international(phone))
+        format.phone(format.international(phoneNumber)) || '없음'
       }</dt>
     </dl>
   );

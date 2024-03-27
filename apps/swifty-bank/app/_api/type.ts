@@ -4,6 +4,7 @@ export interface User {
   gender: "MALE" | "FEMALE";
   birthDate: string;
   nationality: string;
+  customerStatus: "ACTIVE" | "INACTIVE";
 }
 
 export interface CheckInfo extends Pick<User, "name" | "phoneNumber"> {
