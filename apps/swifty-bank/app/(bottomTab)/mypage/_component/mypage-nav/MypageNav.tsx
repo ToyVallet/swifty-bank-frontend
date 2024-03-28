@@ -7,6 +7,7 @@ import CheckForm, { FormData } from "@/(bottomTab)/mypage/_component/check-form/
 import RightIcon from "/public/icon/rightIcon.svg";
 import clsx from "clsx";
 import styles from "./mypage-nav.css";
+import auth from "@/_api/auth";
 
 export function MypageNav() {
   const { isOpen, open, close } = useBottomSheet();
@@ -24,7 +25,9 @@ export function MypageNav() {
   const submitWithdrawAccount: SubmitHandler<FormData> = async (data: FormData) => {
     if (!checkDetails(data))
       return;
-    replace(`${pathname}/withdraw-account`);
+    const { isSuccess } = await auth.signOut();
+    if (isSuccess)
+      replace(`${pathname}/withdraw-account`);
   }
 
   const logout = async () => {

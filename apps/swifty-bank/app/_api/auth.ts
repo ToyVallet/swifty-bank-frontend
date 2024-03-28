@@ -21,7 +21,7 @@ const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
 
 const signOut = async () => {
   const res = await post<{
-    wasSignedOut: boolean;
+    isSuccess: boolean;
   }>(URL.AUTH.signout, {});
 
   return res;
