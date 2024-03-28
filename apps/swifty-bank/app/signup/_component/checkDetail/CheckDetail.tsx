@@ -10,7 +10,13 @@ import { UseFormRegisterReturn, UseFormSetValue } from "react-hook-form";
 type Prop = {
   labelContent: string;
   inputref: UseFormRegisterReturn<any>;
-  detailInfoType: "service" | "personalInfo" | "promotion";
+  detailInfoType:
+  "service"
+  | "personalInfo"
+  | "promotion"
+  | "collection"
+  | "use"
+  | "provide";
   setValue?: UseFormSetValue<any>;
   uniqueResiter?: string;
 };

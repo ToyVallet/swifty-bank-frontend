@@ -5,3 +5,5 @@ export type DeepValueOf<T> = T extends object
   : T;
 
 export type TypeOfDetailInfo = "service" | "promotion" | "personalInfo";
+
+export type TypeOfWithdrawalInfo = "collection" | "use" | "provide";

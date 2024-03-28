@@ -5,11 +5,11 @@ import { BottomSheet, Toast } from "@swifty/ui";
 import { useBottomSheet } from "@swifty/hooks";
 
 export default function Page() {
-  const { isOpen, open, close } = useBottomSheet();
+  const { isOpen, close } = useBottomSheet();
 
   return (
     <main className={container}>
-      <button onClick={() => {}}>메시지</button>
+      <button onClick={() => { }}>메시지</button>
       <BottomSheet
         open={isOpen}
         onDismiss={close}

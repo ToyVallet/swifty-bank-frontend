@@ -21,7 +21,7 @@ const signwithForm = async (pushedOrder: Number[], deviceId: string) => {
 
 const signOut = async () => {
   const res = await post<{
-    wasSignedOut: boolean;
+    isSuccess: boolean;
   }>(URL.AUTH.signout, {});
 
   return res;
@@ -38,7 +38,7 @@ const reissueToken = async () => {
 
 const logout = async () => {
   const res = await post<{
-    isSuccessful: boolean;
+    isSuccess: boolean;
   }>(URL.AUTH.logout, {});
   return res;
 };

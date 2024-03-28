@@ -26,6 +26,7 @@ const global = createGlobalTheme(":root", {
 const color = createThemeContract({
   primary: "",
   secondary: "",
+  pale: "",
   accent: "",
   background: "",
   backgroundDimmer: "",
@@ -47,6 +48,7 @@ const color = createThemeContract({
 export const lightTheme = createTheme(color, {
   primary: "#6552FE",
   secondary: "#9EFF42",
+  pale: "#E8E5FF",
   accent: "",
   background: "#FFFFFF",
   backgroundDimmer: "#F7F7F7",
@@ -68,6 +70,7 @@ export const lightTheme = createTheme(color, {
 export const darkTheme = createTheme(color, {
   primary: "#6552FE",
   secondary: "#9EFF42",
+  pale: "#E8E5FF",
   accent: "",
   background: "#2A2A2A",
   backgroundDimmer: "#242424",

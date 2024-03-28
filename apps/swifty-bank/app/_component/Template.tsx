@@ -1,10 +1,12 @@
 import styles from "@/_component/template.css";
 import { title } from "@/signup/layout.css";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
 
-export default function Template({ children }: { children: React.ReactNode }) {
-  return <main className={styles.mainContainer}>{children}</main>;
+interface TemplateProps extends HTMLAttributes<HTMLDivElement> { }
+
+export default function Template({ className, children }: TemplateProps) {
+  return <main className={clsx(styles.mainContainer, className)}>{children}</main>;
 }
 
 type HeaderProps = {
