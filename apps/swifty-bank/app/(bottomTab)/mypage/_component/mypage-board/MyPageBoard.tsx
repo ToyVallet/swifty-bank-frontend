@@ -15,9 +15,7 @@ export function MyPageBoard({ customerInfo, className, ...props }: MyPageBoardPr
   const { name, birthDate, phoneNumber } = customerInfo;
   return (
     <section className={clsx(styles.board, className)} {...props}>
-      <Avatar
-        src='/icon/mypage/ellipse25.png'
-      />
+      <Avatar src='/icon/mypage/ellipse25.png' />
       <InfoList
         name={name}
         birthDate={birthDate}

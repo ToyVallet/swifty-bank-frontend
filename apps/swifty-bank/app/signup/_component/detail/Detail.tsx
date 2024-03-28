@@ -5,6 +5,7 @@ import styles from "./detail.css";
 import Image from "next/image";
 import { TypeOfDetailInfo } from "@/_utils/type";
 import { termsOfDetails } from "./detail-type";
+import { TermsOfWithdrawal } from "@/(bottomTab)/mypage/_constant/terms-withdrawal"
 import { motion } from "framer-motion";
 import { variants } from "./motion";
 import { HTMLAttributes } from "react";
@@ -18,7 +19,7 @@ interface Prop {
 }
 
 export default function Detail({ onClick, detailInfoType, isOpened }: Prop) {
-  const terms = termsOfDetails.filter(({ type }) => type === detailInfoType);
+  const terms = [...termsOfDetails, ...TermsOfWithdrawal].filter(({ type }) => type === detailInfoType);
   const term = terms[0];
 
   return (

@@ -14,15 +14,17 @@ const variants: Variants = {
   exit: { opacity: 0, transition: { duration: 1 } },
 };
 
+interface KeypadBoardProps {
+  stage: Stage;
+  prevStage: () => void;
+  nextStage: () => void;
+}
+
 export default function KeypadBoard({
   stage,
   prevStage,
   nextStage,
-}: {
-  stage: Stage;
-  prevStage: () => void;
-  nextStage: () => void;
-}) {
+}: KeypadBoardProps) {
   const {
     password,
     rePassword,
@@ -69,7 +71,7 @@ export default function KeypadBoard({
             <Back onClick={backStage} className={styles.headerIcon} />
             <Template.Header
               main="비밀번호를 확인해주세요"
-              sub={"설정한 비밀번호를 한번 더 입력해주세요"}
+              sub={"설정한 비밀번호를 한번 더 입력해주세요 \n\n"}
             />
             <KeyPad
               len={PASSWORD_LEGTH}

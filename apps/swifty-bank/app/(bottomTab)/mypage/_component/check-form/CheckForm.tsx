@@ -1,29 +1,22 @@
 import { Button } from "@swifty/ui";
-import { FormHTMLAttributes, HTMLAttributes } from "react";
+import { FormHTMLAttributes } from "react";
 import styles from "@/signup/_component/check-form/checkForm.css";
 import CheckDetail from "@/signup/_component/checkDetail/CheckDetail";
 import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
-
-type Button = HTMLAttributes<HTMLButtonElement>;
 
 interface Prop extends FormHTMLAttributes<HTMLFormElement> {
   submit: SubmitHandler<FormData>;
 }
 
 export interface FormData {
-  consentTocollection: boolean;
-  consentToUse: boolean;
-  consentToProvide: boolean;
+  collection: boolean;
+  use: boolean;
+  provide: boolean;
 }
 
 export default function CheckForm({ submit, className, ...props }: Prop) {
   const { register, handleSubmit, setValue, formState } = useForm<FormData>({});
-
-  /*
-    const onSubmit: SubmitHandler<FormData> = (data) => {
-    };
-  */
 
   return (
     <form
@@ -33,25 +26,25 @@ export default function CheckForm({ submit, className, ...props }: Prop) {
     >
       <div className={styles.termsSection}>
         <CheckDetail
-          detailInfoType="personalInfo"
+          detailInfoType="collection"
           labelContent={"[필수] 수집 동의 철회"}
-          inputref={register("consentTocollection", { required: true })}
+          inputref={register("collection", { required: true })}
           setValue={setValue}
-          uniqueResiter="consentTocollection"
+          uniqueResiter="collection"
         />
         <CheckDetail
-          detailInfoType="service"
+          detailInfoType="use"
           labelContent={"[필수] 이용 동의 철회"}
-          inputref={register("consentToUse", { required: true })}
+          inputref={register("use", { required: true })}
           setValue={setValue}
-          uniqueResiter="consentToUse"
+          uniqueResiter="use"
         />
         <CheckDetail
-          detailInfoType="promotion"
+          detailInfoType="provide"
           labelContent={"[필수] 제공 동의 철회"}
-          inputref={register("consentToProvide", { required: true })}
+          inputref={register("provide", { required: true })}
           setValue={setValue}
-          uniqueResiter="consentToProvide"
+          uniqueResiter="provide"
         />
       </div>
 
@@ -63,9 +56,6 @@ export default function CheckForm({ submit, className, ...props }: Prop) {
         >
           동의하기
         </Button>
-        {/* <Button variant="transparent" onClick={onClose}>
-          닫기
-        </Button> */}
       </div>
     </form>
   );

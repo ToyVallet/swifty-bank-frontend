@@ -17,8 +17,8 @@ export function MypageNav() {
     open();
   }
 
-  const checkDetails = ({ consentTocollection, consentToUse, consentToProvide }: FormData) => {
-    return consentTocollection && consentToUse && consentToProvide;
+  const checkDetails = ({ collection, use, provide }: FormData) => {
+    return collection && use && provide;
   }
 
   const submitWithdrawAccount: SubmitHandler<FormData> = async (data: FormData) => {
