@@ -38,7 +38,7 @@ const reissueToken = async () => {
 
 const logout = async () => {
   const res = await post<{
-    isSuccessful: boolean;
+    isSuccess: boolean;
   }>(URL.AUTH.logout, {});
   return res;
 };

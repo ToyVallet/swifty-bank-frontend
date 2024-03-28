@@ -31,6 +31,7 @@ export function MypageNav() {
   }
 
   const logout = async () => {
+    await auth.logout();
   }
 
   return (
